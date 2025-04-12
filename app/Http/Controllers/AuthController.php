@@ -14,11 +14,13 @@ class AuthController extends Controller
         ]);
         if (Auth::attempt($credintials)) {
             $user = Auth::user();
-            if ($user->role === 'admin') {
-                return redirect('/admin') -> with('success', 'Login Successfully');
+            if ($user->role == 'admin') {
+                return redirect('/admin') -> with('success', 'Đăng nhập thành công');
             }else{
-                return redirect('/home') -> with('success', 'Login Successfully');
+                return redirect('/home') -> with('success', 'Đăng nhập thành công');
             }
+        }else{
+            return redirect('/login') -> with('error', 'Sai tên email hoặc mật khẩu chưa đúng');
         }
     }
 }

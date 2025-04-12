@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientHomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,3 +28,10 @@ Route::middleware('client')->group(function () {
 Route::middleware('admin')->group(function () {
     Route::get('/admin', [AdminDashboardController::class, 'index']);
 });
+
+
+// logout
+Route::post('/logout', function () {
+    Auth::logout();
+    return view('auth.login');
+}) ->name('logout');
