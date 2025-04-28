@@ -31,7 +31,7 @@ Route::middleware('client')->group(function () {
 
 // admin
 Route::middleware('admin')->group(function () {
-    Route::get('/admin', [AdminDashboardController::class, 'index']);
+    Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin');
 });
 
 
