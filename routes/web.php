@@ -10,6 +10,11 @@ Route::get('/', function () {
     return view('client.list');
 }); 
 
+// register
+Route::get('/register', function () {
+    return view('auth.register');
+}) -> name('register');
+Route::post('/register', [AuthController::class, 'register']) -> name('register');
 
 // login
 Route::get('/login', function () {
