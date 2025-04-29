@@ -60,5 +60,5 @@ Route::middleware('admin')->group(function () {
 // logout
 Route::post('/logout', function () {
     Auth::logout();
-    return view('auth.login');
+    return redirect('/login');
 }) ->name('logout');

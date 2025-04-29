@@ -15,17 +15,17 @@
                     </a>
                 </li>
 
-                <li class="pc-item pc-caption">
+                {{-- <li class="pc-item pc-caption">
                     <label>UI Components</label>
                     <i class="ti ti-dashboard"></i>
                 </li>
-                {{-- <li class="pc-item">
+                <li class="pc-item">
                     <a href="elements/bc_typography.html" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-typography"></i></span>
                         <span class="pc-mtext">Typography</span>
                     </a>
-                </li> --}}
-                {{-- <li class="pc-item">
+                </li>
+                <li class="pc-item">
                     <a href="{{route('bc_color')}}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-color-swatch"></i></span>
                         <span class="pc-mtext">Color</span>
