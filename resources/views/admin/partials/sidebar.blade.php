@@ -43,13 +43,13 @@
                     <i class="ti ti-news"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="#" class="pc-link">
+                    <a href="{{ route('admin.categories.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-layout-grid"></i></span>
                         <span class="pc-mtext">Category</span>
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="#" class="pc-link">
+                    <a href="{{ route('admin.products.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-package"></i></span>
                         <span class="pc-mtext">Product</span>
                     </a>
@@ -106,7 +106,7 @@
                     </a>
                 </li>
             </ul>
-            <div class="card text-center">
+            {{-- <div class="card text-center">
                 <div class="card-body">
                     <img src="assets/images/img-navbar-card.png" alt="images" class="img-fluid mb-2">
                     <h5>Upgrade To Pro</h5>
@@ -114,7 +114,7 @@
                     <a href="https://codedthemes.com/item/berry-bootstrap-5-admin-template/" target="_blank"
                         class="btn btn-success">Buy Now</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </nav>
