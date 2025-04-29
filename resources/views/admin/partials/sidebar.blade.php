@@ -1,7 +1,7 @@
 <nav class="pc-sidebar">
     <div class="navbar-wrapper">
         <div class="m-header">
-            <a href="dashboard/index.html" class="b-brand text-primary">
+            <a href="{{ route('admin') }}" class="b-brand text-primary">
                 <!-- ========   Change your logo from here   ============ -->
                 <img src="assets/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo">
             </a>
@@ -9,7 +9,7 @@
         <div class="navbar-content">
             <ul class="pc-navbar">
                 <li class="pc-item">
-                    <a href="dashboard/index.html" class="pc-link">
+                    <a href="{{ route('admin') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-dashboard"></i></span>
                         <span class="pc-mtext">Dashboard</span>
                     </a>
@@ -19,39 +19,39 @@
                     <label>UI Components</label>
                     <i class="ti ti-dashboard"></i>
                 </li>
-                <li class="pc-item">
+                {{-- <li class="pc-item">
                     <a href="elements/bc_typography.html" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-typography"></i></span>
                         <span class="pc-mtext">Typography</span>
                     </a>
-                </li>
-                <li class="pc-item">
-                    <a href="elements/bc_color.html" class="pc-link">
+                </li> --}}
+                {{-- <li class="pc-item">
+                    <a href="{{route('bc_color')}}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-color-swatch"></i></span>
                         <span class="pc-mtext">Color</span>
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="elements/icon-tabler.html" class="pc-link">
+                    <a href="{{ route('icon')}}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-plant-2"></i></span>
                         <span class="pc-mtext">Icons</span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="pc-item pc-caption">
                     <label>Pages</label>
                     <i class="ti ti-news"></i>
                 </li>
                 <li class="pc-item">
-                    <a href="pages/login.html" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-lock"></i></span>
-                        <span class="pc-mtext">Login</span>
+                    <a href="#" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-layout-grid"></i></span>
+                        <span class="pc-mtext">Category</span>
                     </a>
                 </li>
                 <li class="pc-item">
-                    <a href="pages/register.html" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-user-plus"></i></span>
-                        <span class="pc-mtext">Register</span>
+                    <a href="#" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-package"></i></span>
+                        <span class="pc-mtext">Product</span>
                     </a>
                 </li>
 
