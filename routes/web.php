@@ -1,8 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\OrderItemController;
+use App\Http\Controllers\Admin\CartItemController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientHomeController;
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +58,48 @@ Route::middleware('admin')->group(function () {
         'edit' => 'admin.products.edit',
         'update' => 'admin.products.update',
         'destroy' => 'admin.products.destroy'
+    ]);
+
+    // User Routes
+    Route::resource('admin/users', UserController::class)->names([
+        'index' => 'admin.users.index',
+        'create' => 'admin.users.create',
+        'store' => 'admin.users.store',
+        'edit' => 'admin.users.edit',
+        'update' => 'admin.users.update',
+        'destroy' => 'admin.users.destroy'
+    ]);
+
+    // Order Routes
+    Route::resource('admin/orders', OrderController::class)->names([
+        'index' => 'admin.orders.index',
+        'show' => 'admin.orders.show',
+        'update' => 'admin.orders.update',
+        'destroy' => 'admin.orders.destroy'
+    ]);
+
+    // Order Item Routes
+    Route::resource('admin/order-items', OrderItemController::class)->names([
+        'index' => 'admin.order-items.index',
+        'show' => 'admin.order-items.show',
+        'update' => 'admin.order-items.update',
+        'destroy' => 'admin.order-items.destroy'
+    ]);
+
+    // Cart Item Routes
+    Route::resource('admin/cart-items', CartItemController::class)->names([
+        'index' => 'admin.cart-items.index',
+        'show' => 'admin.cart-items.show',
+        'update' => 'admin.cart-items.update',
+        'destroy' => 'admin.cart-items.destroy'
+    ]);
+
+    // Review Routes
+    Route::resource('admin/reviews', ReviewController::class)->names([
+        'index' => 'admin.reviews.index',
+        'show' => 'admin.reviews.show',
+        'update' => 'admin.reviews.update',
+        'destroy' => 'admin.reviews.destroy'
     ]);
 });
 

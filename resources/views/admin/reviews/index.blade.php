@@ -9,11 +9,11 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Categories</h5>
+                            <h5 class="m-b-10">Reviews</h5>
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Categories</li>
+                            <li class="breadcrumb-item" aria-current="page">Reviews</li>
                         </ul>
                     </div>
                 </div>
@@ -26,12 +26,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Categories List</h5>
-                        <div class="card-header-right">
-                            <a href="{{ route('admin.categories.create') }}" class="btn btn-primary btn-sm">
-                                <i class="ti ti-plus"></i> Add New Category
-                            </a>
-                        </div>
+                        <h5>Reviews List</h5>
                     </div>
                     <div class="card-body">
                         @if(session('success'))
@@ -44,25 +39,37 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Description</th>
+                                        <th>User</th>
+                                        <th>Product</th>
+                                        <th>Rating</th>
+                                        <th>Comment</th>
+                                        <th>Date</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($categories as $category)
+                                    @foreach($reviews as $review)
                                         <tr>
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->name }}</td>
-                                            <td>{{ $category->description }}</td>
+                                            <td>{{ $review->id }}</td>
+                                            <td>{{ $review->user->name }}</td>
+                                            <td>{{ $review->product->name }}</td>
+                                            <td>
+                                                <div class="rating">
+                                                    @for($i = 1; $i <= 5; $i++)
+                                                        <i class="ti ti-star{{ $i <= $review->rating ? ' text-warning' : '' }}"></i>
+                                                    @endfor
+                                                </div>
+                                            </td>
+                                            <td>{{ Str::limit($review->comment, 50) }}</td>
+                                            <td>{{ $review->created_at->format('Y-m-d H:i') }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-info btn-sm">
-                                                    <i class="ti ti-edit"></i> Edit
+                                                <a href="{{ route('admin.reviews.show', $review->id) }}" class="btn btn-info btn-sm">
+                                                    <i class="ti ti-eye"></i> View
                                                 </a>
-                                                <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('admin.reviews.destroy', $review->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this category?')">
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this review?')">
                                                         <i class="ti ti-trash"></i> Delete
                                                     </button>
                                                 </form>

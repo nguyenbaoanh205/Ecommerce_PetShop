@@ -54,8 +54,43 @@
                         <span class="pc-mtext">Product</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="{{ route('admin.users.index') }}" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-user"></i></span>
+                        <span class="pc-mtext">Users</span>
+                    </a>
+                </li>
 
                 <li class="pc-item pc-caption">
+                    <label>Orders & Reviews</label>
+                    <i class="ti ti-shopping-cart"></i>
+                </li>
+                <li class="pc-item">
+                    <a href="{{ route('admin.orders.index') }}" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-shopping-cart"></i></span>
+                        <span class="pc-mtext">Orders</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="{{ route('admin.order-items.index') }}" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-shopping-cart"></i></span>
+                        <span class="pc-mtext">Order Items</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="{{ route('admin.cart-items.index') }}" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-basket"></i></span>
+                        <span class="pc-mtext">Cart Items</span>
+                    </a>
+                </li>
+                <li class="pc-item">
+                    <a href="{{ route('admin.reviews.index') }}" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-star"></i></span>
+                        <span class="pc-mtext">Reviews</span>
+                    </a>
+                </li>
+
+                {{-- <li class="pc-item pc-caption">
                     <label>Other</label>
                     <i class="ti ti-brand-chrome"></i>
                 </li>
@@ -98,13 +133,13 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
-                <li class="pc-item">
+                </li> --}}
+                {{-- <li class="pc-item">
                     <a href="other/sample-page.html" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-brand-chrome"></i></span>
                         <span class="pc-mtext">Sample page</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
             {{-- <div class="card text-center">
                 <div class="card-body">

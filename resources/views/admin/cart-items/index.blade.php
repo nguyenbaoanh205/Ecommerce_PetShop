@@ -9,11 +9,11 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Categories</h5>
+                            <h5 class="m-b-10">Cart Items</h5>
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Categories</li>
+                            <li class="breadcrumb-item" aria-current="page">Cart Items</li>
                         </ul>
                     </div>
                 </div>
@@ -26,12 +26,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Categories List</h5>
-                        <div class="card-header-right">
-                            <a href="{{ route('admin.categories.create') }}" class="btn btn-primary btn-sm">
-                                <i class="ti ti-plus"></i> Add New Category
-                            </a>
-                        </div>
+                        <h5>Cart Items List</h5>
                     </div>
                     <div class="card-body">
                         @if(session('success'))
@@ -44,25 +39,31 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Description</th>
+                                        <th>User</th>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($categories as $category)
+                                    @foreach($cartItems as $item)
                                         <tr>
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->name }}</td>
-                                            <td>{{ $category->description }}</td>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->user->name }}</td>
+                                            <td>{{ $item->product->name }}</td>
+                                            <td>${{ number_format($item->product->price, 2) }}</td>
+                                            <td>{{ $item->quantity }}</td>
+                                            <td>${{ number_format($item->product->price * $item->quantity, 2) }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-info btn-sm">
-                                                    <i class="ti ti-edit"></i> Edit
+                                                <a href="{{ route('admin.cart-items.show', $item->id) }}" class="btn btn-info btn-sm">
+                                                    <i class="ti ti-eye"></i> View
                                                 </a>
-                                                <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('admin.cart-items.destroy', $item->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this category?')">
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?')">
                                                         <i class="ti ti-trash"></i> Delete
                                                     </button>
                                                 </form>
