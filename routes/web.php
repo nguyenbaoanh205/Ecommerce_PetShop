@@ -13,8 +13,9 @@ use App\Http\Controllers\ClientHomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+// trang khách 
 Route::get('/', function () {
-    return view('client.list');
+    return view('client.index');
 }); 
 
 // register
