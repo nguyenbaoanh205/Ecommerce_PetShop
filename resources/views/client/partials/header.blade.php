@@ -4,7 +4,7 @@
 
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
-                    <a href="index.html">
+                    <a href="{{route('home')}}">
                         <img src="{{ asset('public_index/images/logo.png') }}" alt="logo" class="img-fluid">
                     </a>
                 </div>
@@ -106,7 +106,7 @@
 
                     <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link active">Home</a>
+                            <a href="{{route('home')}}" class="nav-link active">Home</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" role="button" id="pages"

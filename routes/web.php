@@ -32,7 +32,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // client
 Route::middleware('client')->group(function () {
-    Route::get('/home', [ClientHomeController::class, 'index']);
+    Route::get('/home', [ClientHomeController::class, 'index']) -> name('home');
     Route::get('/product-detail/{id}',[ClientHomeController::class, 'productDetail'])->name('product-detail');
 });
 

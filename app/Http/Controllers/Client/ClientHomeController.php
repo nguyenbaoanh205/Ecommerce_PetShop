@@ -12,26 +12,23 @@ class ClientHomeController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category') -> orderby('created_at', 'desc')->get();
-        $categories = Category::all();
+        $products = Product::with('category') -> orderby('id', 'desc')->get();
+        $categories = Category::query()-> where('status', 1) -> where('type', 1)->get();
         $reviews = Review::all();
         return view('client.home', compact('products', 'reviews', 'categories'));
     } 
     public function productDetail($id)
     {
-        // Lấy sản phẩm cụ thể theo ID
         $product = Product::with('category')->where('id', $id)->firstOrFail();
-        
-        // Lấy tất cả đánh giá
+        $categories = Category::query()-> where('status', 1) -> where('type', 1)->get();
         $reviews = Review::with('user')->limit(2)->get();
         
-        // Lấy các sản phẩm liên quan (ví dụ: cùng danh mục, giới hạn 4 sản phẩm)
         $relatedProducts = Product::where('category_id', $product->category_id)
-            ->where('id', '!=', $id) // Loại trừ sản phẩm hiện tại
-            ->orderBy('created_at', 'desc')
+            ->where('id', '!=', $id)
+            ->orderBy('id', 'desc')
             ->take(4)
             ->get();
 
-        return view('client.product-detail', compact('product', 'reviews', 'relatedProducts'));
+        return view('client.product-detail', compact('product', 'reviews', 'relatedProducts', 'categories'));
     }
 }
