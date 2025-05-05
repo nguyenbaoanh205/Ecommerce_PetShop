@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Client\ClientHomeController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\PostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -113,6 +114,17 @@ Route::middleware('admin')->group(function () {
         'edit' => 'admin.banners.edit',
         'update' => 'admin.banners.update',
         'destroy' => 'admin.banners.destroy'
+    ]);
+
+    // Post Routes
+    Route::resource('admin/posts', PostController::class)->names([
+        'index' => 'admin.posts.index',
+        'create' => 'admin.posts.create',
+        'store' => 'admin.posts.store',
+        'show' => 'admin.posts.show',
+        'edit' => 'admin.posts.edit',
+        'update' => 'admin.posts.update',
+        'destroy' => 'admin.posts.destroy'
     ]);
 });
 

@@ -14,6 +14,7 @@ class Post extends Model
         'slug',
         'description',
         'status',
+        'image',
     ];
     public function category()
     {

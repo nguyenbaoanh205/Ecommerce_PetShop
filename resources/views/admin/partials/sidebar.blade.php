@@ -66,6 +66,12 @@
                         <span class="pc-mtext">Banners</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="{{ route('admin.posts.index') }}" class="pc-link">   
+                        <span class="pc-micon"><i class="ti ti-news"></i></span>
+                        <span class="pc-mtext">Posts</span>
+                    </a>
+                </li>
 
                 <li class="pc-item pc-caption">
                     <label>Orders & Reviews</label>

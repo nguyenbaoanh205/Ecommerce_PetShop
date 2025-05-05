@@ -24,6 +24,8 @@ class PostSeeder extends Seeder
                 'description' => fake()->text(),
                 'status' => fake()->randomElement([0,1]),
                 'image' => 'uploads/images/default-image.jpg',
+                'created_at' => now(),
+                'updated_at' => now(),
             ];
         }
         DB::table('posts')->insert($postSeed);

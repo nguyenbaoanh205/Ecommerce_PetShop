@@ -9,11 +9,11 @@
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="page-header-title">
-                            <h5 class="m-b-10">Banners</h5>
+                            <h5 class="m-b-10">Posts</h5>
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('admin') }}">Home</a></li>
-                            <li class="breadcrumb-item" aria-current="page">Banners</li>
+                            <li class="breadcrumb-item" aria-current="page">Posts</li>
                         </ul>
                     </div>
                 </div>
@@ -26,10 +26,10 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Banners List</h5>
+                        <h5>Posts List</h5>
                         <div class="card-header-right">
-                            <a href="{{ route('admin.banners.create') }}" class="btn btn-primary btn-sm">
-                                <i class="ti ti-plus"></i> Add New Banner
+                            <a href="{{ route('admin.posts.create') }}" class="btn btn-primary btn-sm">
+                                <i class="ti ti-plus"></i> Add New Post
                             </a>
                         </div>
                     </div>
@@ -44,35 +44,44 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Title</th>
                                         <th>Image</th>
-                                        <th>Link</th>
+                                        <th>Title</th>
+                                        <th>Category</th>
                                         <th>Status</th>
+                                        <th>Created At</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($banners as $banner)
+                                    @foreach($posts as $post)
                                         <tr>
-                                            <td>{{ $banner->id }}</td>
-                                            <td>{{ $banner->title }}</td>
+                                            <td>{{ $post->id }}</td>
                                             <td>
-                                                <img src="{{ asset($banner->image) }}" alt="{{ $banner->title }}" class="img-thumbnail" style="max-width: 100px;">
+                                                @if($post->image)
+                                                    <img src="{{ asset($post->image) }}" alt="{{ $post->title }}" style="max-width: 100px;">
+                                                @else
+                                                    No Image
+                                                @endif
                                             </td>
-                                            <td>{{ $banner->link }}</td>
+                                            <td>{{ $post->title }}</td>
+                                            <td>{{ $post->category->name }}</td>
                                             <td>
-                                                <span class="badge bg-{{ $banner->status ? 'success' : 'danger' }}">
-                                                    {{ $banner->status ? 'Active' : 'Inactive' }}
+                                                <span class="badge bg-{{ $post->status ? 'success' : 'danger' }}">
+                                                    {{ $post->status ? 'Active' : 'Inactive' }}
                                                 </span>
                                             </td>
+                                            <td>{{ $post->created_at->format('Y-m-d H:i') }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('admin.banners.edit', $banner->id) }}" class="btn btn-info btn-sm">
+                                                <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-primary btn-sm">
+                                                    <i class="ti ti-eye"></i> View
+                                                </a>
+                                                <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-info btn-sm">
                                                     <i class="ti ti-edit"></i> Edit
                                                 </a>
-                                                <form action="{{ route('admin.banners.destroy', $banner->id) }}" method="POST" class="d-inline">
+                                                <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this banner?')">
+                                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this post?')">
                                                         <i class="ti ti-trash"></i> Delete
                                                     </button>
                                                 </form>
