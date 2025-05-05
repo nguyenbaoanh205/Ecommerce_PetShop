@@ -15,7 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->latest()->get();
+        $posts = Post::with('category')->orderBy('id', 'desc')->paginate(5);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::query()->where('type', 2)->where('status', 1)->get();
         return view('admin.posts.create', compact('categories'));
     }
 
@@ -61,7 +61,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $categories = Category::all();
+        $categories = Category::query()->where('type', 2)->where('status', 1)->get();
         return view('admin.posts.edit', compact('post', 'categories'));
     }
 
