@@ -18,6 +18,8 @@ class CategorySeeder extends Seeder
             $cateSeed[] = [
                 'name' => fake()->name(),
                 'description' => fake()->text(),
+                'type' => fake()->randomElement([1,2]),
+                'status' => fake()->randomElement([0,1]),
             ];
         }
         Category::insert($cateSeed);
