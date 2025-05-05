@@ -13,14 +13,14 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = [
-            ['name' => 'Đồ ăn', 'description' => 'Thức ăn cho chó mèo'],
-            ['name' => 'Đồ chơi', 'description' => 'Đồ chơi thú cưng'],
-            ['name' => 'Quần áo', 'description' => 'Trang phục dễ thương cho thú cưng'],
-        ];
-    
-        foreach ($categories as $category) {
-            Category::create($category);
+        $cateSeed = [];
+        for ($i=0; $i < 4; $i++) { 
+            $cateSeed[] = [
+                'name' => fake()->name(),
+                'description' => fake()->text(),
+            ];
         }
+        Category::insert($cateSeed);
+
     }
 }

@@ -134,7 +134,7 @@
                             </div>
                             <div class="card position-relative">
                                 <a href="{{ route('product-detail', $product->id) }}">
-                                    <img src="{{ asset( 'storage/' . $product->image) }}" class="img-fluid rounded-4" alt="image">
+                                    <img src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="image">
                                 </a>
                                 <div class="card-body p-0">
                                     <a href="{{ route('product-detail', $product->id) }}">

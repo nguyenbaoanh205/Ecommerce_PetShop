@@ -24,9 +24,10 @@ class ReviewSeeder extends Seeder
         ];
 
         foreach ($products as $product) {
-            // Mỗi sản phẩm có từ 1 đến 5 đánh giá
-            $randomUsers = $users->random(rand(1, 5));
-
+            // Lấy số lượng người dùng ngẫu nhiên không vượt quá số lượng người dùng hiện có
+            $numberOfUsers = rand(1, min(5, $users->count()));
+            $randomUsers = $users->random($numberOfUsers);
+        
             foreach ($randomUsers as $user) {
                 Review::create([
                     'user_id' => $user->id,
