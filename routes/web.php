@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\OrderItemController;
 use App\Http\Controllers\Admin\CartItemController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClientHomeController;
+use App\Http\Controllers\Client\ClientHomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +33,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 // client
 Route::middleware('client')->group(function () {
     Route::get('/home', [ClientHomeController::class, 'index']);
+    Route::get('/product-detail/{id}',[ClientHomeController::class, 'productDetail'])->name('product-detail');
 });
 
 

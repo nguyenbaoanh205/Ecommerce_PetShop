@@ -4,7 +4,7 @@
 
             <div class="col-md-3">
                 <div class="footer-menu">
-                    <img src="public_index/images/logo.png" alt="logo">
+                    <img src="{{ asset('public_index/images/logo.png')}}" alt="logo">
                     <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand
                         offers.</p>
                     <div class="social-links">
