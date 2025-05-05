@@ -46,6 +46,8 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Description</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -54,7 +56,13 @@
                                         <tr>
                                             <td>{{ $category->id }}</td>
                                             <td>{{ $category->name }}</td>
-                                            <td>{{ $category->description }}</td>
+                                            <td>{{ Str::limit($category->description, 60, '...') }}</td>
+                                            <td>{{ $category->type == 1 ? 'Product Category' : 'Post Category' }}</td>
+                                            <td>
+                                                <span class="badge {{ $category->status == 1 ? 'bg-success' : 'bg-danger' }}">
+                                                    {{ $category->status == 1 ? 'Active' : 'Inactive' }}
+                                                </span>
+                                            </td>
                                             <td class="text-center">
                                                 <a href="{{ route('admin.categories.edit', $category->id) }}" class="btn btn-info btn-sm">
                                                     <i class="ti ti-edit"></i> Edit

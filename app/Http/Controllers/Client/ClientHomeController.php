@@ -25,7 +25,7 @@ class ClientHomeController extends Controller
         
         $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $id)
-            ->orderBy('id', 'desc')
+            ->orderBy('id', 'desc') 
             ->take(4)
             ->get();
 

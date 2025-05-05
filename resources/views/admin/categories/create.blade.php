@@ -51,6 +51,30 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="type" class="form-label">Category Type</label>
+                                        <select class="form-control @error('type') is-invalid @enderror" id="type" name="type" required>
+                                            <option value="1" {{ old('type') == 1 ? 'selected' : '' }}>Product Category</option>
+                                            <option value="2" {{ old('type') == 2 ? 'selected' : '' }}>Post Category</option>
+                                        </select>
+                                        @error('type')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="status" class="form-label">Status</label>
+                                        <select class="form-control @error('status') is-invalid @enderror" id="status" name="status" required>
+                                            <option value="1" {{ old('status') == 1 ? 'selected' : '' }}>Active</option>
+                                            <option value="0" {{ old('status') == 0 ? 'selected' : '' }}>Inactive</option>
+                                        </select>
+                                        @error('status')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
                                 <div class="col-12">
                                     <button type="submit" class="btn btn-primary">Create Category</button>
                                     <a href="{{ route('admin.categories.index') }}" class="btn btn-secondary">Cancel</a>
