@@ -23,6 +23,7 @@ class PostSeeder extends Seeder
                 'slug' => fake()->slug(),
                 'description' => fake()->text(),
                 'status' => fake()->randomElement([0,1]),
+                'image' => 'uploads/images/default-image.jpg',
             ];
         }
         DB::table('posts')->insert($postSeed);
