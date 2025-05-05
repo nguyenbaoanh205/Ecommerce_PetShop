@@ -37,8 +37,10 @@ class ProductController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('products', 'public');
-            $data['image'] = $imagePath;
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/products'), $imageName);
+            $data['image'] = 'uploads/products/' . $imageName;
         }
 
         Product::create($data);
@@ -70,10 +72,16 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             // Delete old image if exists
             if ($product->image) {
-                Storage::disk('public')->delete($product->image);
+                $oldImagePath = public_path($product->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
             }
-            $imagePath = $request->file('image')->store('products', 'public');
-            $data['image'] = $imagePath;
+            
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/products'), $imageName);
+            $data['image'] = 'uploads/products/' . $imageName;
         }
 
         $product->update($data);
@@ -85,7 +93,10 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         if ($product->image) {
-            Storage::disk('public')->delete($product->image);
+            $imagePath = public_path($product->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
         $product->delete();
 

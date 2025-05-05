@@ -29,7 +29,12 @@ class BannerController extends Controller
             'status' => 'required|boolean',
         ]);
 
-        $imagePath = $request->file('image')->store('banners', 'public');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/banners'), $imageName);
+            $imagePath = 'uploads/banners/' . $imageName;
+        }
 
         Banner::create([
             'title' => $request->title,
@@ -65,9 +70,16 @@ class BannerController extends Controller
         if ($request->hasFile('image')) {
             // Delete old image
             if ($banner->image) {
-                Storage::disk('public')->delete($banner->image);
+                $oldImagePath = public_path($banner->image);
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
             }
-            $data['image'] = $request->file('image')->store('banners', 'public');
+            
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/banners'), $imageName);
+            $data['image'] = 'uploads/banners/' . $imageName;
         }
 
         $banner->update($data);
@@ -79,7 +91,10 @@ class BannerController extends Controller
     public function destroy(Banner $banner)
     {
         if ($banner->image) {
-            Storage::disk('public')->delete($banner->image);
+            $imagePath = public_path($banner->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
         
         $banner->delete();
