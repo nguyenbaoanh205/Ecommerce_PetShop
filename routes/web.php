@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\CartItemController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Client\ClientHomeController;
+use App\Http\Controllers\Admin\BannerController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -102,6 +103,16 @@ Route::middleware('admin')->group(function () {
         'show' => 'admin.reviews.show',
         'update' => 'admin.reviews.update',
         'destroy' => 'admin.reviews.destroy'
+    ]);
+
+    // Banner Routes
+    Route::resource('admin/banners', BannerController::class)->names([
+        'index' => 'admin.banners.index',
+        'create' => 'admin.banners.create',
+        'store' => 'admin.banners.store',
+        'edit' => 'admin.banners.edit',
+        'update' => 'admin.banners.update',
+        'destroy' => 'admin.banners.destroy'
     ]);
 });
 
