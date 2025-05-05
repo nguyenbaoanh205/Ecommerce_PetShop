@@ -99,10 +99,9 @@
                 <div class="offcanvas-body justify-content-between">
                     <select class="filter-categories border-0 mb-0 me-5">
                         <option>Shop by Category</option>
-                        <option>Clothes</option>
-                        <option>Food</option>
-                        <option>Food</option>
-                        <option>Toy</option>
+                        @foreach ($categories as $category)
+                            <option>{{ $category->name }}</option>
+                        @endforeach
                     </select>
 
                     <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">

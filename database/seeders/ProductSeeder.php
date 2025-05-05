@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
                 'discount_price' => fake()->randomFloat(2, 0, 100),
                 'quantity' => fake()->randomNumber(1,10),
                 'category_id' => fake() -> randomElement($categoryID),
-                'image' => 'images/default-image.jpg',
+                'image' => 'uploads/images/default-image.jpg',
             ];
         }
         Product::insert($proseed);

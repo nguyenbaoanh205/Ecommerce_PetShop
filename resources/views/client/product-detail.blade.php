@@ -7,12 +7,12 @@
                 <!-- Product Image -->
                 <div class="col-md-6">
                     <div class="main-img">
-                        <img src="{{ asset('storage/' . $product->image) }}" class="img-fluid rounded-4" alt="{{ $product->name }}">
+                        <img src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="{{ $product->name }}">
                     </div>
                     <div class="thumbnail-images d-flex mt-3">
                         @if($product->additional_images)
                             @foreach(json_decode($product->additional_images) as $image)
-                                <img src="{{ asset('storage/' . $image) }}" class="img-fluid rounded-3 me-2" style="width: 100px; cursor: pointer;" alt="thumbnail">
+                                <img src="{{ asset($image) }}" class="img-fluid rounded-3 me-2" style="width: 100px; cursor: pointer;" alt="thumbnail">
                             @endforeach
                         @endif
                     </div>
@@ -130,8 +130,8 @@
                     @foreach($relatedProducts as $relatedProduct)
                         <div class="swiper-slide">
                             <div class="card position-relative">
-                                <a href="{{ route('products.show', $relatedProduct->id) }}">
-                                    <img src="{{ asset('storage/' . $relatedProduct->image) }}" class="img-fluid rounded-4" alt="{{ $relatedProduct->name }}">
+                                <a href="{{ route('product-detail', $relatedProduct->id) }}">
+                                    <img src="{{ asset($relatedProduct->image) }}" class="img-fluid rounded-4" alt="{{ $relatedProduct->name }}">
                                 </a>
                                 <div class="card-body p-0">
                                     <a href="{{ route('products.show', $relatedProduct->id) }}">
