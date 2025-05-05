@@ -3,10 +3,10 @@
         <div class="m-header">
             <a href="{{ route('admin') }}" class="b-brand text-primary">
                 <!-- ========   Change your logo from here   ============ -->
-                <img src="assets/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo">
+                <img src="{{ asset('public_index/images/logo.png') }}" alt="logo" class="img-fluid">
             </a>
         </div>
-        <div class="navbar-content">
+        <div class="navbar-content">    
             <ul class="pc-navbar">
                 <li class="pc-item">
                     <a href="{{ route('admin') }}" class="pc-link">
