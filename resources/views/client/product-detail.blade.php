@@ -10,9 +10,10 @@
                         <img src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="{{ $product->name }}">
                     </div>
                     <div class="thumbnail-images d-flex mt-3">
-                        @if($product->additional_images)
-                            @foreach(json_decode($product->additional_images) as $image)
-                                <img src="{{ asset($image) }}" class="img-fluid rounded-3 me-2" style="width: 100px; cursor: pointer;" alt="thumbnail">
+                        @if ($product->additional_images)
+                            @foreach (json_decode($product->additional_images) as $image)
+                                <img src="{{ asset($image) }}" class="img-fluid rounded-3 me-2"
+                                    style="width: 100px; cursor: pointer;" alt="thumbnail">
                             @endforeach
                         @endif
                     </div>
@@ -28,7 +29,8 @@
                             $reviewCount = $productReviews->count();
                         @endphp
                         @for ($i = 0; $i < 5; $i++)
-                            <iconify-icon icon="clarity:star-solid" class="{{ $i < $averageRating ? 'text-primary' : 'text-secondary' }}"></iconify-icon>
+                            <iconify-icon icon="clarity:star-solid"
+                                class="{{ $i < $averageRating ? 'text-primary' : 'text-secondary' }}"></iconify-icon>
                         @endfor
                         <span class="ms-2">{{ number_format($averageRating, 1) }} ({{ $reviewCount }} reviews)</span>
                     </div>
@@ -38,14 +40,21 @@
                     <!-- Quantity Selector -->
                     <div class="quantity-selector my-4">
                         <label for="quantity" class="me-3">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" value="1" min="1" class="form-control d-inline-block w-auto">
+                        <input type="number" id="quantity" name="quantity" value="1" min="1"
+                            class="form-control d-inline-block w-auto">
                     </div>
 
                     <!-- Add to Cart and Wishlist -->
                     <div class="d-flex flex-wrap mt-4">
-                        <a href="#" class="btn-cart me-3 px-4 py-3 btn btn-dark text-uppercase rounded-1">
-                            Add to Cart
-                        </a>
+                        <form action="{{ route('cart.add') }}" method="POST" class="me-3">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            <input type="hidden" name="quantity" value="1"> {{-- Hoặc cho user chọn số lượng nếu muốn --}}
+                            <button type="submit" class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
+                                Add to Cart
+                            </button>
+                        </form>
+
                         <a href="#" class="btn-wishlist px-4 py-3 btn btn-outline-dark rounded-1">
                             <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
                         </a>
@@ -53,7 +62,7 @@
 
                     <!-- Additional Info -->
                     <div class="mt-4">
-                        <p><strong>SKU:</strong> {{ $product->sku }}</p>
+                        {{-- <p><strong>SKU:</strong> {{ $product->sku }}</p> --}}
                         <p><strong>Category:</strong> {{ $product->category->name }}</p>
                     </div>
                 </div>
@@ -65,7 +74,7 @@
         <div class="container py-5">
             <h2 class="display-3 fw-normal mb-4">Customer Reviews</h2>
             <div class="row">
-                @foreach($reviews->where('product_id', $product->id) as $review)
+                @foreach ($reviews->where('product_id', $product->id) as $review)
                     <div class="col-md-6 mb-4">
                         <div class="card p-4">
                             <div class="d-flex justify-content-between">
@@ -73,7 +82,8 @@
                                     <h5>{{ $review->user->name }}</h5>
                                     <div class="rating secondary-font">
                                         @for ($i = 0; $i < 5; $i++)
-                                            <iconify-icon icon="clarity:star-solid" class="{{ $i < $review->rating ? 'text-primary' : 'text-secondary' }}"></iconify-icon>
+                                            <iconify-icon icon="clarity:star-solid"
+                                                class="{{ $i < $review->rating ? 'text-primary' : 'text-secondary' }}"></iconify-icon>
                                         @endfor
                                     </div>
                                 </div>
@@ -127,11 +137,12 @@
 
             <div class="products-carousel swiper">
                 <div class="swiper-wrapper">
-                    @foreach($relatedProducts as $relatedProduct)
+                    @foreach ($relatedProducts as $relatedProduct)
                         <div class="swiper-slide">
                             <div class="card position-relative">
                                 <a href="{{ route('product-detail', $relatedProduct->id) }}">
-                                    <img src="{{ asset($relatedProduct->image) }}" class="img-fluid rounded-4" alt="{{ $relatedProduct->name }}">
+                                    <img src="{{ asset($relatedProduct->image) }}" class="img-fluid rounded-4"
+                                        alt="{{ $relatedProduct->name }}">
                                 </a>
                                 <div class="card-body p-0">
                                     <a href="{{ route('products.show', $relatedProduct->id) }}">
@@ -140,15 +151,20 @@
                                     <div class="card-text">
                                         <span class="rating secondary-font">
                                             @php
-                                                $relatedProductReviews = $reviews->where('product_id', $relatedProduct->id);
+                                                $relatedProductReviews = $reviews->where(
+                                                    'product_id',
+                                                    $relatedProduct->id,
+                                                );
                                                 $relatedAverageRating = $relatedProductReviews->avg('rating') ?? 0;
                                             @endphp
                                             @for ($i = 0; $i < 5; $i++)
-                                                <iconify-icon icon="clarity:star-solid" class="{{ $i < $relatedAverageRating ? 'text-primary' : 'text-secondary' }}"></iconify-icon>
+                                                <iconify-icon icon="clarity:star-solid"
+                                                    class="{{ $i < $relatedAverageRating ? 'text-primary' : 'text-secondary' }}"></iconify-icon>
                                             @endfor
                                             {{ number_format($relatedAverageRating, 1) }}
                                         </span>
-                                        <h3 class="secondary-font text-primary">${{ number_format($relatedProduct->price, 2) }}</h3>
+                                        <h3 class="secondary-font text-primary">
+                                            ${{ number_format($relatedProduct->price, 2) }}</h3>
                                         <div class="d-flex flex-wrap mt-3">
                                             <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
                                                 <h5 class="text-uppercase m-0">Add to Cart</h5>

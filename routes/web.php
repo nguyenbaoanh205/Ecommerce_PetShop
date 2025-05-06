@@ -12,6 +12,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Client\ClientHomeController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,11 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::middleware('client')->group(function () {
     Route::get('/home', [ClientHomeController::class, 'index']) -> name('home');
     Route::get('/product-detail/{id}',[ClientHomeController::class, 'productDetail'])->name('product-detail');
+
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 });
 
 
