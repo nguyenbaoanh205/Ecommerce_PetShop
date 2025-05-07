@@ -46,6 +46,9 @@ Route::middleware('client')->group(function () {
 
     Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
     Route::post('/checkout', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
+
+    Route::get('/orders/history', [App\Http\Controllers\OrderController::class, 'history'])->name('orders.history');
+    Route::get('/orders/{order}', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
 });
 
 

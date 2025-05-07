@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('content');
             $table->string('slug')->unique();
             $table->text('description');
+            $table->string('image')->nullable(); // Thêm trường image
             $table->tinyInteger('status')->unsigned()->default(1)->comment('0: Inactive, 1: Active');
             $table->timestamps();
             

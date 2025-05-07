@@ -21,9 +21,10 @@ class CheckoutController extends Controller
     public function placeOrder(Request $request)
     {
         $request->validate([
-            'full_name' => 'required|string',
-            'phone' => 'required',
-            'address' => 'required|string',
+            'shipping_name' => 'required|string',
+            'shipping_phone' => 'required',
+            'shipping_address' => 'required|string',
+            'shipping_note' => 'nullable|string',
         ]);
 
         $cartItems = CartItem::with('product')->where('user_id', Auth::id())->get();
@@ -35,14 +36,15 @@ class CheckoutController extends Controller
 
         $order = Order::create([
             'user_id' => Auth::id(),
-            'full_name' => $request->full_name,
-            'phone' => $request->phone,
-            'address' => $request->address,
+            'shipping_name' => $request->shipping_name,
+            'shipping_phone' => $request->shipping_phone,
+            'shipping_address' => $request->shipping_address,
+            'shipping_note' => $request->shipping_note,
             'total_amount' => $total,
             'status' => 'pending',
             'payment_method' => 'cod',
         ]);
-
+        // dd($order);
         foreach ($cartItems as $item) {
             OrderItem::create([
                 'order_id' => $order->id,

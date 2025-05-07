@@ -14,15 +14,19 @@
                                 <h4 class="card-title mb-4">Shipping Information</h4>
                                 <div class="mb-3">
                                     <label class="form-label">Full Name</label>
-                                    <input type="text" name="full_name" class="form-control" required>
+                                    <input type="text" name="shipping_name" class="form-control" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Phone Number</label>
-                                    <input type="text" name="phone" class="form-control" required>
+                                    <input type="text" name="shipping_phone" class="form-control" required>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Address</label>
-                                    <textarea name="address" class="form-control" rows="3" required></textarea>
+                                    <textarea name="shipping_address" class="form-control" rows="2" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Note</label>
+                                    <textarea name="shipping_note" class="form-control" rows="3" required></textarea>
                                 </div>
                             </div>
                         </div>

@@ -150,13 +150,14 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 @guest
-                                    <li><a class="dropdown-item" href="{{ route('register') }}">Đăng ký</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('login') }}">Đăng nhập</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
                                 @else
+                                    <li><a class="dropdown-item" href="{{ route('orders.history') }}">Order History</a></li>
                                     <li>
                                         <form action="{{ route('logout') }}" method="POST" class="dropdown-item m-0 p-0">
                                             @csrf
-                                            <button type="submit" class="btn btn-link dropdown-item text-start">Đăng xuất</button>
+                                            <button type="submit" class="btn btn-link dropdown-item text-start">Logout</button>
                                         </form>
                                     </li>
                                 @endguest
