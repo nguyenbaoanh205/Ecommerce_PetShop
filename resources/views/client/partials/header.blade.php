@@ -115,7 +115,7 @@
                                 <li><a href="index.html" class="dropdown-item">About Us</a></li>
                                 <li><a href="index.html" class="dropdown-item">Shop</a></li>
                                 <li><a href="index.html" class="dropdown-item">Single Product</a></li>
-                                <li><a href="index.html" class="dropdown-item">Cart</a></li>
+                                <li><a href="{{ route('cart.index') }}" class="dropdown-item">Cart</a></li>
                                 <li><a href="index.html" class="dropdown-item">Wishlist</a></li>
                                 <li><a href="index.html" class="dropdown-item">Checkout</a></li>
                                 <li><a href="index.html" class="dropdown-item">Blog</a></li>
@@ -170,7 +170,7 @@
                             </li>
 
                             <li class="">
-                                <a href="index.html" class="mx-3" data-bs-toggle="offcanvas"
+                                <a href="{{ route('cart.index') }}" class="mx-3" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                                     <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                                     {{-- <span

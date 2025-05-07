@@ -1,53 +1,84 @@
 @extends('client.layouts.master')
 
 @section('content')
-    <h2>Giỏ hàng của bạn</h2>
+    <section id="cart" class="my-5">
+        <div class="container py-5">
+            <h2 class="display-3 fw-normal mb-4">Your Cart</h2>
 
-    @if (session('success'))
-        <div style="color: green;">{{ session('success') }}</div>
-    @endif
+            @if (session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
 
-    @if ($cartItems->isEmpty())
-        <p>Giỏ hàng của bạn đang trống.</p>
-    @else
-        <table border="1" cellpadding="10">
-            <thead>
-                <tr>
-                    <th>Sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Số lượng</th>
-                    <th>Tổng</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @php $total = 0; @endphp
-                @foreach ($cartItems as $item)
-                    @php
-                        $itemTotal = $item->product->price * $item->quantity;
-                        $total += $itemTotal;
-                    @endphp
-                    <tr>
-                        <td>{{ $item->product->name }}</td>
-                        <td>{{ number_format($item->product->price) }}đ</td>
-                        <td>
-                            <form action="{{ route('cart.update', $item->id) }}" method="POST">
-                                @csrf
-                                <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" style="width: 50px;">
-                                <button type="submit">Cập nhật</button>
-                            </form>
-                        </td>
-                        <td>{{ number_format($itemTotal) }}đ</td>
-                        <td>
-                            <a href="{{ route('cart.remove', $item->id) }}" onclick="return confirm('Xoá sản phẩm này?')">Xoá</a>
-                        </td>
-                    </tr>
-                @endforeach
-                <tr>
-                    <td colspan="3"><strong>Tổng cộng:</strong></td>
-                    <td colspan="2"><strong>{{ number_format($total) }}đ</strong></td>
-                </tr>
-            </tbody>
-        </table>
-    @endif
+            @if ($cartItems->isEmpty())
+                <div class="alert alert-info">
+                    <p class="mb-0">Your cart is empty.</p>
+                </div>
+            @else
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $total = 0; @endphp
+                            @foreach ($cartItems as $item)
+                                @php
+                                    $itemTotal = $item->product->price * $item->quantity;
+                                    $total += $itemTotal;
+                                @endphp
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ asset($item->product->image) }}" alt="{{ $item->product->name }}" 
+                                                class="img-fluid rounded-3" style="width: 80px; margin-right: 15px;">
+                                            <span>{{ $item->product->name }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="secondary-font text-primary">${{ number_format($item->product->price, 2) }}</td>
+                                    <td>
+                                        <form action="{{ route('cart.update', $item->id) }}" method="POST" class="d-flex align-items-center">
+                                            @csrf
+                                            <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" 
+                                                class="form-control" style="width: 80px;">
+                                            <button type="submit" class="btn btn-outline-dark ms-2">Update</button>
+                                        </form>
+                                    </td>
+                                    <td class="secondary-font text-primary">${{ number_format($itemTotal, 2) }}</td>
+                                    <td>
+                                        <a href="{{ route('cart.remove', $item->id) }}" 
+                                            onclick="return confirm('Are you sure you want to remove this item?')"
+                                            class="btn btn-outline-danger">
+                                            <iconify-icon icon="mdi:trash-can-outline"></iconify-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="3" class="text-end"><strong>Total:</strong></td>
+                                <td colspan="2" class="secondary-font text-primary"><strong>${{ number_format($total, 2) }}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>      
+
+                <div class="d-flex justify-content-between mt-4">
+                    {{-- <a href="{{ route('products.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                        Continue Shopping
+                        <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                            <use xlink:href="#arrow-right"></use>
+                        </svg>
+                    </a> --}}
+                    <a href="{{ route('checkout.form') }}" class="btn btn-dark btn-lg text-uppercase fs-6 rounded-1">
+                        Proceed to Checkout
+                    </a>
+                </div>
+            @endif
+        </div>
+    </section>
 @endsection
