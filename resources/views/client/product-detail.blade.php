@@ -49,7 +49,7 @@
                         <form action="{{ route('cart.add') }}" method="POST" class="me-3">
                             @csrf
                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="quantity" value="1"> {{-- Hoặc cho user chọn số lượng nếu muốn --}}
+                            <input type="hidden" name="quantity" id="cart-quantity" value="1">
                             <button type="submit" class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
                                 Add to Cart
                             </button>
@@ -182,4 +182,15 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityInput = document.getElementById('quantity');
+            const cartQuantityInput = document.getElementById('cart-quantity');
+            
+            quantityInput.addEventListener('change', function() {
+                cartQuantityInput.value = this.value;
+            });
+        });
+    </script>
 @endsection
