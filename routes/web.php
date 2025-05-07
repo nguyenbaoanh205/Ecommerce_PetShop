@@ -8,12 +8,16 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\OrderItemController;
 use App\Http\Controllers\Admin\CartItemController;
 use App\Http\Controllers\Admin\ReviewController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Client\ClientHomeController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CheckoutController;
+
+use App\Http\Controllers\Auth\AuthController;
+
+use App\Http\Controllers\Client\ClientHomeController;
+use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\Client\CheckoutController;
+use App\Http\Controllers\Client\OrderController as ClientOrderController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -47,8 +51,8 @@ Route::middleware('client')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
     Route::post('/checkout', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
 
-    Route::get('/orders/history', [App\Http\Controllers\OrderController::class, 'history'])->name('orders.history');
-    Route::get('/orders/{order}', [App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
+    Route::get('/orders/history', [ClientOrderController::class, 'history'])->name('orders.history');
+    Route::get('/orders/{order}', [ClientOrderController::class, 'show'])->name('orders.show');
 });
 
 
