@@ -157,9 +157,14 @@
                                         <h3 class="secondary-font text-primary">${{ number_format($product->price, 2) }}</h3>
 
                                         <div class="d-flex flex-wrap mt-3">
-                                            <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                                <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                            </a>
+                                            <form action="{{ route('cart.add') }}" method="POST" class="me-3">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="quantity" id="cart-quantity" value="1">
+                                                <button type="submit" class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
+                                                    Add to Cart
+                                                </button>
+                                            </form>
                                             <a href="#" class="btn-wishlist px-4 pt-3 ">
                                                 <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
                                             </a>
