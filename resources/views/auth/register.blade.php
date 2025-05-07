@@ -84,9 +84,9 @@
                                 <label class="form-label">Password</label>
                                 <input type="password" name="password" class="form-control" placeholder="Password">
                             </div>
-                            <p class="mt-4 text-sm text-muted">By Signing up, you agree to our <a href="#"
+                            {{-- <p class="mt-4 text-sm text-muted">By Signing up, you agree to our <a href="#"
                                     class="text-primary"> Terms of Service </a> and <a href="#"
-                                    class="text-primary"> Privacy Policy</a></p>
+                                    class="text-primary"> Privacy Policy</a></p> --}}
                             <div class="d-grid mt-3">
                                 <button type="submit" class="btn btn-primary">Create Account</button>
                             </div>
