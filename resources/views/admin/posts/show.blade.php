@@ -73,7 +73,7 @@
                             <div class="col-md-4">
                                 @if($post->image)
                                     <div class="card">
-                                        <img src="{{ asset('storage/' . $post->image) }}" 
+                                        <img src="{{ asset($post->image) }}" 
                                              alt="{{ $post->title }}" 
                                              class="card-img-top"
                                              style="max-height: 300px; object-fit: cover;">
