@@ -15,7 +15,8 @@
     <meta name="author" content="CodedThemes">
 
     <!-- [Favicon] icon -->
-    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon"> <!-- [Google Font] Family -->
+    <link rel="icon" href="{{ asset('assets/images/favicon.svg') }}" type="image/x-icon">
+    <!-- [Google Font] Family -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
         id="main-font-link">
@@ -82,6 +83,18 @@
 
     <script>
         font_change("Public-Sans");
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.9.2/ckeditor.js"
+        integrity="sha512-OF6VwfoBrM/wE3gt0I/lTh1ElROdq3etwAquhEm2YI45Um4ird+0ZFX1IwuBDBRufdXBuYoBb0mqXrmUA2VnOA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function() {
+            CKEDITOR.replaceAll('banhday-editor');
+        });
     </script>
 
 </body>

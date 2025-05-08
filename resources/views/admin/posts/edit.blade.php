@@ -59,21 +59,30 @@
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="content" class="form-label">Content</label>
-                                        <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content" rows="5">{{ old('content', $post->content) }}</textarea>
+                                        <textarea class="banhday-editor form-control @error('content') is-invalid @enderror" id="content" name="content" rows="5">{{ old('content', $post->content) }}</textarea>
                                         @error('content')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="image" class="form-label">Post Image</label>
+                                        <label for="description" class="form-label">Description</label>
+                                        <textarea class="banhday-editor form-control @error('description') is-invalid @enderror" id="description" name="description" rows="6">{{ old('description', $post->description) }}</textarea>
+                                        @error('description')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="image" class="form-label">Post Image Old</label>
                                         @if($post->image)
                                             <div class="mb-2">
-                                                <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" style="max-width: 100px;">
+                                                <img src="{{ asset($post->image) }}" alt="{{ $post->title }}" style="max-width: 100px;">
                                             </div>
                                         @endif
                                         <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
@@ -86,8 +95,8 @@
                                     <div class="form-group">
                                         <label for="status" class="form-label">Status</label>
                                         <select class="form-control @error('status') is-invalid @enderror" id="status" name="status" required>
-                                            <option value="draft" {{ old('status', $post->status) == 'draft' ? 'selected' : '' }}>Draft</option>
-                                            <option value="published" {{ old('status', $post->status) == 'published' ? 'selected' : '' }}>Published</option>
+                                            <option value="0" {{ old('status', $post->status) == '0' ? 'selected' : '' }}>Inactive</option>
+                                            <option value="1" {{ old('status', $post->status) == '1' ? 'selected' : '' }}>Active</option>
                                         </select>
                                         @error('status')
                                             <div class="invalid-feedback">{{ $message }}</div>

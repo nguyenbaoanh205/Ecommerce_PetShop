@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -37,17 +38,20 @@ class PostController extends Controller
             'title' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'content' => 'required|string',
+            'description' => 'nullable|string|max:500',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:draft,published',
+            'status' => 'required|in:0,1',
         ]);
 
         $data = $request->all();
+        $data['slug'] = Str::slug($request->title);
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/posts', $imageName);
-            $data['image'] = 'posts/' . $imageName;
+            $destinationPath = public_path('uploads/posts');
+            $image->move($destinationPath, $imageName);
+            $data['image'] = 'uploads/posts/' . $imageName;
         }
 
         Post::create($data);
@@ -74,23 +78,30 @@ class PostController extends Controller
             'title' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'content' => 'required|string',
+            'description' => 'nullable|string|max:500',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:draft,published',
+            'status' => 'required|in:0,1',
         ]);
 
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            // Delete old image
-            if ($post->image) {
-                Storage::delete('public/' . $post->image);
+            // Xóa ảnh cũ nếu tồn tại
+            if ($post->image && file_exists(public_path($post->image))) {
+                unlink(public_path($post->image));
             }
-
-            // Upload new image
+    
+            // Upload ảnh mới
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/posts', $imageName);
-            $data['image'] = 'posts/' . $imageName;
+            $destinationPath = public_path('uploads/posts');
+    
+            if (!file_exists ($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+    
+            $image->move($destinationPath, $imageName);
+            $data['image'] = 'uploads/posts/' . $imageName;
         }
 
         $post->update($data);
@@ -106,7 +117,10 @@ class PostController extends Controller
     {
         // Delete image if exists
         if ($post->image) {
-            Storage::delete('public/' . $post->image);
+            $imagePath = public_path($post->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);
+            }
         }
 
         $post->delete();
