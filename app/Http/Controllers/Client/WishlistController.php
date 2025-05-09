@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\CartItem;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Wishlist;
@@ -19,8 +20,9 @@ class WishlistController extends Controller
             ->where('user_id', Auth::id())
             ->latest()
             ->get();
-
-        return view('client.wishlist.index', compact('wishlists', 'categories'));
+        $userId = Auth::id();
+        $cartItems = CartItem::with('product')->where('user_id', $userId)->get();
+        return view('client.wishlist.index', compact('wishlists', 'categories','cartItems'));
     }
     public function add(Request $request)
     {

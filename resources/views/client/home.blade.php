@@ -227,46 +227,50 @@
             </div>
 
             <div class="isotope-container row">
-
-                <div class="item cat col-md-4 col-lg-3 my-4">
-                    <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                New
-                                              </div> -->
-                    <div class="card position-relative">
-                        <a href="single-product.html"><img src="public_index/images/item9.jpg"
-                                class="img-fluid rounded-4" alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-product.html">
-                                <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
+                @foreach ($product_list as $product)
+                    <div class="item cat col-md-4 col-lg-3 my-4">
+                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                            New
+                        </div>
+                        <div class="card position-relative">
+                            <a href="{{ route('product-detail', $product->id) }}">
+                                <img src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="image">
                             </a>
+                            <div class="card-body p-0">
+                                <a href="single-product.html">
+                                    <h3 class="card-title pt-4 m-0">{{ $product->name }}</h3>
+                                </a>
 
-                            <div class="card-text">
-                                <span class="rating secondary-font">
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                    5.0</span>
+                                <div class="card-text">
+                                    <h3 class="secondary-font text-primary">${{ number_format($product->price, 2) }}</h3>
 
-                                <h3 class="secondary-font text-primary">$18.00</h3>
+                                    <div class="d-flex flex-wrap mt-3">
+                                        <form action="{{ route('cart.add') }}" method="POST" class="me-3">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input type="hidden" name="quantity" id="cart-quantity" value="1">
+                                            <button type="submit"
+                                                class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
+                                                Add to Cart
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('wishlist.add') }}" class="rounded-1"
+                                            style="border: 1px solid #d9d9d8;" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <button type="submit" class="btn-wishlist px-4 py-3 bg-transparent border-0">
+                                                <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                            </button>
+                                        </form>
+                                    </div>
 
-                                <div class="d-flex flex-wrap mt-3">
-                                    <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                        <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                    </a>
-                                    <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                        <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                    </a>
+
                                 </div>
 
-
                             </div>
-
                         </div>
                     </div>
-                </div>
-
+                @endforeach
             </div>
 
 
@@ -377,8 +381,8 @@
 
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                  New
-                                                </div> -->
+                                                                  New
+                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item5.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -415,8 +419,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                  New
-                                                </div> -->
+                                                                  New
+                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item6.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -490,8 +494,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                  New
-                                                </div> -->
+                                                                  New
+                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item8.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -566,8 +570,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                  New
-                                                </div> -->
+                                                                  New
+                                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item4.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>

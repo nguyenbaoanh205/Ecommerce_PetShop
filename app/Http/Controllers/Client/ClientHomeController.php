@@ -15,16 +15,19 @@ class ClientHomeController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['category', 'reviews'])-> orderBy('id', 'desc')->get();
+        $product_reviews = Product::with('reviews')-> orderBy('id', 'desc')->get();
+        $product_list = Product::with('category')->take(8)-> orderBy('id', 'desc')->get();
         $categories = Category::query()-> where('status', 1) -> where('type', 1)->get();
+
         $userId = Auth::id();
         $cartItems = CartItem::with('product')->where('user_id', $userId)->get();
-        $highly_rated_product = $products->filter(function ($product) {
+        
+        $highly_rated_product = $product_reviews->filter(function ($product) {
             return $product->reviews->avg('rating') > 3;
-        });
+        })->take(8);
         $reviews = Review::all();
         $posts = Post::where('status', 1)->orderBy('created_at', 'desc')->take(3)->get();
-        return view('client.home', compact('products', 'highly_rated_product', 'reviews', 'categories', 'posts', 'cartItems'));
+        return view('client.home', compact('product_list', 'highly_rated_product', 'reviews', 'categories', 'posts', 'cartItems'));
     } 
     public function productDetail($id)
     {
