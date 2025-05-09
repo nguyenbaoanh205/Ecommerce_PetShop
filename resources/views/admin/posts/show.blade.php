@@ -43,8 +43,8 @@
                                 <div class="mb-4">
                                     <h4 class="mb-3">{{ $post->title }}</h4>
                                     <div class="mb-3">
-                                        <span class="badge bg-{{ $post->status == 'published' ? 'success' : 'warning' }}">
-                                            {{ ucfirst($post->status) }}
+                                        <span class="badge bg-{{ $post->status == '0' ? 'danger' : 'success' }}">
+                                            {{ ucfirst($post->status ? 'Active' : 'Inactive') }}
                                         </span>
                                         <span class="text-muted ms-2">
                                             Created: {{ $post->created_at->format('Y-m-d H:i') }}
@@ -59,13 +59,13 @@
                                     <div class="mb-3">
                                         <strong>Description:</strong>
                                         <div class="mt-2">
-                                            {!! nl2br(e($post->description)) !!}
+                                            {!! ($post->description) !!}
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <strong>Content:</strong>
                                         <div class="mt-2">
-                                            {!! nl2br(e($post->content)) !!}
+                                            {!! $post->content !!}
                                         </div>
                                     </div>
                                 </div>
