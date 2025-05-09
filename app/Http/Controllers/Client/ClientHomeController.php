@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Post;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class ClientHomeController extends Controller
             return $product->reviews->avg('rating') > 3;
         });
         $reviews = Review::all();
-        return view('client.home', compact('products', 'highly_rated_product', 'reviews', 'categories'));
+        $posts = Post::where('status', 1)->orderBy('created_at', 'desc')->take(3)->get();
+        return view('client.home', compact('products', 'highly_rated_product', 'reviews', 'categories', 'posts'));
     } 
     public function productDetail($id)
     {

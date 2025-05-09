@@ -179,7 +179,8 @@
                                                     Add to Cart
                                                 </button>
                                             </form>
-                                            <form action="{{ route('wishlist.add') }}" class="rounded-1" style="border: 1px solid #d9d9d8;" method="POST">
+                                            <form action="{{ route('wishlist.add') }}" class="rounded-1"
+                                                style="border: 1px solid #d9d9d8;" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                 <button type="submit"
@@ -229,8 +230,8 @@
 
                 <div class="item cat col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                    New
-                                  </div> -->
+                                                New
+                                              </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="public_index/images/item9.jpg"
                                 class="img-fluid rounded-4" alt="image"></a>
@@ -376,8 +377,8 @@
 
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                      New
-                                    </div> -->
+                                                  New
+                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item5.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -414,8 +415,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                      New
-                                    </div> -->
+                                                  New
+                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item6.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -489,8 +490,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                      New
-                                    </div> -->
+                                                  New
+                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item8.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -565,8 +566,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                      New
-                                    </div> -->
+                                                  New
+                                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item4.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -656,81 +657,34 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 my-4 my-md-0">
-                    <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
-                        <h3 class="secondary-font text-primary m-0">20</h3>
-                        <p class="secondary-font fs-6 m-0">Feb</p>
+                @foreach ($posts as $post)
+                    <div class="col-md-4 my-4 my-md-0">
+                        <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
+                            <h3 class="secondary-font text-primary m-0">
+                                {{ \Carbon\Carbon::parse($post->created_at)->format('d') }}
+                            </h3>
+                            <p class="secondary-font fs-6 m-0">
+                                {{ \Carbon\Carbon::parse($post->created_at)->format('M') }}
+                            </p>
+                        </div>
+                        <div class="card position-relative">
+                            <a href="single-post.html"><img src="public_index/images/blog1.jpg"
+                                    class="img-fluid rounded-4" alt="image"></a>
+                            <div class="card-body p-0">
+                                <a href="single-post.html">
+                                    <h3 class="card-title pt-4 pb-3 m-0">{{ $post->title }}</h3>
+                                </a>
 
-                    </div>
-                    <div class="card position-relative">
-                        <a href="single-post.html"><img src="public_index/images/blog1.jpg" class="img-fluid rounded-4"
-                                alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-post.html">
-                                <h3 class="card-title pt-4 pb-3 m-0">10 Reasons to be helpful towards any animals</h3>
-                            </a>
+                                <div class="card-text">
+                                    <p class="blog-paragraph fs-6">{!! $post->description !!}</p>
+                                    <a href="single-post.html" class="blog-read">read more</a>
+                                </div>
 
-                            <div class="card-text">
-                                <p class="blog-paragraph fs-6">At the core of our practice is the idea that cities are
-                                    the incubators of
-                                    our greatest
-                                    achievements, and the best hope for a sustainable future.</p>
-                                <a href="single-post.html" class="blog-read">read more</a>
                             </div>
-
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4 my-4 my-md-0">
-                    <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
-                        <h3 class="secondary-font text-primary m-0">21</h3>
-                        <p class="secondary-font fs-6 m-0">Feb</p>
+                @endforeach
 
-                    </div>
-                    <div class="card position-relative">
-                        <a href="single-post.html"><img src="public_index/images/blog2.jpg" class="img-fluid rounded-4"
-                                alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-post.html">
-                                <h3 class="card-title pt-4 pb-3 m-0">How to know your pet is hungry</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <p class="blog-paragraph fs-6">At the core of our practice is the idea that cities are
-                                    the incubators of
-                                    our greatest
-                                    achievements, and the best hope for a sustainable future.</p>
-                                <a href="single-post.html" class="blog-read">read more</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 my-4 my-md-0">
-                    <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
-                        <h3 class="secondary-font text-primary m-0">22</h3>
-                        <p class="secondary-font fs-6 m-0">Feb</p>
-
-                    </div>
-                    <div class="card position-relative">
-                        <a href="single-post.html"><img src="public_index/images/blog3.jpg" class="img-fluid rounded-4"
-                                alt="image"></a>
-                        <div class="card-body p-0">
-                            <a href="single-post.html">
-                                <h3 class="card-title pt-4 pb-3 m-0">Best home for your pets</h3>
-                            </a>
-
-                            <div class="card-text">
-                                <p class="blog-paragraph fs-6">At the core of our practice is the idea that cities are
-                                    the incubators of
-                                    our greatest
-                                    achievements, and the best hope for a sustainable future.</p>
-                                <a href="single-post.html" class="blog-read">read more</a>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>

@@ -11,7 +11,7 @@
             </div>
 
             <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
-                <div class="search-bar border rounded-2 px-3 border-dark-subtle">
+                <div class="search-bar border rounded-2 px-3 border-dark-subtle" style="height: 50px">
                     <form id="search-form" class="text-center d-flex align-items-center" action=""
                         method="">
                         <input type="text" class="form-control border-0 bg-transparent"
@@ -113,8 +113,8 @@
                                 data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
                             <ul class="dropdown-menu" aria-labelledby="pages">
                                 <li><a href="index.html" class="dropdown-item">About Us</a></li>
-                                <li><a href="index.html" class="dropdown-item">Shop</a></li>
-                                <li><a href="index.html" class="dropdown-item">Single Product</a></li>
+                                {{-- <li><a href="index.html" class="dropdown-item">Shop</a></li>
+                                <li><a href="index.html" class="dropdown-item">Single Product</a></li> --}}
                                 <li><a href="{{ route('cart.index') }}" class="dropdown-item">Cart</a></li>
                                 <li><a href="{{ route('wishlist.index') }}" class="dropdown-item">Wishlist</a></li>
                                 <li><a href="index.html" class="dropdown-item">Checkout</a></li>
