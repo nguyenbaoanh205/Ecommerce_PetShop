@@ -116,7 +116,7 @@
                                 <li><a href="index.html" class="dropdown-item">Shop</a></li>
                                 <li><a href="index.html" class="dropdown-item">Single Product</a></li>
                                 <li><a href="{{ route('cart.index') }}" class="dropdown-item">Cart</a></li>
-                                <li><a href="index.html" class="dropdown-item">Wishlist</a></li>
+                                <li><a href="{{ route('wishlist.index') }}" class="dropdown-item">Wishlist</a></li>
                                 <li><a href="index.html" class="dropdown-item">Checkout</a></li>
                                 <li><a href="index.html" class="dropdown-item">Blog</a></li>
                                 <li><a href="index.html" class="dropdown-item">Single Post</a></li>

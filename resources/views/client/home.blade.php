@@ -179,9 +179,15 @@
                                                     Add to Cart
                                                 </button>
                                             </form>
-                                            <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                                <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                            </a>
+                                            <form action="{{ route('wishlist.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <button type="submit"
+                                                    class="btn-wishlist px-4 pt-3 bg-transparent border-0">
+                                                    <iconify-icon icon="fluent:heart-28-filled"
+                                                        class="fs-5"></iconify-icon>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -223,8 +229,8 @@
 
                 <div class="item cat col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                New
-                              </div> -->
+                                    New
+                                  </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="public_index/images/item9.jpg"
                                 class="img-fluid rounded-4" alt="image"></a>
@@ -370,8 +376,8 @@
 
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                  New
-                                </div> -->
+                                      New
+                                    </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item5.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -408,8 +414,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                  New
-                                </div> -->
+                                      New
+                                    </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item6.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -483,8 +489,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                  New
-                                </div> -->
+                                      New
+                                    </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item8.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -559,8 +565,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                  New
-                                </div> -->
+                                      New
+                                    </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item4.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>

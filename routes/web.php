@@ -10,12 +10,12 @@ use App\Http\Controllers\Admin\CartItemController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\PostController;
-
 use App\Http\Controllers\Auth\AuthController;
 
 use App\Http\Controllers\Client\ClientHomeController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
+use App\Http\Controllers\Client\WishlistController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 
 use Illuminate\Support\Facades\Auth;
@@ -53,6 +53,11 @@ Route::middleware('client')->group(function () {
 
     Route::get('/orders/history', [ClientOrderController::class, 'history'])->name('orders.history');
     Route::get('/orders/{order}', [ClientOrderController::class, 'show'])->name('orders.show');
+
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+
 });
 
 
