@@ -72,6 +72,12 @@
                         <span class="pc-mtext">Posts</span>
                     </a>
                 </li>
+                <li class="pc-item">
+                    <a href="{{ route('admin.contacts.index') }}" class="pc-link">   
+                        <span class="pc-micon"><i class="ti ti-mail"></i></span>
+                        <span class="pc-mtext">Contacts</span>
+                    </a>
+                </li>
 
                 <li class="pc-item pc-caption">
                     <label>Orders & Reviews</label>

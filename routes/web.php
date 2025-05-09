@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\OrderItemController;
 use App\Http\Controllers\Admin\CartItemController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -149,6 +150,13 @@ Route::middleware('admin')->group(function () {
         'edit' => 'admin.posts.edit',
         'update' => 'admin.posts.update',
         'destroy' => 'admin.posts.destroy'
+    ]);
+
+    // Contact Routes
+    Route::resource('admin/contacts', AdminContactController::class)->names([
+        'index' => 'admin.contacts.index',
+        // 'show' => 'admin.contacts.show',
+        // 'destroy' => 'admin.contacts.destroy'
     ]);
 });
 
