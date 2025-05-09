@@ -12,10 +12,13 @@ class ClientHomeController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category') -> orderby('id', 'desc')->get();
+        $products = Product::with(['category', 'reviews'])-> orderBy('id', 'desc')->get();
         $categories = Category::query()-> where('status', 1) -> where('type', 1)->get();
+        $highly_rated_product = $products->filter(function ($product) {
+            return $product->reviews->avg('rating') > 3;
+        });
         $reviews = Review::all();
-        return view('client.home', compact('products', 'reviews', 'categories'));
+        return view('client.home', compact('products', 'highly_rated_product', 'reviews', 'categories'));
     } 
     public function productDetail($id)
     {

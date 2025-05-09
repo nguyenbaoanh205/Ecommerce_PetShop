@@ -127,7 +127,7 @@
 
             <div class="products-carousel swiper">
                 <div class="swiper-wrapper">
-                    @foreach ($products as $product)
+                    @foreach ($highly_rated_product as $product)
                         <div class="swiper-slide">
                             <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
                                 New
@@ -148,20 +148,34 @@
                                                 $averageRating = $productReviews->avg('rating'); // Tính điểm trung bình
                                             @endphp
 
-                                            @for ($i = 0; $i < 5; $i++)     
-                                                <iconify-icon icon="clarity:star-solid" class="{{ $i < $averageRating ? 'text-primary' : 'text-secondary' }}"></iconify-icon>
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($averageRating >= $i)
+                                                    <iconify-icon icon="material-symbols:star"
+                                                        style="color: #dead6f; font-size: 22px;"
+                                                        class="me-1"></iconify-icon>
+                                                @elseif ($averageRating >= $i - 0.5)
+                                                    <iconify-icon icon="material-symbols:star-half"
+                                                        style="color: #dead6f; font-size: 22px;"
+                                                        class="me-1"></iconify-icon>
+                                                @else
+                                                    <iconify-icon icon="material-symbols:star-outline"
+                                                        style="color: #ccc; font-size: 22px;"
+                                                        class="me-1"></iconify-icon>
+                                                @endif
                                             @endfor
                                             {{ number_format($averageRating, 1) }} <!-- Hiển thị điểm trung bình -->
                                         </span>
 
-                                        <h3 class="secondary-font text-primary">${{ number_format($product->price, 2) }}</h3>
+                                        <h3 class="secondary-font text-primary">${{ number_format($product->price, 2) }}
+                                        </h3>
 
                                         <div class="d-flex flex-wrap mt-3">
                                             <form action="{{ route('cart.add') }}" method="POST" class="me-3">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                 <input type="hidden" name="quantity" id="cart-quantity" value="1">
-                                                <button type="submit" class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
+                                                <button type="submit"
+                                                    class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
                                                     Add to Cart
                                                 </button>
                                             </form>
@@ -209,8 +223,8 @@
 
                 <div class="item cat col-md-4 col-lg-3 my-4">
                     <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                        New
-                      </div> -->
+                                New
+                              </div> -->
                     <div class="card position-relative">
                         <a href="single-product.html"><img src="public_index/images/item9.jpg"
                                 class="img-fluid rounded-4" alt="image"></a>
@@ -356,8 +370,8 @@
 
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                          New
-                        </div> -->
+                                  New
+                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item5.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -394,8 +408,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                          New
-                        </div> -->
+                                  New
+                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item6.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -469,8 +483,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                          New
-                        </div> -->
+                                  New
+                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item8.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -545,8 +559,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                          New
-                        </div> -->
+                                  New
+                                </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item4.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
