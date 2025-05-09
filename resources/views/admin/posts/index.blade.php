@@ -60,7 +60,7 @@
                                                 @if($post->image)
                                                     <img src="{{ asset($post->image) }}" alt="{{ $post->title }}" style="max-width: 100px;">
                                                 @else
-                                                    No Image
+                                                    <img src="{{ asset('uploads/images/default-image.jpg') }}" style="max-width: 100px;" alt="">
                                                 @endif
                                             </td>
                                             <td>{{ $post->title }}</td>

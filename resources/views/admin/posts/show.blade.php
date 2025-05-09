@@ -39,7 +39,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-9">
                                 <div class="mb-4">
                                     <h4 class="mb-3">{{ $post->title }}</h4>
                                     <div class="mb-3">
@@ -70,7 +70,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 @if($post->image)
                                     <div class="card">
                                         <img src="{{ asset($post->image) }}" 
@@ -79,8 +79,10 @@
                                              style="max-height: 300px; object-fit: cover;">
                                     </div>
                                 @else
-                                    <div class="alert alert-info">
-                                        No image available
+                                    <div class="card">
+                                        <img src="{{ asset('uploads/images/default-image.jpg')}}" 
+                                             class="card-img-top"
+                                             style="max-height: 300px; object-fit: cover;">
                                     </div>
                                 @endif
                             </div>
