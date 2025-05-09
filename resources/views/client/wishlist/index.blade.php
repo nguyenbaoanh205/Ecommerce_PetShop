@@ -2,14 +2,14 @@
 
 @section('content')
 <div class="container">
-    <h2>Danh sách yêu thích</h2>
+    <h2>Wishlists</h2>
 
     @if ($wishlists->isEmpty())
         <p>Bạn chưa thêm sản phẩm nào vào danh sách yêu thích.</p>
     @else
         <div class="row">
             @foreach ($wishlists as $item)
-                <div class="col-md-4 mb-4">
+                <div class="col-md-3 mb-4">
                     <div class="card">
                         <img src="{{ asset($item->product->image) }}" class="card-img-top" alt="{{ $item->product->name }}">
                         <div class="card-body">

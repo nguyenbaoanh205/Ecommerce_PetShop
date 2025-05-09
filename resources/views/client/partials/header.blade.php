@@ -165,7 +165,7 @@
                         </li>
 
                             <li>
-                                <a href="index.html" class="mx-3">
+                                <a href="{{ route('wishlist.index') }}" class="mx-3">
                                     <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                                 </a>
                             </li>
