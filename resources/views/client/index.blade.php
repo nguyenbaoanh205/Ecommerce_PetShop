@@ -10,6 +10,7 @@
 @endif
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +20,7 @@
         body {
             font-family: 'Arial', sans-serif;
         }
+
         .hero-section {
             background: url('https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba') no-repeat center center;
             background-size: cover;
@@ -30,6 +32,7 @@
             text-align: center;
             position: relative;
         }
+
         .hero-section::before {
             content: '';
             position: absolute;
@@ -39,59 +42,72 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
         }
+
         .hero-content {
             position: relative;
             z-index: 1;
         }
+
         .product-card {
             transition: transform 0.3s, box-shadow 0.3s;
         }
+
         .product-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
+
         .feature-section {
             background-color: #f8f9fa;
             padding: 60px 0;
         }
+
         .feature-card {
             text-align: center;
             padding: 20px;
         }
+
         .feature-card img {
             width: 80px;
             margin-bottom: 20px;
         }
+
         .testimonial-section {
             padding: 60px 0;
             background-color: #fff;
         }
+
         .testimonial-card {
             background: #f8f9fa;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
         }
+
         .footer {
             background-color: #343a40;
             color: white;
             padding: 60px 0;
         }
+
         .footer a {
             color: #ffffff;
             text-decoration: none;
         }
+
         .footer a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container">
             <a class="navbar-brand" href="#">PetShop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -160,10 +176,12 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="card product-card">
-                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top" alt="Vòng cổ">
+                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top"
+                            alt="Vòng cổ">
                         <div class="card-body">
                             <h5 class="card-title">Vòng Cổ Cao Cấp</h5>
-                            <p class="card-text">Vòng cổ bền đẹp, thiết kế thời trang, phù hợp cho mọi giống chó mèo.</p>
+                            <p class="card-text">Vòng cổ bền đẹp, thiết kế thời trang, phù hợp cho mọi giống chó mèo.
+                            </p>
                             <p class="fw-bold">Giá: 250.000 VNĐ</p>
                             <a href="#" class="btn btn-outline-primary">Thêm Vào Giỏ</a>
                         </div>
@@ -171,7 +189,8 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card product-card">
-                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top" alt="Đồ chơi">
+                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top"
+                            alt="Đồ chơi">
                         <div class="card-body">
                             <h5 class="card-title">Đồ Chơi Thú Cưng</h5>
                             <p class="card-text">Đồ chơi an toàn, giúp thú cưng năng động và giảm căng thẳng.</p>
@@ -182,7 +201,8 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card product-card">
-                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top" alt="Giường ngủ">
+                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top"
+                            alt="Giường ngủ">
                         <div class="card-body">
                             <h5 class="card-title">Giường Ngủ Êm Ái</h5>
                             <p class="card-text">Giường ngủ mềm mại, ấm áp, mang lại giấc ngủ ngon cho thú cưng.</p>
@@ -193,7 +213,8 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card product-card">
-                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top" alt="Áo khoác">
+                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top"
+                            alt="Áo khoác">
                         <div class="card-body">
                             <h5 class="card-title">Áo Khoác Thú Cưng</h5>
                             <p class="card-text">Áo khoác thời trang, giữ ấm cho thú cưng trong mùa đông.</p>
@@ -204,7 +225,8 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card product-card">
-                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top" alt="Bát ăn">
+                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top"
+                            alt="Bát ăn">
                         <div class="card-body">
                             <h5 class="card-title">Bát Ăn Cao Cấp</h5>
                             <p class="card-text">Bát ăn chống trượt, dễ vệ sinh, an toàn cho thú cưng.</p>
@@ -215,7 +237,8 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card product-card">
-                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top" alt="Dây dắt">
+                        <img src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb" class="card-img-top"
+                            alt="Dây dắt">
                         <div class="card-body">
                             <h5 class="card-title">Dây Dắt Chắc Chắn</h5>
                             <p class="card-text">Dây dắt bền bỉ, thoải mái cho thú cưng khi đi dạo.</p>
@@ -264,12 +287,18 @@
             <h2 class="text-center mb-5">Về PetShop</h2>
             <div class="row">
                 <div class="col-md-6">
-                    <p>PetShop được thành lập với sứ mệnh mang đến những sản phẩm chất lượng cao, an toàn và phong cách cho thú cưng. Chúng tôi hiểu rằng thú cưng không chỉ là bạn đồng hành mà còn là thành viên trong gia đình.</p>
-                    <p>Với hơn 5 năm kinh nghiệm, PetShop tự hào cung cấp đa dạng các loại phụ kiện từ vòng cổ, đồ chơi, giường ngủ đến quần áo thời trang. Tất cả sản phẩm đều được chọn lọc kỹ lưỡng để đảm bảo sự thoải mái và an toàn cho thú cưng của bạn.</p>
-                    <p>Chúng tôi cam kết mang đến dịch vụ khách hàng tuyệt vời, giao hàng nhanh chóng và chính sách đổi trả linh hoạt. Hãy để PetShop đồng hành cùng bạn trong hành trình chăm sóc thú cưng!</p>
+                    <p>PetShop được thành lập với sứ mệnh mang đến những sản phẩm chất lượng cao, an toàn và phong cách
+                        cho thú cưng. Chúng tôi hiểu rằng thú cưng không chỉ là bạn đồng hành mà còn là thành viên trong
+                        gia đình.</p>
+                    <p>Với hơn 5 năm kinh nghiệm, PetShop tự hào cung cấp đa dạng các loại phụ kiện từ vòng cổ, đồ chơi,
+                        giường ngủ đến quần áo thời trang. Tất cả sản phẩm đều được chọn lọc kỹ lưỡng để đảm bảo sự
+                        thoải mái và an toàn cho thú cưng của bạn.</p>
+                    <p>Chúng tôi cam kết mang đến dịch vụ khách hàng tuyệt vời, giao hàng nhanh chóng và chính sách đổi
+                        trả linh hoạt. Hãy để PetShop đồng hành cùng bạn trong hành trình chăm sóc thú cưng!</p>
                 </div>
                 <div class="col-md-6">
-                    <img src="https://images.unsplash.com/photo-1494947661490-409ed9ebad0e" class="img-fluid rounded" alt="About us">
+                    <img src="https://images.unsplash.com/photo-1494947661490-409ed9ebad0e" class="img-fluid rounded"
+                        alt="About us">
                 </div>
             </div>
         </div>
@@ -288,32 +317,46 @@
                     <p><strong>Giờ làm việc:</strong> 8:00 - 20:00, Thứ 2 - Chủ Nhật</p>
                     <div class="mt-4">
                         <h5>Theo Dõi Chúng Tôi</h5>
-                        <a href="#" class="me-3"><img src="https://img.icons8.com/ios/30/000000/facebook.png" alt="Facebook"></a>
-                        <a href="#" class="me-3"><img src="https://img.icons8.com/ios/30/000000/instagram.png" alt="Instagram"></a>
-                        <a href="#"><img src="https://img.icons8.com/ios/30/000000/twitter.png" alt="Twitter"></a>
+                        <a href="#" class="me-3"><img src="https://img.icons8.com/ios/30/000000/facebook.png"
+                                alt="Facebook"></a>
+                        <a href="#" class="me-3"><img
+                                src="https://img.icons8.com/ios/30/000000/instagram.png" alt="Instagram"></a>
+                        <a href="#"><img src="https://img.icons8.com/ios/30/000000/twitter.png"
+                                alt="Twitter"></a>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <h4>Gửi Tin Nhắn</h4>
-                    <form>
+                    <form action="{{ route('contact.store') }}" method="POST">
+                        @csrf
+
                         <div class="mb-3">
                             <label for="name" class="form-label">Họ và Tên</label>
-                            <input type="text" class="form-control" id="name" placeholder="Họ và Tên" required>
+                            <input type="text" name="name" class="form-control" id="name"
+                                placeholder="Họ và Tên" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Email" required>
+                            <input type="email" name="email" class="form-control" id="email"
+                                placeholder="Email" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="phone" class="form-label">Số Điện Thoại</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="Số Điện Thoại">
+                            <input type="tel" name="phone" class="form-control" id="phone"
+                                placeholder="Số Điện Thoại" required>
                         </div>
+
                         <div class="mb-3">
                             <label for="message" class="form-label">Tin Nhắn</label>
-                            <textarea class="form-control" id="message" rows="5" placeholder="Tin nhắn của bạn" required></textarea>
+                            <textarea name="message" class="form-control" id="message" rows="5" placeholder="Tin nhắn của bạn"
+                                required></textarea>
                         </div>
+
                         <button type="submit" class="btn btn-primary">Gửi Tin Nhắn</button>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -325,7 +368,8 @@
             <div class="row">
                 <div class="col-md-4">
                     <h5>Về PetShop</h5>
-                    <p>PetShop chuyên cung cấp phụ kiện thú cưng chất lượng cao, mang đến sự thoải mái và phong cách cho thú cưng của bạn.</p>
+                    <p>PetShop chuyên cung cấp phụ kiện thú cưng chất lượng cao, mang đến sự thoải mái và phong cách cho
+                        thú cưng của bạn.</p>
                 </div>
                 <div class="col-md-4">
                     <h5>Liên Kết Nhanh</h5>
@@ -357,4 +401,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

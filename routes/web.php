@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Client\ClientHomeController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
+use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\Client\WishlistController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('client.index');
 }); 
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 // register
 Route::get('/register', function () {
