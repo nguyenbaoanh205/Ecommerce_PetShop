@@ -116,35 +116,35 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-    <div class="order-md-last">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-primary">Your cart</span>
-            <span class="badge bg-primary rounded-circle pt-2">{{ $cartItems->count() }}</span>
-        </h4>
-        <ul class="list-group mb-3">
-            @php $total = 0; @endphp
-            @foreach ($cartItems as $item)
-                @php
-                    $itemTotal = $item->product->price * $item->quantity;
-                    $total += $itemTotal;
-                @endphp
-                <li class="list-group-item d-flex justify-content-between lh-sm">
-                    <div>
-                        <h6 class="my-0">{{ $item->product->name }}</h6>
-                        <small class="text-body-secondary">Qty: {{ $item->quantity }}</small>
-                    </div>
-                    <span class="text-body-secondary">${{ number_format($itemTotal, 2) }}</span>
-                </li>
-            @endforeach
-            <li class="list-group-item d-flex justify-content-between">
-                <span class="fw-bold">Total (USD)</span>
-                <strong>${{ number_format($total, 2) }}</strong>
-            </li>
-        </ul>
+            <div class="order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-primary">Your cart</span>
+                    <span class="badge bg-primary rounded-circle pt-2">{{ $cartItems->count() }}</span>
+                </h4>
+                <ul class="list-group mb-3">
+                    @php $total = 0; @endphp
+                    @foreach ($cartItems as $item)
+                        @php
+                            $itemTotal = $item->product->price * $item->quantity;
+                            $total += $itemTotal;
+                        @endphp
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">{{ $item->product->name }}</h6>
+                                <small class="text-body-secondary">Qty: {{ $item->quantity }}</small>
+                            </div>
+                            <span class="text-body-secondary">${{ number_format($itemTotal, 2) }}</span>
+                        </li>
+                    @endforeach
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span class="fw-bold">Total (USD)</span>
+                        <strong>${{ number_format($total, 2) }}</strong>
+                    </li>
+                </ul>
 
-        <a href="{{ route('checkout.form') }}" class="w-100 btn btn-primary btn-lg">Continue to checkout</a>
-    </div>
-</div>
+                <a href="{{ route('checkout.form') }}" class="w-100 btn btn-primary btn-lg">Continue to checkout</a>
+            </div>
+        </div>
 
     </div>
 
@@ -215,6 +215,34 @@
                         slidesPerView: 1
                     }
                 }
+            });
+        });
+    </script>
+    {{-- Khi ấn các tab danh mục sẽ hiện ra sản phẩm --}}
+    <!-- Isotope JS CDN -->
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Isotope
+            var iso = new Isotope('.isotope-container', {
+                itemSelector: '.item',
+                layoutMode: 'fitRows'
+            });
+
+            // Filter buttons
+            const buttons = document.querySelectorAll('.filter-button');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+                    iso.arrange({
+                        filter: filterValue
+                    });
+                });
             });
         });
     </script>

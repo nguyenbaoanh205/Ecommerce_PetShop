@@ -1,5 +1,30 @@
 @extends('client.layouts.master')
 
+<style>
+    .card img {
+        height: 250px;
+        /* hoặc 300px tùy giao diện */
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        /* nhỏ hơn display mặc định */
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        /* chỉ hiển thị 1 dòng */
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
+    }
+</style>
+@if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 @section('content')
     <section id="banner" style="background: #F9F3EC;">
         <div class="container">
@@ -112,7 +137,7 @@
     </section>
 
     <section id="clothing" class="my-5 overflow-hidden">
-        <div class="container pb-5">
+        <div class="container pb-5" style="height: 550px">
 
             <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">Pet Clothing</h2>
@@ -207,14 +232,17 @@
     <section id="foodies" class="my-5">
         <div class="container my-5 py-5">
 
+            <!-- Section Header with Categories -->
             <div class="section-header d-md-flex justify-content-between align-items-center">
                 <h2 class="display-3 fw-normal">Pet Foodies</h2>
                 <div class="mb-4 mb-md-0">
                     <p class="m-0">
-                        <button class="filter-button me-4  active" data-filter="*">ALL</button>
-                        <button class="filter-button me-4 " data-filter=".cat">CAT</button>
-                        <button class="filter-button me-4 " data-filter=".dog">DOG</button>
-                        <button class="filter-button me-4 " data-filter=".bird">BIRD</button>
+                        <button class="filter-button me-4 active" data-filter="*">ALL</button>
+                        @foreach ($categories as $category)
+                            <button class="filter-button me-4" data-filter=".{{ $category->slug }}">
+                                {{ strtoupper($category->name) }}
+                            </button>
+                        @endforeach
                     </p>
                 </div>
                 <div>
@@ -222,14 +250,20 @@
                         shop now
                         <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                             <use xlink:href="#arrow-right"></use>
-                        </svg></a>
+                        </svg>
+                    </a>
                 </div>
             </div>
 
+            <!-- Product Grid -->
             <div class="isotope-container row">
-                @foreach ($product_list as $product)
-                    <div class="item cat col-md-4 col-lg-3 my-4">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                @foreach ($product_list->shuffle() as $product)
+                    @php
+                        $categorySlug = $product->category->slug ?? 'uncategorized';
+                    @endphp
+                    <div class="item {{ $categorySlug }} col-md-4 col-lg-3 my-4">
+                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle"
+                            style="background-color: #f1f1f1">
                             New
                         </div>
                         <div class="card position-relative">
@@ -237,7 +271,7 @@
                                 <img src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="image">
                             </a>
                             <div class="card-body p-0">
-                                <a href="single-product.html">
+                                <a href="{{ route('product-detail', $product->id) }}">
                                     <h3 class="card-title pt-4 m-0">{{ $product->name }}</h3>
                                 </a>
 
@@ -248,14 +282,14 @@
                                         <form action="{{ route('cart.add') }}" method="POST" class="me-3">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                            <input type="hidden" name="quantity" id="cart-quantity" value="1">
+                                            <input type="hidden" name="quantity" value="1">
                                             <button type="submit"
                                                 class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
                                                 Add to Cart
                                             </button>
                                         </form>
-                                        <form action="{{ route('wishlist.add') }}" class="rounded-1"
-                                            style="border: 1px solid #d9d9d8;" method="POST">
+                                        <form action="{{ route('wishlist.add') }}" method="POST" class="rounded-1"
+                                            style="border: 1px solid #d9d9d8;">
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <button type="submit" class="btn-wishlist px-4 pt-3 bg-transparent border-0">
@@ -264,18 +298,16 @@
                                         </form>
                                     </div>
 
-
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
 
-
         </div>
     </section>
+
 
     <section id="banner-2" class="my-3" style="background: #F9F3EC;">
         <div class="container">
@@ -363,7 +395,7 @@
     </section>
 
     <section id="bestselling" class="my-5 overflow-hidden">
-        <div class="container py-5 mb-5">
+        <div class="container py-5 mb-5" style="height: 550px">
 
             <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">Best selling products</h2>
@@ -381,8 +413,8 @@
 
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                  New
-                                                                </div> -->
+                                                                                      New
+                                                                                    </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item5.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -419,8 +451,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                  New
-                                                                </div> -->
+                                                                                      New
+                                                                                    </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item6.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -494,8 +526,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                  New
-                                                                </div> -->
+                                                                                      New
+                                                                                    </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item8.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -570,8 +602,8 @@
                     </div>
                     <div class="swiper-slide">
                         <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                  New
-                                                                </div> -->
+                                                                                      New
+                                                                                    </div> -->
                         <div class="card position-relative">
                             <a href="single-product.html"><img src="public_index/images/item4.jpg"
                                     class="img-fluid rounded-4" alt="image"></a>
@@ -616,7 +648,7 @@
         </div>
     </section>
 
-    <section id="register" style="background: url('images/background-img.png') no-repeat;">
+    {{-- <section id="register" style="background: url('images/background-img.png') no-repeat;">
         <div class="container ">
             <div class="row my-5 py-5">
                 <div class="offset-md-3 col-md-6 my-5 ">
@@ -644,7 +676,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     <section id="latest-blog" class="my-5">
         <div class="container py-5 my-5">

@@ -16,7 +16,7 @@ class ClientHomeController extends Controller
     public function index()
     {
         $product_reviews = Product::with('reviews')-> orderBy('id', 'desc')->get();
-        $product_list = Product::with('category')->take(8)-> orderBy('id', 'desc')->get();
+        $product_list = Product::with('category')->inRandomOrder()->take(8)->get();
         $categories = Category::query()-> where('status', 1) -> where('type', 1)->get();
 
         $userId = Auth::id();

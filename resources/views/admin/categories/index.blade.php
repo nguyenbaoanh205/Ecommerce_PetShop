@@ -45,6 +45,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Name</th>
+                                        <th>Slug</th>
                                         <th>Description</th>
                                         <th>Type</th>
                                         <th>Status</th>
@@ -55,7 +56,8 @@
                                     @foreach($categories as $category)
                                         <tr>
                                             <td>{{ $category->id }}</td>
-                                            <td>{{ $category->name }}</td>
+                                            <td>{{ Str::limit($category->name,20, '...') }}</td>
+                                            <td>{{ Str::limit($category->slug,20, '...') }}</td>
                                             <td>{{ Str::limit($category->description, 60, '...') }}</td>
                                             <td>{{ $category->type == 1 ? 'Product Category' : 'Post Category' }}</td>
                                             <td>
