@@ -52,7 +52,7 @@
                                                                 class="img-fluid rounded-3" style="width: 60px; margin-right: 10px;">
                                                             <div>
                                                                 <div>{{ $item->product->name }}</div>
-                                                                <small class="text-muted">Qty: {{ $item->quantity }}</small>
+                                                                <small class="text-muted">Quantity: {{ $item->quantity }}</small>
                                                             </div>
                                                         </div>
                                                     </td>

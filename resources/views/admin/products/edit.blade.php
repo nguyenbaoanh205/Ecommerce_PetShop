@@ -100,7 +100,7 @@
                                         <label for="image" class="form-label">Product Image</label>
                                         @if($product->image)
                                             <div class="mb-2">
-                                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}" style="max-width: 100px;">
+                                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" style="max-width: 100px;">
                                             </div>
                                         @endif
                                         <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">

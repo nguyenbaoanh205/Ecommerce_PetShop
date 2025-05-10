@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
     {
         $categoryID = DB::table('categories')->pluck('id') -> toArray();
         $proseed = [];
-        for ($i=0; $i < 4; $i++) {
+        for ($i=0; $i < 6; $i++) {
             $proseed[] = [
                 'name' => fake()->name(),
                 'description' => fake()->text(),
