@@ -490,13 +490,24 @@
                                         </h3>
 
                                         <div class="d-flex flex-wrap mt-3">
-                                            <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                                <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                            </a>
-                                            <a href="#" class="btn-wishlist px-4 pt-3">
+                                        <form action="{{ route('cart.add') }}" method="POST" class="me-3">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $bestselling->id }}">
+                                            <input type="hidden" name="quantity" value="1">
+                                            <button type="submit"
+                                                class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
+                                                Add to Cart
+                                            </button>
+                                        </form>
+                                        <form action="{{ route('wishlist.add') }}" method="POST" class="rounded-1"
+                                            style="border: 1px solid #d9d9d8;">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{ $bestselling->id }}">
+                                            <button type="submit" class="btn-wishlist px-4 pt-3 bg-transparent border-0">
                                                 <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                            </a>
-                                        </div>
+                                            </button>
+                                        </form>
+                                    </div>
                                     </div>
                                 </div>
                             </div>

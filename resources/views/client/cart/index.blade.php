@@ -29,29 +29,41 @@
                             @php $total = 0; @endphp
                             @foreach ($cartItems as $item)
                                 @php
-                                    $itemTotal = $item->product->price * $item->quantity;
+                                    $product = $item->product;
+                                    $hasDiscount =
+                                        !empty($product->discount_price) && $product->discount_price < $product->price;
+                                    $priceToUse = $hasDiscount ? $product->discount_price : $product->price;
+                                    $itemTotal = $priceToUse * $item->quantity;
                                     $total += $itemTotal;
                                 @endphp
                                 <tr>
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ asset($item->product->image) }}" alt="{{ $item->product->name }}" 
+                                            <img src="{{ asset($item->product->image) }}" alt="{{ $item->product->name }}"
                                                 class="img-fluid rounded-3" style="width: 80px; margin-right: 15px;">
                                             <span>{{ $item->product->name }}</span>
                                         </div>
                                     </td>
-                                    <td class="secondary-font text-primary">${{ number_format($item->product->price, 2) }}</td>
+                                    <td class="secondary-font text-primary">
+                                        @if ($hasDiscount)
+                                            <del>${{ number_format($product->price, 2) }}</del>
+                                            <span class="ms-1 fs-5">${{ number_format($product->discount_price, 2) }}</span>
+                                        @else
+                                            ${{ number_format($product->price, 2) }}
+                                        @endif
+                                    </td>
                                     <td>
-                                        <form action="{{ route('cart.update', $item->id) }}" method="POST" class="d-flex align-items-center">
+                                        <form action="{{ route('cart.update', $item->id) }}" method="POST"
+                                            class="d-flex align-items-center">
                                             @csrf
-                                            <input type="number" name="quantity" value="{{ $item->quantity }}" min="1" 
-                                                class="form-control" style="width: 80px;">
+                                            <input type="number" name="quantity" value="{{ $item->quantity }}"
+                                                min="1" class="form-control" style="width: 80px;">
                                             <button type="submit" class="btn btn-outline-dark ms-2">Update</button>
                                         </form>
                                     </td>
                                     <td class="secondary-font text-primary">${{ number_format($itemTotal, 2) }}</td>
                                     <td>
-                                        <a href="{{ route('cart.remove', $item->id) }}" 
+                                        <a href="{{ route('cart.remove', $item->id) }}"
                                             onclick="return confirm('Are you sure you want to remove this item?')"
                                             class="btn btn-outline-danger">
                                             <iconify-icon icon="mdi:trash-can-outline"></iconify-icon>
@@ -61,11 +73,13 @@
                             @endforeach
                             <tr>
                                 <td colspan="3" class="text-end"><strong>Total:</strong></td>
-                                <td colspan="2" class="secondary-font text-primary"><strong>${{ number_format($total, 2) }}</strong></td>
+                                <td colspan="2" class="secondary-font text-primary">
+                                    <strong>${{ number_format($total, 2) }}</strong>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                </div>      
+                </div>
 
                 <div class="d-flex justify-content-between mt-4">
                     {{-- <a href="{{ route('products.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">

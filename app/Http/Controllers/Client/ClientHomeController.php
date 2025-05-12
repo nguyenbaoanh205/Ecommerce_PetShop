@@ -30,11 +30,15 @@ class ClientHomeController extends Controller
         $posts = Post::where('status', 1)->orderBy('created_at', 'desc')->take(3)->get();
         return view('client.home', compact('product_list', 'highly_rated_product', 'reviews', 'categories', 'posts', 'cartItems', 'product_bestselling'));
     } 
+
     public function productDetail($id)
     {
         $product = Product::with('category')->where('id', $id)->firstOrFail();
         $categories = Category::query()-> where('status', 1) -> where('type', 1)->get();
         $reviews = Review::with('user')->limit(2)->get();
+
+        $userId = Auth::id();
+        $cartItems = CartItem::with('product')->where('user_id', $userId)->get();
         
         $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $id)
@@ -42,6 +46,6 @@ class ClientHomeController extends Controller
             ->take(4)
             ->get();
 
-        return view('client.product-detail', compact('product', 'reviews', 'relatedProducts', 'categories'));
+        return view('client.product-detail', compact('product', 'reviews', 'relatedProducts', 'categories','cartItems'));
     }
 }
