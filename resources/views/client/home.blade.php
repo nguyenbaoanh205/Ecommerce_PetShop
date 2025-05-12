@@ -704,8 +704,8 @@
                             </p>
                         </div>
                         <div class="card position-relative">
-                            <a href="single-post.html"><img src="public_index/images/blog1.jpg"
-                                    class="img-fluid rounded-4" alt="image"></a>
+                            <a href="single-post.html"><img src="{{ asset($post->image) }}"
+                                    class="img-fluid rounded-4" style="height: 300px" alt="image"></a>
                             <div class="card-body p-0">
                                 <a href="single-post.html">
                                     <h3 class="card-title pt-4 pb-3 m-0">{{ $post->title }}</h3>
