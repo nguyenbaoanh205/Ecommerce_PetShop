@@ -13,6 +13,7 @@
     <meta name="description" content="">
 </head>
 
+<link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css') }}" />
 <link rel="stylesheet" href="{{ asset('https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css') }}" />
 
 <link href="{{ asset('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css') }}"
@@ -246,6 +247,13 @@
             });
         });
     </script>
+
+    {{-- css Aos Animation --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
 </body>
 
 </html>

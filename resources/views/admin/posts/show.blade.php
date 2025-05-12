@@ -1,5 +1,10 @@
 @extends('admin.layouts.master')
-
+<style>
+    .banhday img{
+        width: 300px;
+        height: 350px;
+    }
+</style>
 @section('content')
 <div class="pc-container">
     <div class="pc-content">
@@ -64,7 +69,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <strong>Content:</strong>
-                                        <div class="mt-2">
+                                        <div class="banhday mt-2">
                                             {!! $post->content !!}
                                         </div>
                                     </div>

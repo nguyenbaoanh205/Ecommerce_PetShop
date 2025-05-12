@@ -139,7 +139,7 @@
     <section id="clothing" class="my-5 overflow-hidden">
         <div class="container pb-5" style="height: 550px">
 
-            <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
+            <div data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine" class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">Pet Clothing</h2>
                 <div>
                     <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
@@ -150,7 +150,7 @@
                 </div>
             </div>
 
-            <div class="products-carousel swiper">
+            <div data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine" class="products-carousel swiper">
                 <div class="swiper-wrapper">
                     @foreach ($highly_rated_product as $product)
                         <div class="swiper-slide">
@@ -233,7 +233,7 @@
         <div class="container my-5 py-5">
 
             <!-- Section Header with Categories -->
-            <div class="section-header d-md-flex justify-content-between align-items-center">
+            <div data-aos="zoom-in-down" class="section-header d-md-flex justify-content-between align-items-center">
                 <h2 class="display-3 fw-normal">Pet Foodies</h2>
                 <div class="mb-4 mb-md-0">
                     <p class="m-0">
@@ -256,7 +256,7 @@
             </div>
 
             <!-- Product Grid -->
-            <div class="isotope-container row">
+            <div data-aos="zoom-in-left" class="isotope-container row">
                 @foreach ($product_list->shuffle() as $product)
                     @php
                         $categorySlug = $product->category->slug ?? 'uncategorized';
