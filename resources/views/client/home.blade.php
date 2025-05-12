@@ -19,6 +19,19 @@
         text-overflow: ellipsis;
         white-space: normal;
     }
+
+    @media (max-width: 768px) {
+        #banner {
+            height: 1000px !important;
+        }
+        .swiper-slide {
+            width: 100% !important;
+        }
+
+        .card {
+            width: 100%;
+        }
+    }
 </style>
 @if (session('success'))
     <div class="alert alert-success">
@@ -26,7 +39,7 @@
     </div>
 @endif
 @section('content')
-    <section id="banner" style="background: #F9F3EC;">
+    <section id="banner" style="background: #F9F3EC; height: 800px">
         <div class="container">
             <div class="swiper main-swiper">
                 <div class="swiper-wrapper">
@@ -139,7 +152,8 @@
     <section id="clothing" class="my-5 overflow-hidden">
         <div class="container pb-5" style="height: 550px">
 
-            <div data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine" class="section-header d-md-flex justify-content-between align-items-center mb-3">
+            <div data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine"
+                class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">Pet Clothing</h2>
                 <div>
                     <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
@@ -150,11 +164,12 @@
                 </div>
             </div>
 
-            <div data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine" class="products-carousel swiper">
+            <div data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine"
+                class="products-carousel swiper">
                 <div class="swiper-wrapper">
                     @foreach ($highly_rated_product as $product)
                         <div class="swiper-slide">
-                            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
+                            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle" style="background-color: #f1f1f1">
                                 New
                             </div>
                             <div class="card position-relative">
@@ -233,7 +248,8 @@
         <div class="container my-5 py-5">
 
             <!-- Section Header with Categories -->
-            <div data-aos="zoom-in-down" class="section-header d-md-flex justify-content-between align-items-center">
+            <div data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine"
+                class="section-header d-md-flex justify-content-between align-items-center">
                 <h2 class="display-3 fw-normal">Pet Foodies</h2>
                 <div class="mb-4 mb-md-0">
                     <p class="m-0">
@@ -256,7 +272,8 @@
             </div>
 
             <!-- Product Grid -->
-            <div data-aos="zoom-in-left" class="isotope-container row">
+            <div data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine"
+                class="isotope-container row">
                 @foreach ($product_list->shuffle() as $product)
                     @php
                         $categorySlug = $product->category->slug ?? 'uncategorized';
@@ -395,9 +412,10 @@
     </section>
 
     <section id="bestselling" class="my-5 overflow-hidden">
-        <div class="container py-5 mb-5" style="height: 550px">
+        <div class="container py-3 mb-5" style="height: 550px">
 
-            <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
+            <div data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine"
+                class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">Best selling products</h2>
                 <div>
                     <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
@@ -408,238 +426,82 @@
                 </div>
             </div>
 
-            <div class=" swiper bestselling-swiper">
+            <div data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine"
+                class=" swiper bestselling-swiper">
                 <div class="swiper-wrapper">
+                    @foreach ($product_bestselling as $bestselling)
+                        @php
+                            $hasDiscount =
+                                !empty($bestselling->discount_price) &&
+                                $bestselling->discount_price < $bestselling->price;
+                            $discountPercent = $hasDiscount
+                                ? round(
+                                    (($bestselling->price - $bestselling->discount_price) / $bestselling->price) * 100,
+                                )
+                                : 0;
 
-                    <div class="swiper-slide">
-                        <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                                      New
-                                                                                    </div> -->
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="public_index/images/item5.jpg"
-                                    class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
+                            // Tính điểm trung bình từ reviews (giống sản phẩm đánh giá cao)
+                            $productReviews = $reviews->where('product_id', $bestselling->id);
+                            $averageRating = $productReviews->avg('rating');
+                        @endphp
+                        <div class="swiper-slide">
+                            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle"
+                                style="background-color: #f1f1f1">
+                                {{ $hasDiscount ? 'Sale -' . $discountPercent . '%' : 'Sale' }}
+                            </div>
+                            <div class="card position-relative">
                                 <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
+                                    <img src="{{ asset($bestselling->image) }}" class="img-fluid rounded-4"
+                                        alt="image">
                                 </a>
+                                <div class="card-body p-0">
+                                    <a href="single-product.html">
+                                        <h3 class="card-title pt-4 m-0">{{ $bestselling->name }}</h3>
+                                    </a>
 
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0</span>
+                                    <div class="card-text">
+                                        <span class="rating secondary-font">
+                                            @for ($i = 1; $i <= 5; $i++)
+                                                @if ($averageRating >= $i)
+                                                    <iconify-icon icon="material-symbols:star"
+                                                        style="color: #dead6f; font-size: 22px;"
+                                                        class="me-1"></iconify-icon>
+                                                @elseif ($averageRating >= $i - 0.5)
+                                                    <iconify-icon icon="material-symbols:star-half"
+                                                        style="color: #dead6f; font-size: 22px;"
+                                                        class="me-1"></iconify-icon>
+                                                @else
+                                                    <iconify-icon icon="material-symbols:star-outline"
+                                                        style="color: #ccc; font-size: 22px;"
+                                                        class="me-1"></iconify-icon>
+                                                @endif
+                                            @endfor
+                                            {{ number_format($averageRating, 1) }}
+                                        </span>
 
-                                    <h3 class="secondary-font text-primary">$18.00</h3>
+                                        @if ($hasDiscount)
+                                            <h5 class="text-muted text-decoration-line-through mb-1">
+                                                ${{ number_format($bestselling->price, 2) }}
+                                            </h5>
+                                        @endif
 
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
+                                        <h3 class="secondary-font text-primary">
+                                            ${{ number_format($bestselling->discount_price, 2) }}
+                                        </h3>
+
+                                        <div class="d-flex flex-wrap mt-3">
+                                            <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
+                                                <h5 class="text-uppercase m-0">Add to Cart</h5>
+                                            </a>
+                                            <a href="#" class="btn-wishlist px-4 pt-3">
+                                                <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                            </a>
+                                        </div>
                                     </div>
-
-
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                                      New
-                                                                                    </div> -->
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="public_index/images/item6.jpg"
-                                    class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0</span>
-
-                                    <h3 class="secondary-font text-primary">$18.00</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            Sale
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="public_index/images/item7.jpg"
-                                    class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0</span>
-
-                                    <h3 class="secondary-font text-primary">$18.00</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                                      New
-                                                                                    </div> -->
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="public_index/images/item8.jpg"
-                                    class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0</span>
-
-                                    <h3 class="secondary-font text-primary">$18.00</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                            -10%
-                        </div>
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="public_index/images/item3.jpg"
-                                    class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0</span>
-
-                                    <h3 class="secondary-font text-primary">$18.00</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <!-- <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle">
-                                                                                      New
-                                                                                    </div> -->
-                        <div class="card position-relative">
-                            <a href="single-product.html"><img src="public_index/images/item4.jpg"
-                                    class="img-fluid rounded-4" alt="image"></a>
-                            <div class="card-body p-0">
-                                <a href="single-product.html">
-                                    <h3 class="card-title pt-4 m-0">Grey hoodie</h3>
-                                </a>
-
-                                <div class="card-text">
-                                    <span class="rating secondary-font">
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        <iconify-icon icon="clarity:star-solid" class="text-primary"></iconify-icon>
-                                        5.0</span>
-
-                                    <h3 class="secondary-font text-primary">$18.00</h3>
-
-                                    <div class="d-flex flex-wrap mt-3">
-                                        <a href="#" class="btn-cart me-3 px-4 pt-3 pb-3">
-                                            <h5 class="text-uppercase m-0">Add to Cart</h5>
-                                        </a>
-                                        <a href="#" class="btn-wishlist px-4 pt-3 ">
-                                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
+                    @endforeach
                 </div>
             </div>
             <!-- / category-carousel -->
@@ -680,7 +542,7 @@
 
     <section id="latest-blog" class="my-5">
         <div class="container py-5 my-5">
-            <div class="row mt-5">
+            <div data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine" class="row mt-5">
                 <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
                     <h2 class="display-3 fw-normal">Latest Blog Post</h2>
                     <div>
@@ -692,7 +554,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine" class="row">
                 @foreach ($posts as $post)
                     <div class="col-md-4 my-4 my-md-0">
                         <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">
@@ -704,8 +566,8 @@
                             </p>
                         </div>
                         <div class="card position-relative">
-                            <a href="single-post.html"><img src="{{ asset($post->image) }}"
-                                    class="img-fluid rounded-4" style="height: 300px" alt="image"></a>
+                            <a href="single-post.html"><img src="{{ asset($post->image) }}" class="img-fluid rounded-4"
+                                    style="height: 300px" alt="image"></a>
                             <div class="card-body p-0">
                                 <a href="single-post.html">
                                     <h3 class="card-title pt-4 pb-3 m-0">{{ $post->title }}</h3>

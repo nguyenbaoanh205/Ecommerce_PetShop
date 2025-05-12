@@ -191,6 +191,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             new Swiper('.products-carousel', {
                 slidesPerView: 4,
+                slidesPerGroup: 1,
                 spaceBetween: 30,
                 loop: true,
                 autoplay: {
@@ -207,13 +208,16 @@
                 },
                 breakpoints: {
                     1024: {
-                        slidesPerView: 4
+                        slidesPerView: 4,
+                        slidesPerGroup: 1
                     },
                     768: {
-                        slidesPerView: 2
+                        slidesPerView: 1,
+                        slidesPerGroup: 1
                     },
-                    480: {
-                        slidesPerView: 1
+                    0: {
+                        slidesPerView: 1,
+                        slidesPerGroup: 1
                     }
                 }
             });

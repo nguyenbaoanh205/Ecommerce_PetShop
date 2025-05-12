@@ -18,6 +18,7 @@ class ClientHomeController extends Controller
         $product_reviews = Product::with('reviews')-> orderBy('id', 'desc')->get();
         $product_list = Product::with('category')->inRandomOrder()->take(8)->get();
         $categories = Category::query()-> where('status', 1) -> where('type', 1)->get();
+        $product_bestselling = Product::with('category')-> where('discount_price', '>', 0)->orderBy('discount_price', 'desc')->take(8)->get();
 
         $userId = Auth::id();
         $cartItems = CartItem::with('product')->where('user_id', $userId)->get();
@@ -27,7 +28,7 @@ class ClientHomeController extends Controller
         })->take(8);
         $reviews = Review::all();
         $posts = Post::where('status', 1)->orderBy('created_at', 'desc')->take(3)->get();
-        return view('client.home', compact('product_list', 'highly_rated_product', 'reviews', 'categories', 'posts', 'cartItems'));
+        return view('client.home', compact('product_list', 'highly_rated_product', 'reviews', 'categories', 'posts', 'cartItems', 'product_bestselling'));
     } 
     public function productDetail($id)
     {
