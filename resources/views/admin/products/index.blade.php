@@ -31,6 +31,9 @@
                             <a href="{{ route('admin.products.create') }}" class="btn btn-primary btn-sm">
                                 <i class="ti ti-plus"></i> Add New Product
                             </a>
+                            <a href="{{ route('admin.products.import') }}" class="btn btn-success btn-sm">
+                                <i class="ti ti-plus"></i> Import Products
+                            </a>
                         </div>
                     </div>
                     <div class="card-body">

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ProductImportController;
 use App\Http\Controllers\Auth\AuthController;
 
 use App\Http\Controllers\Client\ClientHomeController;
@@ -79,6 +80,10 @@ Route::middleware('admin')->group(function () {
         'destroy' => 'admin.categories.destroy'
     ]);
 
+    // Product Import
+    Route::get('admin/products/import', [ProductImportController::class, 'index']);
+    Route::post('admin/products/import', [ProductImportController::class, 'import'])->name('admin.products.import');
+
     // Product Routes
     Route::resource('admin/products', ProductController::class)->names([
         'index' => 'admin.products.index',
@@ -88,6 +93,7 @@ Route::middleware('admin')->group(function () {
         'update' => 'admin.products.update',
         'destroy' => 'admin.products.destroy'
     ]);
+
 
     // User Routes
     Route::resource('admin/users', UserController::class)->names([
@@ -158,6 +164,7 @@ Route::middleware('admin')->group(function () {
         // 'show' => 'admin.contacts.show',
         // 'destroy' => 'admin.contacts.destroy'
     ]);
+
 });
 
 
