@@ -87,7 +87,8 @@
                             </div>
                             <div class="d-flex mt-1 justify-content-between">
                                 <div class="form-check">
-                                    <input class="form-check-input input-primary" type="checkbox" name="remember" id="remember">
+                                    <input class="form-check-input input-primary" type="checkbox" name="remember"
+                                        id="remember">
                                     <label class="form-check-label text-muted" for="remember">Remember Password</label>
                                 </div>
                                 <h5 class="text-secondary f-w-400">Forgot Password?</h5>
@@ -101,10 +102,12 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="d-grid">
-                                        <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
-                                            <img src="../assets/images/authentication/google.svg" alt="img"> <span
-                                                class="d-none d-sm-inline-block"> Google</span>
-                                        </button>
+                                        <a href="{{ route('auth.google.redirect') }}"
+                                            class="btn mt-2 btn-light-primary bg-light text-muted">
+                                            <img src="{{ asset('assets/images/authentication/google.svg') }}"
+                                                alt="Google">
+                                            <span class="d-none d-sm-inline-block">Google</span>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-4">

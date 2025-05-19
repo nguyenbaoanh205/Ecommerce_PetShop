@@ -152,7 +152,7 @@
     <section id="clothing" class="my-5 overflow-hidden">
         <div class="container pb-5" style="height: 550px">
 
-            <div data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine"
+            <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine"
                 class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">Pet Clothing</h2>
                 <div>
@@ -164,7 +164,7 @@
                 </div>
             </div>
 
-            <div data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine"
+            <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine"
                 class="products-carousel swiper">
                 <div class="swiper-wrapper">
                     @foreach ($highly_rated_product as $product)
@@ -248,7 +248,7 @@
         <div class="container my-5 py-5">
 
             <!-- Section Header with Categories -->
-            <div data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine"
+            <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine"
                 class="section-header d-md-flex justify-content-between align-items-center">
                 <h2 class="display-3 fw-normal">Pet Foodies</h2>
                 <div class="mb-4 mb-md-0">
@@ -272,7 +272,7 @@
             </div>
 
             <!-- Product Grid -->
-            <div data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine"
+            <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine"
                 class="isotope-container row">
                 @foreach ($product_list->shuffle() as $product)
                     @php
@@ -414,7 +414,7 @@
     <section id="bestselling" class="my-5 overflow-hidden">
         <div class="container py-3 mb-5" style="height: 550px">
 
-            <div data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine"
+            <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine"
                 class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">Best selling products</h2>
                 <div>
@@ -426,7 +426,7 @@
                 </div>
             </div>
 
-            <div data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine"
+            <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine"
                 class=" swiper bestselling-swiper">
                 <div class="swiper-wrapper">
                     @foreach ($product_bestselling as $bestselling)
@@ -553,7 +553,7 @@
 
     <section id="latest-blog" class="my-5">
         <div class="container py-5 my-5">
-            <div data-aos="fade-right" data-aos-offset="400" data-aos-easing="ease-in-sine" class="row mt-5">
+            <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine" class="row mt-5">
                 <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
                     <h2 class="display-3 fw-normal">Latest Blog Post</h2>
                     <div>
@@ -565,7 +565,7 @@
                     </div>
                 </div>
             </div>
-            <div data-aos="fade-left" data-aos-offset="400" data-aos-easing="ease-in-sine" class="row">
+            <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine" class="row">
                 @foreach ($posts as $post)
                     <div class="col-md-4 my-4 my-md-0">
                         <div class="z-1 position-absolute rounded-3 m-2 px-3 pt-1 bg-light">

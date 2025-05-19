@@ -255,8 +255,17 @@
     {{-- css Aos Animation --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
     <script>
-        AOS.init();
+        AOS.init({
+            duration: 700
+        })
     </script>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <df-messenger
+    intent="WELCOME"
+    chat-title="Ecommerce-PetShop-AI"
+    agent-id="0ac5221a-6e79-4bb2-b92e-03a168cbbe33"
+    language-code="en"
+    ></df-messenger>
 
 </body>
 
