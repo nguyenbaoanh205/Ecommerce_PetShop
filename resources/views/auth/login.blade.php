@@ -100,7 +100,7 @@
                                 <span>Login with</span>
                             </div>
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-4"> 
                                     <div class="d-grid">
                                         <a href="{{ route('auth.google.redirect') }}"
                                             class="btn mt-2 btn-light-primary bg-light text-muted">
@@ -120,10 +120,12 @@
                                 </div>
                                 <div class="col-4">
                                     <div class="d-grid">
-                                        <button type="button" class="btn mt-2 btn-light-primary bg-light text-muted">
-                                            <img src="../assets/images/authentication/facebook.svg" alt="img">
-                                            <span class="d-none d-sm-inline-block"> Facebook</span>
-                                        </button>
+                                        <a href="{{ route('auth.facebook.redirect') }}"
+                                            class="btn mt-2 btn-light-primary bg-light text-muted">
+                                            <img src="{{ asset('assets/images/authentication/facebook.svg') }}"
+                                                alt="Facebook"> 
+                                            <span class="d-none d-sm-inline-block">Facebook</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
