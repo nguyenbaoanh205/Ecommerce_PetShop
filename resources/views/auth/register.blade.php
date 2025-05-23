@@ -66,6 +66,15 @@
                             <h3 class="mb-0"><b>Sign up</b></h3>
                             <a href="{{ route('login') }}" class="link-primary">Already have an account?</a>
                         </div>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form action="{{ route('register') }}" method="POST">
                             @csrf
                             <div class="form-group mb-3">
@@ -73,8 +82,8 @@
                                 <input type="text" name="name" class="form-control" placeholder="Address">
                             </div>
                             <div class="form-group mb-3">
-                              <label class="form-label">Email Address*</label>
-                              <input type="email" name="email" class="form-control" placeholder="Email Address">
+                                <label class="form-label">Email Address*</label>
+                                <input type="email" name="email" class="form-control" placeholder="Email Address">
                             </div>
                             <div class="form-group mb-3">
                                 <label class="form-label">Address</label>
