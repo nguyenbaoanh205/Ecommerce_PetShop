@@ -21,7 +21,7 @@ class AdminMiddleware
         }
 
         if (Auth::user()->role !== 'admin') {
-            return redirect('/home') -> with('error', 'You are not admin');
+            return redirect('/') -> with('error', 'You are not admin');
         }
         return $next($request);
     }

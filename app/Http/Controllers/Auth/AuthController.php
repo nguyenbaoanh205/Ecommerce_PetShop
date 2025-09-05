@@ -50,7 +50,7 @@ class AuthController extends Controller
             if ($user->role == 'admin') {
                 return redirect('/admin')->with('success', 'Đăng nhập thành công');
             } else {
-                return redirect('/home')->with('success', 'Đăng nhập thành công');
+                return redirect('/')->with('success', 'Đăng nhập thành công');
             }
         } else {
             return redirect('/login')->with('error', 'Sai tên email hoặc mật khẩu chưa đúng');
