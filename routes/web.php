@@ -37,10 +37,12 @@ use Illuminate\Support\Facades\Route;
 | Auth Routes
 |--------------------------------------------------------------------------
 */
+
 Route::get('/register', [AuthController::class, 'formRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/login', [AuthController::class, 'formLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google.redirect');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
@@ -79,7 +81,6 @@ Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wi
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
-
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -89,105 +90,77 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     // Dashboard
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');
 
-    // Category Routes
-    Route::resource('categories', CategoryController::class)->names([
-        'index' => 'categories.index',
-        'create' => 'categories.create',
-        'store' => 'categories.store',
-        'edit' => 'categories.edit',
-        'update' => 'categories.update',
-        'destroy' => 'categories.destroy'
-    ]);
+    // Categories
+    Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+    Route::get('categories/create', [CategoryController::class, 'create'])->name('categories.create');
+    Route::post('categories', [CategoryController::class, 'store'])->name('categories.store');
+    Route::get('categories/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('categories/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-    // Product Import
-    Route::get('products/import', [ProductImportController::class, 'index']);
-    Route::post('products/import', [ProductImportController::class, 'import'])->name('products.import');
+    // Products Import
+    Route::get('products/import', [ProductImportController::class, 'index'])->name('products.import.index');
+    Route::post('products/import', [ProductImportController::class, 'import'])->name('products.import.store');
 
-    // Product Routes
-    Route::resource('products', ProductController::class)->names([
-        'index' => 'products.index',
-        'create' => 'products.create',
-        'store' => 'products.store',
-        'edit' => 'products.edit',
-        'update' => 'products.update',
-        'destroy' => 'products.destroy'
-    ]);
+    // Products
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
+    Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('products/{id}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('products/{id}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('products/{id}', [ProductController::class, 'destroy'])->name('products.destroy');
 
-    // User Routes
-    Route::resource('users', UserController::class)->names([
-        'index' => 'users.index',
-        'create' => 'users.create',
-        'store' => 'users.store',
-        'edit' => 'users.edit',
-        'update' => 'users.update',
-        'destroy' => 'users.destroy'
-    ]);
+    // Users
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('users', [UserController::class, 'store'])->name('users.store');
+    Route::get('users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
-    // Order Routes
-    Route::resource('orders', OrderController::class)->names([
-        'index' => 'orders.index',
-        'show' => 'orders.show',
-        'update' => 'orders.update',
-        'destroy' => 'orders.destroy'
-    ]);
+    // Orders
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+    Route::put('orders/{id}', [OrderController::class, 'update'])->name('orders.update');
+    Route::delete('orders/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 
-    // Order Item Routes
-    Route::resource('order-items', OrderItemController::class)->names([
-        'index' => 'order-items.index',
-        'show' => 'order-items.show',
-        'update' => 'order-items.update',
-        'destroy' => 'order-items.destroy'
-    ]);
+    // Order Items
+    Route::get('order-items', [OrderItemController::class, 'index'])->name('order-items.index');
+    Route::get('order-items/{id}', [OrderItemController::class, 'show'])->name('order-items.show');
+    Route::put('order-items/{id}', [OrderItemController::class, 'update'])->name('order-items.update');
+    Route::delete('order-items/{id}', [OrderItemController::class, 'destroy'])->name('order-items.destroy');
 
-    // Cart Item Routes
-    Route::resource('cart-items', CartItemController::class)->names([
-        'index' => 'cart-items.index',
-        'show' => 'cart-items.show',
-        'update' => 'cart-items.update',
-        'destroy' => 'cart-items.destroy'
-    ]);
+    // Cart Items
+    Route::get('cart-items', [CartItemController::class, 'index'])->name('cart-items.index');
+    Route::get('cart-items/{id}', [CartItemController::class, 'show'])->name('cart-items.show');
+    Route::put('cart-items/{id}', [CartItemController::class, 'update'])->name('cart-items.update');
+    Route::delete('cart-items/{id}', [CartItemController::class, 'destroy'])->name('cart-items.destroy');
 
-    // Review Routes
-    Route::resource('reviews', ReviewController::class)->names([
-        'index' => 'reviews.index',
-        'show' => 'reviews.show',
-        'update' => 'reviews.update',
-        'destroy' => 'reviews.destroy'
-    ]);
+    // Reviews
+    Route::get('reviews', [ReviewController::class, 'index'])->name('reviews.index');
+    Route::get('reviews/{id}', [ReviewController::class, 'show'])->name('reviews.show');
+    Route::put('reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update');
+    Route::delete('reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 
-    // Banner Routes
-    Route::resource('banners', BannerController::class)->names([
-        'index' => 'banners.index',
-        'create' => 'banners.create',
-        'store' => 'banners.store',
-        'edit' => 'banners.edit',
-        'update' => 'banners.update',
-        'destroy' => 'banners.destroy'
-    ]);
+    // Banners
+    Route::get('banners', [BannerController::class, 'index'])->name('banners.index');
+    Route::get('banners/create', [BannerController::class, 'create'])->name('banners.create');
+    Route::post('banners', [BannerController::class, 'store'])->name('banners.store');
+    Route::get('banners/{id}/edit', [BannerController::class, 'edit'])->name('banners.edit');
+    Route::put('banners/{id}', [BannerController::class, 'update'])->name('banners.update');
+    Route::delete('banners/{id}', [BannerController::class, 'destroy'])->name('banners.destroy');
 
-    // Post Routes
-    Route::resource('posts', PostController::class)->names([
-        'index' => 'posts.index',
-        'create' => 'posts.create',
-        'store' => 'posts.store',
-        'show' => 'posts.show',
-        'edit' => 'posts.edit',
-        'update' => 'posts.update',
-        'destroy' => 'posts.destroy'
-    ]);
+    // Posts
+    Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+    Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('posts', [PostController::class, 'store'])->name('posts.store');
+    Route::get('posts/{id}', [PostController::class, 'show'])->name('posts.show');
+    Route::get('posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    Route::put('posts/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::delete('posts/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-    // Contact Routes
-    Route::resource('contacts', AdminContactController::class)->names([
-        'index' => 'contacts.index',
-        // 'show' => 'contacts.show',
-        // 'destroy' => 'contacts.destroy'
-    ]);
+    // Contacts
+    Route::get('contacts', [AdminContactController::class, 'index'])->name('contacts.index');
+    // Route::get('contacts/{id}', [AdminContactController::class, 'show'])->name('contacts.show');
+    // Route::delete('contacts/{id}', [AdminContactController::class, 'destroy'])->name('contacts.destroy');
 });
-
-
-
-// logout
-Route::post('/logout', function () {
-    Auth::logout();
-    return redirect('/login');
-})->name('logout');

@@ -56,4 +56,11 @@ class AuthController extends Controller
             return redirect('/login')->with('error', 'Sai tên email hoặc mật khẩu chưa đúng');
         }
     }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
 }
