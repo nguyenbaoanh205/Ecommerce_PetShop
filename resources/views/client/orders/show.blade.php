@@ -1,4 +1,5 @@
 @extends('client.layouts.master')
+@section('title', 'Order Detail')
 
 @section('content')
 <div class="container py-5">

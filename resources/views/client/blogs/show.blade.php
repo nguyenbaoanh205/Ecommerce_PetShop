@@ -1,5 +1,4 @@
 @extends('client.layout.master')
-
 @section('title', $blog->title)
 
 @section('content')

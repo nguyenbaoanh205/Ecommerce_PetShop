@@ -1,5 +1,5 @@
 @extends('client.layouts.master')
-
+@section('title', 'Home')
 <style>
     .card img {
         height: 250px;

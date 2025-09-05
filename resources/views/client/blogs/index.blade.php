@@ -1,5 +1,5 @@
 @extends('client.layout.master')
-{{-- @section('title', 'Bài viết - Apple Store') --}}
+@section('title', 'Blogs')
 
 @section('content')
     <!-- Shop Banner -->

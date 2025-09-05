@@ -1,4 +1,5 @@
 @extends('client.layouts.master')
+@section('title', 'Checkout')
 
 @section('content')
     <section id="checkout" class="my-5">

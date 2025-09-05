@@ -1,12 +1,8 @@
 @extends('client.layouts.master')
+@section('title', 'Wishlists')
 
 @section('content')
     <div class="container">
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
         <h2>Wishlists</h2>
 
         @if ($wishlists->isEmpty())

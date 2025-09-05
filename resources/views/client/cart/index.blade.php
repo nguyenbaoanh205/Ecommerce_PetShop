@@ -1,13 +1,10 @@
 @extends('client.layouts.master')
+@section('title', 'Cart')
 
 @section('content')
     <section id="cart" class="my-5">
         <div class="container py-5">
             <h2 class="display-3 fw-normal mb-4">Your Cart</h2>
-
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
 
             @if ($cartItems->isEmpty())
                 <div class="alert alert-info">
