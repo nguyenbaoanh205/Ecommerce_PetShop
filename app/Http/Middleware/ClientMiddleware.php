@@ -14,12 +14,12 @@ class ClientMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        if (!Auth::check()) {
-            return redirect('/login');
-        }
+    // public function handle(Request $request, Closure $next): Response
+    // {
+    //     if (!Auth::check()) {
+    //         return redirect('/login');
+    //     }
         
-        return $next($request);
-    }
+    //     return $next($request);
+    // }
 }

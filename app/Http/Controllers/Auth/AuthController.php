@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    public function formRegister(){
+        return view('auth.register');
+    }
     public function register(Request $request)
     {
         $request->validate([
@@ -29,6 +32,9 @@ class AuthController extends Controller
             'address' => $request->address
         ]);
         return redirect('/login')->with('success', 'Đăng ký thành công');
+    }
+    public function formLogin(){
+        return view('auth.login');
     }
     public function login(Request $request)
     {

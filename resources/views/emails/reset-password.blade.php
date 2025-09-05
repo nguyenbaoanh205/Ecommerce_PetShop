@@ -126,7 +126,7 @@
         <div class="footer">
             <p>
                 Pet Shop | 123, Trần Phú, Hoàn Kiếm, Hà Nội<br>
-                Email: <a href="mailto:baoanh17042005@gmail.com">baoanh17042005@gmail.com</a> | Hotline: <a
+                Email: <a href="mailto:baoanh1742005@gmail.com">baoanh1742005@gmail.com</a> | Hotline: <a
                     href="tel:0368706552">0368706552</a>
             </p>
             <p>Email này được gửi tự động, xin vui lòng không phản hồi trực tiếp. Hỗ trợ 24/7 tại [đường dẫn hỗ trợ nếu
