@@ -251,6 +251,84 @@
             });
         });
     </script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        console.log('Layout loaded, checking Echo...');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Debug SweetAlert2
+            console.log('Checking SweetAlert2...');
+            if (typeof Swal !== 'undefined') {
+                console.log('SweetAlert2 is loaded successfully');
+            } else {
+                console.error('SweetAlert2 is not loaded');
+                return;
+            }
+
+            // Custom styling cho SweetAlert2 - sửa position để không bị header che
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                customClass: {
+                    popup: 'swal-toast-custom'
+                },
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+            // Thêm CSS để đảm bảo toast hiển thị trên header
+            const style = document.createElement('style');
+            style.textContent = `
+            .swal-toast-custom {
+                z-index: 10000 !important;
+                margin-top: 5px !important;
+            }
+            .swal2-container {
+                z-index: 10000 !important;
+            }
+        `;
+            document.head.appendChild(style);
+
+            // Handle session flash messages
+            @if (session('success'))
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: '{{ session('success') }}'
+                });
+            @endif
+
+            @if (session('error'))
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: '{{ session('error') }}'
+                });
+            @endif
+
+            @if (session('warning'))
+                Toast.fire({
+                    icon: 'warning',
+                    title: 'Warning',
+                    text: '{{ session('warning') }}'
+                });
+            @endif
+
+            @if (session('info'))
+                Toast.fire({
+                    icon: 'info',
+                    title: 'Infomation',
+                    text: '{{ session('info') }}'
+                });
+            @endif
+        });
+    </script>
+
 
     {{-- css Aos Animation --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
@@ -260,12 +338,8 @@
         })
     </script>
     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-    <df-messenger
-    intent="WELCOME"
-    chat-title="Ecommerce-PetShop-AI"
-    agent-id="0ac5221a-6e79-4bb2-b92e-03a168cbbe33"
-    language-code="en"
-    ></df-messenger>
+    <df-messenger intent="WELCOME" chat-title="AI CHATBOT" agent-id="0ac5221a-6e79-4bb2-b92e-03a168cbbe33"
+        language-code="en"></df-messenger>
 
 </body>
 

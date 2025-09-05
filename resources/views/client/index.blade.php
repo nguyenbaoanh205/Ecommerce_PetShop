@@ -1,4 +1,4 @@
-@if (session('success'))
+{{-- @if (session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
@@ -402,4 +402,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html>
+</html> --}}

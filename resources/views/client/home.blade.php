@@ -33,11 +33,6 @@
         }
     }
 </style>
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 @section('content')
     <section id="banner" style="background: #F9F3EC; height: 800px">
         <div class="container">
