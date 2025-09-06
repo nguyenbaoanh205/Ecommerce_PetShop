@@ -20,10 +20,8 @@ class ClientHomeController extends Controller
         $categories = Category::query()->where('status', 1)->where('type', 1)->get();
         $product_bestselling = Product::with('category')->where('discount_price', '>', 0)->orderBy('discount_price', 'desc')->take(8)->get();
 
-        $userId = Auth::id();
-        $cartItems = CartItem::with('product')->where('user_id', $userId)->get();
-
-        $cartCount = $cartItems->count();
+        $cartItems = Controller::GetMenu()['cartItems'];
+        $cartCount = Controller::GetMenu()['cartCount'];
 
         $highly_rated_product = $product_reviews->filter(function ($product) {
             return $product->reviews->avg('rating') > 3;
@@ -39,8 +37,8 @@ class ClientHomeController extends Controller
         $categories = Category::query()->where('status', 1)->where('type', 1)->get();
         $reviews = Review::with('user')->limit(2)->get();
 
-        $userId = Auth::id();
-        $cartItems = CartItem::with('product')->where('user_id', $userId)->get();
+        $cartItems = Controller::GetMenu()['cartItems'];
+        $cartCount = Controller::GetMenu()['cartCount'];
 
         $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $id)
@@ -48,6 +46,6 @@ class ClientHomeController extends Controller
             ->take(4)
             ->get();
 
-        return view('client.product-detail', compact('product', 'reviews', 'relatedProducts', 'categories', 'cartItems'));
+        return view('client.product-detail', compact('product', 'reviews', 'relatedProducts', 'cartCount',  'categories', 'cartItems'));
     }
 }

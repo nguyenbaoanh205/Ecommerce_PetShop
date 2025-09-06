@@ -11,8 +11,8 @@ class AboutUsController extends Controller
 {
     public function index()
     {
-        $userId = Auth::id();
-        $cartItems = CartItem::with('product')->where('user_id', $userId)->get();
-        return view('client.aboutUs.index', compact('cartItems'));
+        $cartItems = Controller::GetMenu()['cartItems'];
+        $cartCount = Controller::GetMenu()['cartCount'];
+        return view('client.aboutUs.index', compact('cartItems', 'cartCount'));
     }
 }

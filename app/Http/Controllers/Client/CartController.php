@@ -13,11 +13,11 @@ class CartController extends Controller
     // Hiển thị giỏ hàng
     public function index()
     {
-        $userId = Auth::id();
+        $cartItems = Controller::GetMenu()['cartItems'];
+        $cartCount = Controller::GetMenu()['cartCount'];
         $categories = Category::query()-> where('status', 1) -> where('type', 1)->get();
-        $cartItems = CartItem::with('product')->where('user_id', $userId)->get();
 
-        return view('client.cart.index', compact('cartItems', 'categories'));
+        return view('client.cart.index', compact('cartItems', 'categories', 'cartCount'));
     }
 
     // Thêm sản phẩm vào giỏ
