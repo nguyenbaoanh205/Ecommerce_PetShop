@@ -31,7 +31,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'address' => $request->address
         ]);
-        return redirect('/login')->with('success', 'Đăng ký thành công');
+        return redirect('/login')->with('success', 'Register successfully');
     }
     public function formLogin(){
         return view('auth.login');
@@ -42,18 +42,17 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        // Kiểm tra nếu người dùng muốn "Nhớ tôi"
         $remember = $request->filled('remember');
 
         if (Auth::attempt($credintials, $remember)) {
             $user = Auth::user();
             if ($user->role == 'admin') {
-                return redirect('/admin')->with('success', 'Đăng nhập thành công');
+                return redirect('/admin')->with('success', 'Login successfully');
             } else {
-                return redirect('/')->with('success', 'Đăng nhập thành công');
+                return redirect('/')->with('success', 'Login successfully');
             }
         } else {
-            return redirect('/login')->with('error', 'Sai tên email hoặc mật khẩu chưa đúng');
+            return redirect('/login')->with('error', 'Email or password is incorrect');
         }
     }
     public function logout(Request $request)
