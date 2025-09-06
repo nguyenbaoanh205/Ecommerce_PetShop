@@ -135,7 +135,7 @@
                             <a href="{{ route('blog.index') }}" class="nav-link">Blog</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">Contact</a>
+                            <a href="{{ route('contact.index') }}" class="nav-link">Contact</a>
                         </li>
                         <li class="nav-item">
                             <a href="index.html" class="nav-link">Others</a>

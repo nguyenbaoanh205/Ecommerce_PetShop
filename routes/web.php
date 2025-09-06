@@ -82,6 +82,7 @@ Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wi
 Route::get("/blogs", [BlogController::class, 'index'])->name('blog.index');
 Route::get("/blog-detail/{slug}", [BlogController::class, 'show'])->name('blog.show');
 
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
