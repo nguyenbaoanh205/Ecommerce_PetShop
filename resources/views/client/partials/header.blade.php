@@ -137,10 +137,14 @@
                     <div class="d-none d-lg-flex align-items-end">
                         <ul class="d-flex justify-content-end list-unstyled m-0">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle mx-3" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                <a class="nav-link dropdown-toggle mx-2 d-flex align-items-center" href="#"
+                                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <iconify-icon icon="healthicons:person" class="fs-4 me-2"></iconify-icon>
+                                    {{-- @auth
+                                        <span>{{ Auth::user()->name }}</span>
+                                    @endauth --}}
                                 </a>
+
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     @guest
                                         <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
@@ -170,10 +174,12 @@
                                 <a href="{{ route('cart.index') }}" class="mx-3" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                                     <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
-                                    {{-- <span
-                                        class="position-absolute translate-middle badge rounded-circle bg-primary pt-2">
-                                        03
-                                    </span> --}}
+                                    @if (isset($cartCount) && $cartCount > 0)
+                                        <span
+                                            class="position-absolute top-25 start-75 translate-middle badge rounded-circle bg-primary">
+                                            {{ $cartCount }}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                         </ul>
@@ -190,3 +196,8 @@
 
     </div>
 </header>
+<style>
+    .nav-link.dropdown-toggle::after {
+        margin-left: -5px;
+    }
+</style>
