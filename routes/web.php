@@ -25,6 +25,7 @@ use App\Http\Controllers\Client\ClientHomeController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Controllers\Client\ContactController;
+use App\Http\Controllers\Client\BlogController;
 use App\Http\Controllers\Client\WishlistController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\EmailController;
@@ -61,7 +62,7 @@ Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name(
 |--------------------------------------------------------------------------
 */
 Route::get('/', [ClientHomeController::class, 'index'])->name('home');
-Route::get('/product-detail/{id}', [ClientHomeController::class, 'productDetail'])->name('product-detail');
+Route::get('/product-detail/{slug}', [ClientHomeController::class, 'productDetail'])->name('product-detail');
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
@@ -77,6 +78,9 @@ Route::get('/orders/{order}', [ClientOrderController::class, 'show'])->name('ord
 Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
 Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
 Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+
+Route::get("/blogs", [BlogController::class, 'index'])->name('blog.index');
+Route::get("/blog-detail/{slug}", [BlogController::class, 'show'])->name('blog.show');
 
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 

@@ -2,11 +2,28 @@
 @section('title', 'Wishlists')
 
 @section('content')
-    <div class="container">
-        <h2>Wishlists</h2>
+<div class="shop-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1 data-aos="fade-up">Wishlists</h1>
+                    <!-- Breadcrumbs -->
+                    <div class="breadcrumbs" data-aos="fade-up" data-aos-delay="200">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Wishlists</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="container">
         @if ($wishlists->isEmpty())
-            <p>Bạn chưa thêm sản phẩm nào vào danh sách yêu thích.</p>
+            <p>You have no items in your wishlist.</p>
         @else
             <div class="row">
                 @foreach ($wishlists as $item)

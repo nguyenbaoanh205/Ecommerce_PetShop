@@ -4,7 +4,7 @@
 
             <div class="col-md-3">
                 <div class="footer-menu">
-                    <img src="{{ asset('public_index/images/logo.png')}}" alt="logo">
+                    <img src="{{ asset('public_index/images/logo.png') }}" alt="logo">
                     <p class="blog-paragraph fs-6 mt-3">Subscribe to our newsletter to get updates about our grand
                         offers.</p>
                     <div class="social-links">
@@ -100,21 +100,20 @@
 
         </div>
     </div>
-</footer>
-
-<div id="footer-bottom">
-    <div class="container">
-        <hr class="m-0">
-        <div class="row mt-3">
-            <div class="col-md-6 copyright">
-                <p class="secondary-font">© 2023 Waggy. All rights reserved.</p>
-            </div>
-            <div class="col-md-6 text-md-end">
-                <p class="secondary-font">Free HTML Template by <a href="https://templatesjungle.com/"
-                        target="_blank" class="text-decoration-underline fw-bold text-black-50">
-                        TemplatesJungle</a> Distributed by <a href="https://themewagon.com/" target="_blank"
-                        class="text-decoration-underline fw-bold text-black-50"> ThemeWagon</a></p>
+    <div id="footer-bottom">
+        <div class="container">
+            <hr class="m-0">
+            <div class="row mt-3">
+                <div class="col-md-6 copyright">
+                    <p class="secondary-font">© 2023 Waggy. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="secondary-font">Free HTML Template by <a href="https://templatesjungle.com/"
+                            target="_blank" class="text-decoration-underline fw-bold text-black-50">
+                            TemplatesJungle</a> Distributed by <a href="https://themewagon.com/" target="_blank"
+                            class="text-decoration-underline fw-bold text-black-50"> ThemeWagon</a></p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</footer>

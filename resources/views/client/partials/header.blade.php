@@ -97,12 +97,12 @@
                 </div>
 
                 <div class="offcanvas-body justify-content-between">
-                    <select class="filter-categories border-0 mb-0 me-5">
+                    {{-- <select class="filter-categories border-0 mb-0 me-5">
                         <option>Shop by Category</option>
                         @foreach ($categories as $category)
                             <option>{{ $category->name }}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
 
                     <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                         <li class="nav-item">
@@ -132,7 +132,7 @@
                             <a href="index.html" class="nav-link">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">Blog</a>
+                            <a href="{{ route('blog.index') }}" class="nav-link">Blog</a>
                         </li>
                         <li class="nav-item">
                             <a href="index.html" class="nav-link">Contact</a>
