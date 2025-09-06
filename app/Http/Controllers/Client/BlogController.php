@@ -28,8 +28,8 @@ class BlogController extends Controller
             ->where('id', '!=', $blog->id)
             ->take(3)
             ->get();
-            $cartItems = Controller::GetMenu()['cartItems'];
+        $cartItems = Controller::GetMenu()['cartItems'];
         $cartCount = Controller::GetMenu()['cartCount'];
-        return view('client.blog.show', compact('blog', 'relatedBlogs', 'cartItems', 'cartCount'));
+        return view('client.blogs.show', compact('blog', 'relatedBlogs', 'cartItems', 'cartCount'));
     }
 }

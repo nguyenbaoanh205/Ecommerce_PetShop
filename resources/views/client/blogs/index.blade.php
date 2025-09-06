@@ -17,7 +17,7 @@
                         <div class="post-entry">
                             <a href="{{ route('blog.show', $blog->slug) }}" class="post-thumbnail">
                                 <img src="{{ asset($blog->image ?? 'uploads/default/default.jpg') }}" alt="Image"
-                                    class="img-fluid blog-image">
+                                    class="blog-image">
                             </a>
                             <div class="post-content-entry">
                                 <h3>
@@ -39,11 +39,22 @@
 @endsection
 
 <style>
+    .post-thumbnail {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4/3;
+        /* hoặc 16/9 cho rộng hơn */
+        overflow: hidden;
+        border-radius: 12px 12px 0 0;
+        background: #f1f1f1;
+        /* màu nền khi ảnh không load */
+    }
+
     .blog-image {
         width: 100%;
-        height: 200px; /* nâng cao để nhìn rõ hơn */
+        height: 100%;
         object-fit: cover;
-        border-radius: 12px 12px 0 0;
+        /* đảm bảo ảnh fill khung */
     }
 
     .post-entry {

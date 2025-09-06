@@ -1,28 +1,12 @@
-@extends('client.layout.master')
+@extends('client.layouts.master')
 @section('title', $blog->title)
-
+<style>
+    .blog-content img{
+        max-width: 100%;
+        height: auto;
+    }
+</style>
 @section('content')
-    <!-- Tiêu đề blog -->
-    <div class="blog-hero py-5 bg-light">
-        <div class="container-xl">
-            <div class="row justify-content-center text-center">
-                <div class="col-lg-10">
-                    <h1 class="display-5 fw-bold mb-3" data-aos="fade-up">{{ $blog->title }}</h1>
-                    <div class="meta text-muted mb-4" data-aos="fade-up" data-aos-delay="200">
-                        <span>Bởi <strong>{{ $blog->author->name ?? 'Không rõ' }}</strong></span> |
-                        <span>{{ $blog->created_at->format('d/m/Y') }}</span> |
-                        <span>{{ $blog->category->name ?? 'Không phân loại' }}</span>
-                    </div>
-                    {{-- <figure class="blog-hero-image text-center">
-                        <img src="{{ $blog->image ? asset('uploads/blogs/' . basename($blog->image)) : asset('images/placeholder.jpg') }}"
-                             class="img-fluid rounded shadow-sm"
-                             alt="{{ $blog->title }}">
-                    </figure> --}}
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Nội dung và sidebar -->
     <div class="blog-section py-5">
         <div class="container-xl">
@@ -86,11 +70,11 @@
                     @if (!empty($relatedBlogs) && $relatedBlogs->count())
                         <div style="margin-top: 23px"  class="card border-0 shadow-sm">
                             <div class="card-body p-4 bg-white">
-                                <h5 class="fw-bold mb-3">Bài viết liên quan</h5>
+                                <h5 class="fw-bold mb-3">Related Blogs</h5>
                                 @foreach($relatedBlogs as $related)
                                     <div class="d-flex mb-3 align-items-center">
                                         <a href="{{ route('blog.show', $related->slug) }}" class="me-3">
-                                            <img src="{{ $related->image ? asset('uploads/blogs/' . basename($related->image)) : asset('images/placeholder.jpg') }}"
+                                            <img src="{{ $related->image ? asset($related->image) : asset('images/default-image.jpg') }}"
                                                  alt="{{ $related->title }}"
                                                  class="rounded" style="width: 80px; height: 80px; object-fit: cover;">
                                         </a>

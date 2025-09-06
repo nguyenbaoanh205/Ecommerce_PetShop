@@ -15,13 +15,13 @@ class PostSeeder extends Seeder
     {
         $categoryID = DB::table('categories')->pluck('id') -> toArray();
         $postSeed = [];
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i < 12; $i++) {
             $postSeed[] = [
                 'category_id' => fake() -> randomElement($categoryID),
                 'title' => fake()->name(),
                 'content' => fake()->text(),
                 'slug' => fake()->slug(),
-                'description' => fake()->text(),
+                'description' => fake()->paragraph(8, true),
                 'status' => fake()->randomElement([0,1]),
                 'image' => 'uploads/images/default-image.jpg',
                 'created_at' => now(),
