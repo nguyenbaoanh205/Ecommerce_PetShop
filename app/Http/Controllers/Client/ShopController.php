@@ -14,7 +14,7 @@ class ShopController extends Controller
         $cartItems = Controller::GetMenu()['cartItems'];
         $cartCount = Controller::GetMenu()['cartCount'];
         $reviews = Review::all();
-        $products = Product::with('category')->inRandomOrder()->take(8)->get();
+        $products = Product::with('category')->inRandomOrder()->paginate(16);
 
         return view('client.shop.index', compact( 'cartItems', 'cartCount', 'reviews', 'products'));
     }

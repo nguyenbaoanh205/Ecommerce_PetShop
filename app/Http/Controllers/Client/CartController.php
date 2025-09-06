@@ -40,7 +40,7 @@ class CartController extends Controller
             ]);
         }
 
-        return redirect()->route('cart.index')->with('success', 'Đã thêm vào giỏ hàng');
+        return back()->with('success', 'Added to cart successfully.');
     }
 
     // Cập nhật số lượng
@@ -49,13 +49,13 @@ class CartController extends Controller
         $cartItem = CartItem::findOrFail($id);
         $cartItem->update(['quantity' => $request->input('quantity')]);
 
-        return redirect()->route('cart.index')->with('success', 'Cập nhật thành công');
+        return back()->with('success', 'Cập nhật thành công');
     }
 
     // Xoá khỏi giỏ
     public function remove($id)
     {
         CartItem::destroy($id);
-        return redirect()->route('cart.index')->with('success', 'Đã xoá sản phẩm khỏi giỏ hàng');
+        return back()->with('success', 'Remove from cart successfully.');
     }
 }
