@@ -7,16 +7,16 @@
                 <!-- Product Image -->
                 <div class="col-md-6">
                     <div class="main-img">
-                        <img src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="{{ $product->name }}">
+                        <img style="width: 100%;" src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="{{ $product->name }}">
                     </div>
-                    <div class="thumbnail-images d-flex mt-3">
+                    {{-- <div class="thumbnail-images d-flex mt-3">
                         @if ($product->additional_images)
                             @foreach (json_decode($product->additional_images) as $image)
                                 <img src="{{ asset($image) }}" class="img-fluid rounded-3 me-2"
                                     style="width: 100px; cursor: pointer;" alt="thumbnail">
                             @endforeach
                         @endif
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- Product Details -->
@@ -28,43 +28,56 @@
                             $averageRating = $productReviews->avg('rating') ?? 0;
                             $reviewCount = $productReviews->count();
                         @endphp
-                        @for ($i = 0; $i < 5; $i++)
-                            <iconify-icon icon="clarity:star-solid"
-                                class="{{ $i < $averageRating ? 'text-primary' : 'text-secondary' }}"></iconify-icon>
+
+                        @for ($i = 1; $i <= 5; $i++)
+                            @if ($averageRating >= $i)
+                                <iconify-icon icon="material-symbols:star" style="color: #dead6f; font-size: 22px;"
+                                    class="me-1"></iconify-icon>
+                            @elseif ($averageRating >= $i - 0.5)
+                                <iconify-icon icon="material-symbols:star-half" style="color: #dead6f; font-size: 22px;"
+                                    class="me-1"></iconify-icon>
+                            @else
+                                <iconify-icon icon="material-symbols:star-outline" style="color: #ccc; font-size: 22px;"
+                                    class="me-1"></iconify-icon>
+                            @endif
                         @endfor
+
                         <span class="ms-2">{{ number_format($averageRating, 1) }} ({{ $reviewCount }} reviews)</span>
                     </div>
+
                     <h3 class="secondary-font text-primary mb-4">${{ number_format($product->price, 2) }}</h3>
                     <p class="fs-5">{{ $product->description }}</p>
-
-                    <!-- Quantity Selector -->
-                    <div class="quantity-selector my-4">
-                        <label for="quantity" class="me-3">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity" value="1" min="1"
-                            class="form-control d-inline-block w-auto">
-                    </div>
-
-                    <!-- Add to Cart and Wishlist -->
-                    <div class="d-flex flex-wrap mt-4">
-                        <form action="{{ route('cart.add') }}" method="POST" class="me-3">
-                            @csrf
-                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            <input type="hidden" name="quantity" id="cart-quantity" value="1">
-                            <button type="submit" class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
-                                Add to Cart
-                            </button>
-                        </form>
-
-                        <a href="#" class="btn-wishlist px-4 py-3 btn btn-outline-dark rounded-1">
-                            <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                        </a>
-                    </div>
 
                     <!-- Additional Info -->
                     <div class="mt-4">
                         {{-- <p><strong>SKU:</strong> {{ $product->sku }}</p> --}}
                         <p><strong>Category:</strong> {{ $product->category->name }}</p>
                     </div>
+
+                    <!-- Quantity Selector -->
+                    <div class="quantity-selector my-4">
+                        <label for="quantity" class="me-3 fw-semibold">Quantity:</label>
+
+                        <div class="d-inline-flex align-items-center border overflow-hidden">
+                            <button type="button" class="btn-qty px-3 py-2 border-0 bg-light" id="decrease">−</button>
+                            <input type="text" id="quantity" name="quantity" value="1" readonly
+                                class="form-control text-center border-0 shadow-none px-2"
+                                style="width: 50px; font-weight: 600;">
+                            <button type="button" class="btn-qty px-3 py-2 border-0 bg-light" id="increase">+</button>
+                        </div>
+                    </div>
+
+
+                    <!-- Add to Cart -->
+                    <form action="{{ route('cart.add') }}" method="POST" class="me-3">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="quantity" id="cart-quantity" value="1">
+                        <button type="submit" class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1 mt-3">
+                            Add to Cart
+                        </button>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -93,10 +106,13 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="d-flex justify-content-center mt-5">
+                    {{ $reviews->links() }}
+                </div>
             </div>
 
             <!-- Add Review Form -->
-            <div class="mt-5">
+            {{-- <div class="mt-5">
                 <h3 class="fw-normal">Write a Review</h3>
                 <form action="{{ route('reviews.store') }}" method="POST">
                     @csrf
@@ -117,7 +133,7 @@
                     </div>
                     <button type="submit" class="btn btn-dark rounded-1">Submit Review</button>
                 </form>
-            </div>
+            </div> --}}
         </div>
     </section>
 
@@ -126,7 +142,7 @@
             <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">Related Products</h2>
                 <div>
-                    <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                    <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                         Shop Now
                         <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                             <use xlink:href="#arrow-right"></use>
@@ -140,13 +156,13 @@
                     @foreach ($relatedProducts as $relatedProduct)
                         <div class="swiper-slide">
                             <div class="card position-relative">
-                                <a href="{{ route('product-detail', $relatedProduct->id) }}">
+                                <a href="{{ route('product-detail', $relatedProduct->slug) }}">
                                     <img src="{{ asset($relatedProduct->image) }}" class="img-fluid rounded-4"
                                         alt="{{ $relatedProduct->name }}">
                                 </a>
                                 <div class="card-body p-0">
-                                    <a href="{{ route('products.show', $relatedProduct->id) }}">
-                                        <h3 class="card-title pt-4 m-0">{{ $relatedProduct->name }}</h3>
+                                    <a href="{{ route('products.show', $relatedProduct->slug) }}">
+                                        <h4 style="height: 82px" class="card-title pt-4 m-0">{{ $relatedProduct->name }}</h4>
                                     </a>
                                     <div class="card-text">
                                         <span class="rating secondary-font">
@@ -184,13 +200,35 @@
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const quantityInput = document.getElementById('quantity');
-            const cartQuantityInput = document.getElementById('cart-quantity');
-            
-            quantityInput.addEventListener('change', function() {
-                cartQuantityInput.value = this.value;
+        document.addEventListener("DOMContentLoaded", function() {
+            const quantityInput = document.getElementById("quantity");
+            const cartQuantity = document.getElementById("cart-quantity");
+            const increaseBtn = document.getElementById("increase");
+            const decreaseBtn = document.getElementById("decrease");
+
+            increaseBtn.addEventListener("click", () => {
+                let value = parseInt(quantityInput.value);
+                value++;
+                quantityInput.value = value;
+                cartQuantity.value = value;
+            });
+
+            decreaseBtn.addEventListener("click", () => {
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                    value--;
+                    quantityInput.value = value;
+                    cartQuantity.value = value;
+                }
             });
         });
     </script>
+    <style>
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+    </style>
 @endsection

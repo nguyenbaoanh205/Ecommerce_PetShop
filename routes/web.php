@@ -27,6 +27,7 @@ use App\Http\Controllers\Client\ContactController;
 use App\Http\Controllers\Client\BlogController;
 use App\Http\Controllers\Client\WishlistController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
+use App\Http\Controllers\client\ReviewController as ClientReviewController;
 use App\Http\Controllers\Client\ShopController;
 use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Auth;

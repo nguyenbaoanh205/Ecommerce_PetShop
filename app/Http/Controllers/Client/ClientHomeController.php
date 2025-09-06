@@ -31,19 +31,24 @@ class ClientHomeController extends Controller
         return view('client.home', compact('product_list', 'highly_rated_product', 'reviews', 'categories', 'posts', 'cartItems', 'cartCount', 'product_bestselling'));
     }
 
-    public function productDetail($id)
+    public function productDetail($slug)
     {
-        $product = Product::with('category')->where('id', $id)->firstOrFail();
+        // Tìm sản phẩm dựa trên slug
+        $product = Product::with('category')->where('slug', $slug)->firstOrFail();
         $categories = Category::query()->where('status', 1)->where('type', 1)->get();
-        $reviews = Review::with('user')->limit(2)->get();
+        $reviews = Review::with('user')
+            ->where('product_id', $product->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(6);
+
 
         $cartItems = Controller::GetMenu()['cartItems'];
         $cartCount = Controller::GetMenu()['cartCount'];
 
         $relatedProducts = Product::where('category_id', $product->category_id)
-            ->where('id', '!=', $id)
+            ->where('id', '!=', $product->id)
             ->orderBy('id', 'desc')
-            ->take(4)
+            ->take(8)
             ->get();
 
         return view('client.products.product-detail', compact('product', 'reviews', 'relatedProducts', 'cartCount',  'categories', 'cartItems'));

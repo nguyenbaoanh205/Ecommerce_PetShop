@@ -168,11 +168,11 @@
                                 New
                             </div>
                             <div class="card position-relative">
-                                <a href="{{ route('product-detail', $product->id) }}">
+                                <a href="{{ route('product-detail', $product->slug) }}">
                                     <img src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="image">
                                 </a>
                                 <div class="card-body p-0">
-                                    <a href="{{ route('product-detail', $product->id) }}">
+                                    <a href="{{ route('product-detail', $product->slug) }}">
                                         <h3 class="card-title pt-4 m-0">{{ $product->name }}</h3>
                                     </a>
 
@@ -279,11 +279,11 @@
                             New
                         </div>
                         <div class="card position-relative">
-                            <a href="{{ route('product-detail', $product->id) }}">
+                            <a href="{{ route('product-detail', $product->slug) }}">
                                 <img src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="image">
                             </a>
                             <div class="card-body p-0">
-                                <a href="{{ route('product-detail', $product->id) }}">
+                                <a href="{{ route('product-detail', $product->slug) }}">
                                     <h3 class="card-title pt-4 m-0">{{ $product->name }}</h3>
                                 </a>
 
