@@ -107,12 +107,12 @@
                                 Home
                             </a>
                         </li>
-                        {{-- <li class="nav-item">
+                        <li class="nav-item">
                             <a href="{{ route('shop.index') }}" 
                             class="nav-link {{ str_starts_with(Route::currentRouteName(), 'shop.') ? 'active' : '' }}">
                             Shop
                             </a>
-                        </li> --}}
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('blog.index') }}"
                                 class="nav-link {{ str_starts_with(Route::currentRouteName(), 'blog') ? 'active' : '' }}">

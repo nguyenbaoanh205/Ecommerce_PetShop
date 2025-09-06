@@ -46,6 +46,6 @@ class ClientHomeController extends Controller
             ->take(4)
             ->get();
 
-        return view('client.product-detail', compact('product', 'reviews', 'relatedProducts', 'cartCount',  'categories', 'cartItems'));
+        return view('client.products.product-detail', compact('product', 'reviews', 'relatedProducts', 'cartCount',  'categories', 'cartItems'));
     }
 }
