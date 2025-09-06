@@ -1,6 +1,6 @@
-# 🐾 Pet Shop - E-commerce Website
+# 🐾 Ecommerce_PetShop - E-commerce Website
 
-**Pet Shop** is an e-commerce website that provides various products and accessories for pets such as dogs, cats, fish, and birds.  
+**Ecommerce_PetShop** is an e-commerce website built with **Laravel** that provides various products and accessories for pets such as dogs, cats, fish, and birds.  
 Users can browse products, search, add to cart, checkout, and manage their orders easily.
 
 ---
@@ -32,8 +32,8 @@ Users can browse products, search, add to cart, checkout, and manage their order
 
 ## 🛠️ Tech Stack
 
-- **Backend**: Laravel (PHP Framework)  
-- **Frontend**: Blade Template / Vue.js (optional)  
+- **Framework**: Laravel (PHP)  
+- **Frontend**: Laravel Blade Template  
 - **Database**: MySQL  
 - **Authentication**: Laravel Auth / Sanctum  
 - **Payment Integration**: MoMo / VNPay (optional)  
@@ -43,3 +43,18 @@ Users can browse products, search, add to cart, checkout, and manage their order
 
 ## 📂 Project Structure (sample)
 
+Ecommerce_PetShop/
+│-- app/ # Laravel application code
+│-- public/ # Images, CSS, JS
+│-- resources/
+│ │-- views/ # Blade templates
+│ │-- css/ # Custom CSS
+│ │-- js/ # Custom JavaScript
+│-- routes/ # web.php, api.php
+│-- database/
+│ │-- seeders/ # Fake sample data
+│-- .env.example # Environment configuration file
+│-- README.md # Project documentation
+
+
+---
