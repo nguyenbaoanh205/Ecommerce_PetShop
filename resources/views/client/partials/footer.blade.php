@@ -1,3 +1,6 @@
+<div class="container-fluid mt-5">
+    <hr class="m-0">
+</div>
 <footer id="footer" class="my-5">
     <div class="container py-5 my-5">
         <div class="row">
