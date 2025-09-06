@@ -4,7 +4,7 @@
 
             <div class="col-sm-4 col-lg-3 text-center text-sm-start">
                 <div class="main-logo">
-                    <a href="{{route('home')}}">
+                    <a href="{{ route('home') }}">
                         <img src="{{ asset('public_index/images/logo.png') }}" alt="logo" class="img-fluid">
                     </a>
                 </div>
@@ -12,12 +12,10 @@
 
             <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
                 <div class="search-bar border rounded-2 px-3 border-dark-subtle" style="height: 50px">
-                    <form id="search-form" class="text-center d-flex align-items-center" action=""
-                        method="">
+                    <form id="search-form" class="text-center d-flex align-items-center" action="" method="">
                         <input type="text" class="form-control border-0 bg-transparent"
                             placeholder="Search for more than 10,000 products" />
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                            viewBox="0 0 24 24">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path fill="currentColor"
                                 d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 7-7a7 7 0 0 1-7 7Z" />
                         </svg>
@@ -83,8 +81,8 @@
 
     </div> --}}
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -92,8 +90,7 @@
                 aria-labelledby="offcanvasNavbarLabel">
 
                 <div class="offcanvas-header justify-content-center">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
 
                 <div class="offcanvas-body justify-content-between">
@@ -103,66 +100,65 @@
                             <option>{{ $category->name }}</option>
                         @endforeach
                     </select> --}}
-
                     <ul class="navbar-nav menu-list list-unstyled d-flex gap-md-3 mb-0">
                         <li class="nav-item">
-                            <a href="{{route('home')}}" class="nav-link active">Home</a>
+                            <a href="{{ route('home') }}"
+                                class="nav-link {{ Route::currentRouteName() === 'home' ? 'active' : '' }}">
+                                Home
+                            </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" role="button" id="pages"
-                                data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-                            <ul class="dropdown-menu" aria-labelledby="pages">
-                                <li><a href="index.html" class="dropdown-item">About Us</a></li>
-                                {{-- <li><a href="index.html" class="dropdown-item">Shop</a></li>
-                                <li><a href="index.html" class="dropdown-item">Single Product</a></li> --}}
-                                <li><a href="{{ route('cart.index') }}" class="dropdown-item">Cart</a></li>
-                                {{-- <li><a href="{{ route('wishlist.index') }}" class="dropdown-item">Wishlist</a></li> --}}
-                                {{-- <li><a href="index.html" class="dropdown-item">Checkout</a></li> --}}
-                                {{-- <li><a href="index.html" class="dropdown-item">Blog</a></li> --}}
-                                {{-- <li><a href="index.html" class="dropdown-item">Single Post</a></li --}}
-                                {{-- <li><a href="index.html" class="dropdown-item">Contact</a></li> --}}
-                                {{-- <li><a href="index.html" class="dropdown-item">FAQs</a></li> --}}
-                                {{-- <li><a href="index.html" class="dropdown-item">Account</a></li> --}}
-                                <li><a href="index.html" class="dropdown-item">Thankyou</a></li>
-                                <li><a href="index.html" class="dropdown-item">Error 404</a></li>
-                                {{-- <li><a href="index.html" class="dropdown-item">Styles</a></li> --}}
-                            </ul>
+                        {{-- <li class="nav-item">
+                            <a href="{{ route('shop.index') }}" 
+                            class="nav-link {{ str_starts_with(Route::currentRouteName(), 'shop.') ? 'active' : '' }}">
+                            Shop
+                            </a>
+                        </li> --}}
+                        <li class="nav-item">
+                            <a href="{{ route('blog.index') }}"
+                                class="nav-link {{ str_starts_with(Route::currentRouteName(), 'blog') ? 'active' : '' }}">
+                                Blog
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link">Shop</a>
+                            <a href="{{ route('contact.index') }}"
+                                class="nav-link {{ str_starts_with(Route::currentRouteName(), 'contact') ? 'active' : '' }}">
+                                Contact
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('blog.index') }}" class="nav-link">Blog</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('contact.index') }}" class="nav-link">Contact</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">Others</a>
+                            <a href="{{ route('about.index') }}"
+                                class="nav-link {{ str_starts_with(Route::currentRouteName(), 'about') ? 'active' : '' }}">
+                                About Us
+                            </a>
                         </li>
                     </ul>
 
+
                     <div class="d-none d-lg-flex align-items-end">
                         <ul class="d-flex justify-content-end list-unstyled m-0">
-                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle mx-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                @guest
-                                    <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
-                                @else
-                                    <li><a class="dropdown-item" href="{{ route('orders.history') }}">Order History</a></li>
-                                    <li>
-                                        <form action="{{ route('logout') }}" method="POST" class="dropdown-item m-0 p-0">
-                                            @csrf
-                                            <button type="submit" class="btn btn-link dropdown-item text-start">Logout</button>
-                                        </form>
-                                    </li>
-                                @endguest
-                            </ul>
-                        </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle mx-3" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <iconify-icon icon="healthicons:person" class="fs-4"></iconify-icon>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    @guest
+                                        <li><a class="dropdown-item" href="{{ route('register') }}">Register</a></li>
+                                        <li><a class="dropdown-item" href="{{ route('login') }}">Login</a></li>
+                                    @else
+                                        <li><a class="dropdown-item" href="{{ route('orders.history') }}">Order History</a>
+                                        </li>
+                                        <li>
+                                            <form action="{{ route('logout') }}" method="POST"
+                                                class="dropdown-item m-0 p-0">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="btn btn-link dropdown-item text-start">Logout</button>
+                                            </form>
+                                        </li>
+                                    @endguest
+                                </ul>
+                            </li>
 
                             <li>
                                 <a href="{{ route('wishlist.index') }}" class="mx-3">

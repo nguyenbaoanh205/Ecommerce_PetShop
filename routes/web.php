@@ -19,8 +19,7 @@ use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\ResetPasswordController;
-
-
+use App\Http\Controllers\client\AboutUsController;
 use App\Http\Controllers\Client\ClientHomeController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
@@ -84,6 +83,8 @@ Route::get("/blog-detail/{slug}", [BlogController::class, 'show'])->name('blog.s
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+Route::get("/about",[AboutUsController::class, 'index'])->name('about.index');
 
 
 /*
