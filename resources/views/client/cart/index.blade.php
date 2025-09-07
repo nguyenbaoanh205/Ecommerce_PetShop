@@ -43,8 +43,8 @@
                                     </td>
                                     <td class="secondary-font text-primary">
                                         @if ($hasDiscount)
-                                            <del>${{ number_format($product->price, 2) }}</del>
                                             <span class="ms-1 fs-5">${{ number_format($product->discount_price, 2) }}</span>
+                                            <del>${{ number_format($product->price, 2) }}</del>
                                         @else
                                             ${{ number_format($product->price, 2) }}
                                         @endif

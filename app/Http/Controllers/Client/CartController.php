@@ -15,7 +15,7 @@ class CartController extends Controller
     {
         $cartItems = Controller::GetMenu()['cartItems'];
         $cartCount = Controller::GetMenu()['cartCount'];
-        $categories = Category::query()-> where('status', 1) -> where('type', 1)->get();
+        $categories = Category::query()->where('status', 1)->where('type', 1)->get();
 
         return view('client.cart.index', compact('cartItems', 'categories', 'cartCount'));
     }
@@ -27,8 +27,8 @@ class CartController extends Controller
         $productId = $request->input('product_id');
 
         $cartItem = CartItem::where('user_id', $userId)
-                            ->where('product_id', $productId)
-                            ->first();
+            ->where('product_id', $productId)
+            ->first();
 
         if ($cartItem) {
             $cartItem->increment('quantity', $request->input('quantity', 1));
@@ -57,5 +57,28 @@ class CartController extends Controller
     {
         CartItem::destroy($id);
         return back()->with('success', 'Remove from cart successfully.');
+    }
+    // Mua ngay
+    public function buyNow(Request $request)
+    {
+        $userId = Auth::id();
+        $productId = $request->input('product_id');
+
+        $cartItem = CartItem::where('user_id', $userId)
+            ->where('product_id', $productId)
+            ->first();
+
+        if ($cartItem) {
+            $cartItem->increment('quantity', $request->input('quantity', 1));
+        } else {
+            CartItem::create([
+                'user_id' => $userId,
+                'product_id' => $productId,
+                'quantity' => $request->input('quantity', 1),
+            ]);
+        }
+
+        // Sau khi thêm vào giỏ thì chuyển thẳng sang trang checkout
+        return redirect()->route('checkout.form');
     }
 }

@@ -88,7 +88,7 @@
 
                         <div class="row mt-4">
                             <div class="col-12">
-                                <form action="{{ route('admin.reviews.update', $review->id) }}" method="POST">
+                                {{-- <form action="{{ route('admin.reviews.update', $review->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
@@ -107,9 +107,9 @@
                                     </div>
                                     <div class="mt-3">
                                         <button type="submit" class="btn btn-primary">Update Review</button>
-                                        <a href="{{ route('admin.reviews.index') }}" class="btn btn-secondary">Back to List</a>
                                     </div>
-                                </form>
+                                </form> --}}
+                                <a href="{{ route('admin.reviews.index') }}" class="btn btn-secondary">Back to List</a>
                             </div>
                         </div>
                     </div>

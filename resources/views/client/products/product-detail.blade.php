@@ -7,7 +7,8 @@
                 <!-- Product Image -->
                 <div class="col-md-6">
                     <div class="main-img">
-                        <img style="width: 100%;" src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="{{ $product->name }}">
+                        <img style="width: 100%;" src="{{ asset($product->image) }}" class="img-fluid rounded-4"
+                            alt="{{ $product->name }}">
                     </div>
                     {{-- <div class="thumbnail-images d-flex mt-3">
                         @if ($product->additional_images)
@@ -75,6 +76,15 @@
                         <input type="hidden" name="quantity" id="cart-quantity" value="1">
                         <button type="submit" class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1 mt-3">
                             Add to Cart
+                        </button>
+                    </form>
+                    <!-- Buy Now -->
+                    <form action="{{ route('cart.buyNow') }}" method="POST" class="d-inline-block">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="quantity" id="buy-quantity" value="1">
+                        <button type="submit" class="btn px-4 py-3 btn btn-danger text-uppercase rounded-1 mt-3">
+                            Mua ngay
                         </button>
                     </form>
 
@@ -162,7 +172,8 @@
                                 </a>
                                 <div class="card-body p-0">
                                     <a href="{{ route('products.show', $relatedProduct->slug) }}">
-                                        <h4 style="height: 82px" class="card-title pt-4 m-0">{{ $relatedProduct->name }}</h4>
+                                        <h4 style="height: 82px" class="card-title pt-4 m-0">{{ $relatedProduct->name }}
+                                        </h4>
                                     </a>
                                     <div class="card-text">
                                         <span class="rating secondary-font">

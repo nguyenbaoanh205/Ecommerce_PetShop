@@ -89,7 +89,7 @@
                         <span class="pc-mtext">Orders</span>
                     </a>
                 </li>
-                <li class="pc-item">
+                {{-- <li class="pc-item">
                     <a href="{{ route('admin.order-items.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-shopping-cart"></i></span>
                         <span class="pc-mtext">Order Items</span>
@@ -100,7 +100,7 @@
                         <span class="pc-micon"><i class="ti ti-basket"></i></span>
                         <span class="pc-mtext">Cart Items</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="pc-item">
                     <a href="{{ route('admin.reviews.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-star"></i></span>
