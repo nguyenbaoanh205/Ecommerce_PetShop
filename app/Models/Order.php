@@ -26,4 +26,17 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class, 'order_id');
     }
+public function getNextStatuses()
+{
+    $statuses = ['pending','confirmed','shipped','completed','returned','cancelled'];
+    $currentIndex = array_search($this->status, $statuses);
+
+    if ($currentIndex === false || in_array($this->status, ['completed','returned','cancelled'])) {
+        return []; // không còn trạng thái tiếp theo
+    }
+
+    // chỉ trạng thái tiếp theo thôi, không cho nhảy nhiều bước
+    return [$statuses[$currentIndex + 1]];
+}
+
 }

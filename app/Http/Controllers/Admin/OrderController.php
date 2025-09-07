@@ -21,18 +21,26 @@ class OrderController extends Controller
     }
 
     public function update(Request $request, Order $order)
-    {
-        $request->validate([
-            'status' => 'required|in:pending,processing,completed,cancelled'
-        ]);
+{
+    $nextStatuses = $order->getNextStatuses();
 
-        $order->update([
-            'status' => $request->status
-        ]);
-
-        return redirect()->route('admin.orders.index')
-            ->with('success', 'Order status updated successfully.');
+    if (empty($nextStatuses)) {
+        return redirect()->back()
+            ->with('error', 'This order cannot be updated anymore.');
     }
+
+    // Validation: chỉ cho phép update sang trạng thái tiếp theo
+    $request->validate([
+        'status' => 'required|in:' . implode(',', $nextStatuses)
+    ]);
+
+    $order->update([
+        'status' => $request->status
+    ]);
+
+    return redirect()->back()->with('success', 'Order status updated successfully.');
+}
+
 
     public function destroy(Order $order)
     {

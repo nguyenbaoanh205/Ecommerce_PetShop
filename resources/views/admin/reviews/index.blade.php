@@ -60,7 +60,7 @@
                                                     @endfor
                                                 </div>
                                             </td>
-                                            <td>{{ Str::limit($review->comment, 50) }}</td>
+                                            <td>{{ Str::limit($review->comment, 50, '...') }}</td>
                                             <td>{{ $review->created_at->format('Y-m-d H:i') }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('admin.reviews.show', $review->id) }}" class="btn btn-info btn-sm">
@@ -78,6 +78,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $reviews->links() }}
                         </div>
                     </div>
                 </div>

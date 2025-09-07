@@ -144,12 +144,12 @@ Route::middleware('admin')->group(function () {
     ]);
 
     // Order Item Routes
-    Route::resource('admin/order-items', OrderItemController::class)->names([
-        'index' => 'admin.order-items.index',
-        'show' => 'admin.order-items.show',
-        'update' => 'admin.order-items.update',
-        'destroy' => 'admin.order-items.destroy'
-    ]);
+    // Route::resource('admin/order-items', OrderItemController::class)->names([
+    //     'index' => 'admin.order-items.index',
+    //     'show' => 'admin.order-items.show',
+    //     'update' => 'admin.order-items.update',
+    //     'destroy' => 'admin.order-items.destroy'
+    // ]);
 
     // Cart Item Routes
     Route::resource('admin/cart-items', CartItemController::class)->names([
