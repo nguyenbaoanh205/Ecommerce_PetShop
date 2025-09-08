@@ -17,26 +17,26 @@
                             <p><strong>Status:</strong> 
                                 @switch($order->status)
                                     @case('pending')
-                                        <span class="badge bg-warning text-dark">Pending</span>
+                                        <span class="badge badge-warning text-dark">Pending</span>
                                         @break
                                     @case('processing')
-                                        <span class="badge bg-info text-dark">Processing</span>
+                                        <span class="badge badge-info text-dark">Processing</span>
                                         @break
                                     @case('completed')
-                                        <span class="badge bg-success text-dark">Completed</span>
+                                        <span class="badge badge-success text-dark">Completed</span>
                                         @break
                                     @case('cancelled')
-                                        <span class="badge bg-danger text-dark">Cancelled</span>
+                                        <span class="badge badge-danger text-dark">Cancelled</span>
                                         @break
                                     @default
-                                        <span class="badge bg-secondary">{{ $order->status }}</span>
+                                        <span class="badge badge-secondary">{{ $order->status }}</span>
                                 @endswitch
                             </p>
                         </div>
                         <div class="col-md-6">
                             <h5>Checkout Information</h5>
                             <p><strong>Payment Method:</strong> {{ $order->payment_method }}</p>
-                            <p><strong>Total:</strong> {{ number_format($order->total_amount) }} VNĐ</p>
+                            <p><strong>Total:</strong> ${{ number_format($order->total_amount, 2, '.', ',') }}</p>
                         </div>
                     </div>
 
@@ -101,9 +101,36 @@
             </div>
 
             <div class="mt-3">
-                <a href="{{ route('orders.history') }}" class="btn btn-secondary">Quay lại</a>
+                <a href="{{ route('orders.history') }}" class="btn btn-secondary">Back</a>
             </div>
         </div>
     </div>
 </div>
+<style>
+    /* Màu dịu cho trạng thái đơn hàng */
+    .badge-warning {
+        background-color: #ffe0b2 !important; /* cam nhạt */
+        color: #8a4b08 !important;
+    }
+
+    .badge-info {
+        background-color: #b3e5fc !important; /* xanh dương nhạt */
+        color: #01579b !important;
+    }
+
+    .badge-success {
+        background-color: #c8e6c9 !important; /* xanh lá nhạt */
+        color: #256029 !important;
+    }
+
+    .badge-danger {
+        background-color: #ffcdd2 !important; /* đỏ nhạt */
+        color: #b71c1c !important;
+    }
+
+    .badge-secondary {
+        background-color: #e0e0e0 !important; /* xám nhạt */
+        color: #424242 !important;
+    }
+</style>
 @endsection 
