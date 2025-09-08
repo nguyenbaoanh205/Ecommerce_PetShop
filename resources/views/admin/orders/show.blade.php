@@ -31,6 +31,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
+                                {{-- Luôn luôn có Customer Info --}}
                                 <div class="col-md-4">
                                     <h4>Customer Information</h4>
                                     <p><strong>Name:</strong> {{ $order->user->name }}</p>
@@ -38,6 +39,24 @@
                                     <p><strong>Phone:</strong> {{ $order->user->phone }}</p>
                                     <p><strong>Address:</strong> {{ $order->user->address }}</p>
                                 </div>
+
+                                {{-- Nếu shipping khác với user thì hiển thị thêm Shipping Info --}}
+                                @if (
+                                    $order->shipping_name !== $order->user->name ||
+                                        $order->shipping_phone !== $order->user->phone ||
+                                        $order->shipping_address !== $order->user->address)
+                                    <div class="col-md-4">
+                                        <h4>Shipping Information</h4>
+                                        <p><strong>Name:</strong> {{ $order->shipping_name }}</p>
+                                        <p><strong>Phone:</strong> {{ $order->shipping_phone }}</p>
+                                        <p><strong>Address:</strong> {{ $order->shipping_address }}</p>
+                                        @if ($order->shipping_note)
+                                            <p><strong>Note:</strong> {{ $order->shipping_note }}</p>
+                                        @endif
+                                    </div>
+                                @endif
+
+                                {{-- Order Details --}}
                                 <div class="col-md-4">
                                     <h4>Order Details</h4>
                                     <p><strong>Order ID:</strong> #{{ $order->id }}</p>
@@ -50,6 +69,7 @@
                                     </p>
                                 </div>
                             </div>
+
 
                             <div class="table-responsive mt-4">
                                 <h6>Order Items</h6>
