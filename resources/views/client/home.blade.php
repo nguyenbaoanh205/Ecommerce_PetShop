@@ -473,17 +473,18 @@
                                             @endfor
                                             {{ number_format($averageRating, 1) }}
                                         </span>
-
-                                        @if ($hasDiscount)
-                                            <h5 class="text-muted text-decoration-line-through mb-1">
-                                                ${{ number_format($bestselling->price, 2) }}
-                                            </h5>
-                                        @endif
-
+                                        <div class="d-flex align-items-center">
                                         <h3 class="secondary-font text-primary">
                                             ${{ number_format($bestselling->discount_price, 2) }}
                                         </h3>
 
+                                        @if ($hasDiscount)
+                                            <h5 class="text-muted text-decoration-line-through mb-1 ms-2">
+                                                ${{ number_format($bestselling->price, 2) }}
+                                            </h5>
+                                        @endif
+                                        </div>
+                                        
                                         <div class="d-flex flex-wrap mt-3">
                                         <form action="{{ route('cart.add') }}" method="POST" class="me-3">
                                             @csrf
