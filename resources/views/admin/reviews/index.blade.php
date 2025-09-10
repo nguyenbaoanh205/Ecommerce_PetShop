@@ -63,13 +63,13 @@
                                                 <a href="{{ route('admin.reviews.show', $review->id) }}" class="btn btn-info btn-sm">
                                                     <i class="ti ti-eye"></i> View
                                                 </a>
-                                                <form action="{{ route('admin.reviews.destroy', $review->id) }}" method="POST" class="d-inline">
+                                                {{-- <form action="{{ route('admin.reviews.destroy', $review->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this review?')">
                                                         <i class="ti ti-trash"></i> Delete
                                                     </button>
-                                                </form>
+                                                </form> --}}
                                             </td>
                                         </tr>
                                     @endforeach

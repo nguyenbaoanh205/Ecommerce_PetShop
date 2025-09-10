@@ -59,13 +59,13 @@
                                                 <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-info btn-sm">
                                                     <i class="ti ti-eye"></i> View
                                                 </a>
-                                                <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" class="d-inline">
+                                                {{-- <form action="{{ route('admin.orders.destroy', $order->id) }}" method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this order?')">
                                                         <i class="ti ti-trash"></i> Delete
                                                     </button>
-                                                </form>
+                                                </form> --}}
                                             </td>
                                         </tr>
                                     @endforeach

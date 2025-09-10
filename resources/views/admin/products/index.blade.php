@@ -50,6 +50,7 @@
                                         <th>Price</th>
                                         <th>Discount Price</th>
                                         <th>Quantity</th>
+                                        <th>View</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
@@ -69,6 +70,7 @@
                                             <td>${{ number_format($product->price, 2) }}</td>
                                             <td>${{ number_format($product->discount_price, 2) }}</td>
                                             <td>{{ $product->quantity }}</td>
+                                            <td>{{ $product->view }}</td>
                                             <td class="text-center">
                                                 <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-info btn-sm">
                                                     <i class="ti ti-edit"></i> Edit
