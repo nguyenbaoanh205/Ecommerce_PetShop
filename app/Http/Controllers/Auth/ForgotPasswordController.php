@@ -39,6 +39,6 @@ class ForgotPasswordController extends Controller
         $user = User::where('email', $request->email)->first();
         $user->notify(new ResetPasswordNotification($token));
 
-        return back()->with('success', 'Đã gửi email đặt lại mật khẩu!');
+        return back()->with('success', 'Password reset email sent!');
     }
 }

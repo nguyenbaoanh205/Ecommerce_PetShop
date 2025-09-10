@@ -31,7 +31,7 @@ class ResetPasswordController extends Controller
         $record = DB::table('password_reset_tokens')->where('email', $request->email)->first();
 
         if (!$record || $record->token !== $request->token) {
-            return back()->withErrors(['email' => 'Token không hợp lệ hoặc đã hết hạn.']);
+            return back()->withErrors(['email' => 'Token is invalid or expired.']);
         }
 
         // Tiến hành đặt lại mật khẩu
@@ -42,6 +42,6 @@ class ResetPasswordController extends Controller
         // Xóa token sau khi sử dụng
         DB::table('password_reset_tokens')->where('email', $request->email)->delete();
 
-        return redirect()->route('login')->with('success', 'Đặt lại mật khẩu thành công!');
+        return redirect()->route('login')->with('success', 'Password reset successfully!');
     }
 }

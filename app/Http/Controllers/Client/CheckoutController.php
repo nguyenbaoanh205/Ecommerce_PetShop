@@ -81,7 +81,7 @@ class CheckoutController extends Controller
 
     CartItem::where('user_id', Auth::id())->delete();
 
-    return redirect()->route('cart.index')->with('success', 'Đặt hàng thành công!');
+    return redirect()->route('cart.index')->with('success', 'Order placed successfully!');
 }
 
 }
