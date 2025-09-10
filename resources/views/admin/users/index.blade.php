@@ -34,11 +34,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        @if(session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
+                        @include('admin.partials.alert')
                         <div class="table-responsive">
                             <table class="table table-hover table-borderless">
                                 <thead>

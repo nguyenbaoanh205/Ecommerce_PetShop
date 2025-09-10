@@ -30,6 +30,7 @@
                         <h5>Edit User</h5>
                     </div>
                     <div class="card-body">
+                        @include('admin.partials.alert')
                         <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
                             @csrf
                             @method('PUT')

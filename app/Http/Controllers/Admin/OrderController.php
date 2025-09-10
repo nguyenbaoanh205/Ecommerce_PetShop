@@ -29,6 +29,12 @@ class OrderController extends Controller
             ->with('error', 'This order cannot be updated anymore.');
     }
 
+    // Nếu admin cố tình gửi completed thì chặn lại
+    if ($request->status === 'completed') {
+        return redirect()->back()
+            ->with('error', 'Only customers can confirm completion of the order.');
+    }
+
     // Validation: chỉ cho phép update sang trạng thái tiếp theo
     $request->validate([
         'status' => 'required|in:' . implode(',', $nextStatuses)
@@ -40,6 +46,7 @@ class OrderController extends Controller
 
     return redirect()->back()->with('success', 'Order status updated successfully.');
 }
+
 
 
     public function destroy(Order $order)

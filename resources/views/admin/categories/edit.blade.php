@@ -3,11 +3,7 @@
 @section('content')
     <div class="pc-container">
         <div class="pc-content">
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
+            @include('admin.partials.alert')
 
             <!-- [ breadcrumb ] start -->
             <div class="page-header">
@@ -46,7 +42,7 @@
                                             <label for="name" class="form-label">Category Name</label>
                                             <input type="text" class="form-control @error('name') is-invalid @enderror"
                                                 id="name" name="name" value="{{ old('name', $category->name) }}"
-                                                required>
+                                            >
                                             @error('name')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -66,7 +62,7 @@
                                         <div class="form-group">
                                             <label for="type" class="form-label">Category Type</label>
                                             <select class="form-control @error('type') is-invalid @enderror" id="type"
-                                                name="type" required>
+                                                name="type">
                                                 <option value="1"
                                                     {{ old('type', $category->type) == 1 ? 'selected' : '' }}>Product
                                                     Category</option>
@@ -83,7 +79,7 @@
                                         <div class="form-group">
                                             <label for="status" class="form-label">Status</label>
                                             <select class="form-control @error('status') is-invalid @enderror"
-                                                id="status" name="status" required>
+                                                id="status" name="status">
                                                 <option value="1"
                                                     {{ old('status', $category->status) == 1 ? 'selected' : '' }}>Active
                                                 </option>

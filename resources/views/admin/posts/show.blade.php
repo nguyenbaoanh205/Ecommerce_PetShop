@@ -43,6 +43,7 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        @include('admin.partials.alert')
                         <div class="row">
                             <div class="col-md-9">
                                 <div class="mb-4">

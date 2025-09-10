@@ -30,6 +30,7 @@
                             <h5>Order Information</h5>
                         </div>
                         <div class="card-body">
+                            @include('admin.partials.alert')
                             <div class="row">
                                 {{-- Luôn luôn có Customer Info --}}
                                 <div class="col-md-4">
@@ -109,12 +110,16 @@
                             <div class="mt-4">
                                 @php
                                     $statuses = [
-                                        'pending',
-                                        'confirmed',
-                                        'shipped',
-                                        'completed',
-                                        'returned',
-                                        'cancelled',
+                                        'pending', // Chờ xác nhận
+                                        'confirmed', // Đã xác nhận
+                                        'processing', // Đang xử lý
+                                        'shipped', // Đã giao cho vận chuyển
+                                        'delivered', // Đã giao (chờ khách xác nhận)
+                                        'completed', // Hoàn tất
+                                        'failed', // Giao thất bại
+                                        'returned', // Khách trả hàng
+                                        'refunded', // Đã hoàn tiền
+                                        'cancelled', // Đã hủy
                                     ];
                                     $nextStatuses = $order->getNextStatuses();
                                 @endphp
@@ -128,13 +133,14 @@
                                                 <label for="status">Update Status</label>
                                                 <select class="form-control" name="status">
                                                     @foreach ($statuses as $status)
-                                                        <option value="{{ $status }}"
-                                                            @if (!in_array($status, $nextStatuses)) disabled style="color: #999;" @endif
+                                                        <option value="{{ $status }}" {{-- Disable nếu không thuộc nextStatuses hoặc nếu là completed --}}
+                                                            @if (!in_array($status, $nextStatuses) || $status === 'completed') disabled style="color: #999;" @endif
                                                             {{ $order->status == $status ? 'selected' : '' }}>
                                                             {{ ucfirst($status) }}
                                                         </option>
                                                     @endforeach
                                                 </select>
+
                                             </div>
                                         </div>
                                     </div>
@@ -144,6 +150,7 @@
                                             Orders</a>
                                     </div>
                                 </form>
+
                             </div>
 
                         </div>

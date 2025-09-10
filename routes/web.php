@@ -79,11 +79,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
     Route::post('/checkout', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
-    Route::get('/orders/history', [ClientOrderController::class, 'history'])->name('orders.history');
-    Route::get('/orders/{order}', [ClientOrderController::class, 'show'])->name('orders.show');
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
     Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+    Route::get('/orders/history', [ClientOrderController::class, 'history'])->name('orders.history');
+    Route::get('/orders/{order}', [ClientOrderController::class, 'show'])->name('orders.show');
+    Route::get('/orders/{order}', [ClientOrderController::class, 'show'])->name('orders.show');
+    Route::put('/orders/{order}/receive', [ClientOrderController::class, 'receive'])->name('orders.receive');
+    Route::get('/orders/{order}/review', [ClientOrderController::class, 'review'])->name('orders.review');
+    Route::post('/orders/{order}/review', [ClientOrderController::class, 'submitReview'])->name('orders.submitReview');
 });
 
 /*

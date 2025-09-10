@@ -30,6 +30,7 @@
                         <h5>Create New Post</h5>
                     </div>
                     <div class="card-body">
+                        @include('admin.partials.alert')
                         <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">

@@ -30,6 +30,7 @@
                         <h5>Edit Product</h5>
                     </div>
                     <div class="card-body">
+                        @include('admin.partials.alert')
                         <form action="{{ route('admin.products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')

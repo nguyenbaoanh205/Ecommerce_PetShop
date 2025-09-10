@@ -37,22 +37,22 @@
                                         View Details
                                     </a>
 
-                                    {{-- @if ($order->status === 'shipped')
+                                    @if ($order->status === 'delivered')
                                         <form action="{{ route('orders.receive', $order->id) }}" method="POST"
                                             class="d-inline">
                                             @csrf
-                                            @method('PUT') --}}
+                                            @method('PUT')
                                             <button type="submit" class="btn btn-sm btn-success">
                                                 Nhận hàng
                                             </button>
                                         </form>
-                                    {{-- @endif
+                                    @endif
 
-                                    @if ($order->status === 'completed') --}}
-                                        <a href="orders.review', $order->id" class="btn btn-sm btn-warning">
+                                    @if ($order->status === 'completed' && $order->reviews->isEmpty())
+                                        <a href="{{ route('orders.review', $order->id) }}" class="btn btn-sm btn-warning">
                                             Đánh giá
                                         </a>
-                                    {{-- @endif --}}
+                                    @endif
                                 </td>
 
                             </tr>
@@ -67,34 +67,75 @@
         @endif
     </div>
     <style>
+        /* pending */
         .badge-pending {
             background-color: #ffe0b2 !important;
+            /* cam nhạt */
             color: #e65100 !important;
         }
 
+        /* confirmed */
         .badge-confirmed {
-            background-color: #bbdefb !important;
-            color: #0d47a1 !important;
+            background-color: #d1c4e9 !important;
+            /* tím nhạt */
+            color: #4527a0 !important;
         }
 
+        /* processing */
+        .badge-processing {
+            background-color: #b3e5fc !important;
+            /* xanh dương nhạt */
+            color: #01579b !important;
+        }
+
+        /* shipped */
         .badge-shipped {
-            background-color: #b2ebf2 !important;
-            color: #006064 !important;
+            background-color: #b2dfdb !important;
+            /* xanh ngọc nhạt */
+            color: #004d40 !important;
         }
 
+        /* delivered */
+        .badge-delivered {
+            background-color: #fff9c4 !important;
+            /* vàng nhạt */
+            color: #f57f17 !important;
+        }
+
+        /* completed */
         .badge-completed {
             background-color: #c8e6c9 !important;
+            /* xanh lá nhạt */
             color: #1b5e20 !important;
         }
 
-        .badge-returned {
-            background-color: #e0e0e0 !important;
-            color: #424242 !important;
+        /* failed */
+        .badge-failed {
+            background-color: #ffccbc !important;
+            /* cam đất nhạt */
+            color: #bf360c !important;
         }
 
+        /* returned */
+        .badge-returned {
+            background-color: #d7ccc8 !important;
+            /* nâu xám nhạt */
+            color: #3e2723 !important;
+        }
+
+        /* refunded */
+        .badge-refunded {
+            background-color: #cfd8dc !important;
+            /* xanh ghi nhạt */
+            color: #263238 !important;
+        }
+
+        /* cancelled */
         .badge-cancelled {
             background-color: #ffcdd2 !important;
+            /* đỏ nhạt */
             color: #b71c1c !important;
         }
     </style>
+
 @endsection

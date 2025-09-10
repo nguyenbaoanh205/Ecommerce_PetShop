@@ -30,6 +30,7 @@
                         <h5>Create New User</h5>
                     </div>
                     <div class="card-body">
+                        @include('admin.partials.alert')
                         <form action="{{ route('admin.users.store') }}" method="POST">
                             @csrf
                             <div class="row">
@@ -76,8 +77,8 @@
                                     <div class="form-group">
                                         <label for="role">Role</label>
                                         <select class="form-control @error('role') is-invalid @enderror" id="role" name="role" required>
+                                            <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
                                             <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
-                                            <option value="client" {{ old('role') == 'client' ? 'selected' : '' }}>Client</option>
                                         </select>
                                         @error('role')
                                             <div class="invalid-feedback">{{ $message }}</div>

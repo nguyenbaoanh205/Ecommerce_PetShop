@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ReviewSeeder extends Seeder
@@ -13,7 +12,7 @@ class ReviewSeeder extends Seeder
     public function run(): void
     {
         $users = User::all();
-        $products = Product::all(); 
+        $products = Product::all();
 
         $sampleComments = [
             'Sản phẩm rất tốt, thú cưng của tôi thích lắm!',
@@ -21,21 +20,21 @@ class ReviewSeeder extends Seeder
             'Giao hàng nhanh, đóng gói cẩn thận.',
             'Không như mong đợi, sản phẩm hơi nhỏ.',
             'Giá hợp lý, shop tư vấn nhiệt tình.',
+            'Sản phẩm đúng mô tả, sẽ giới thiệu bạn bè.',
+            'Thú cưng nhà mình rất thích sản phẩm này.',
+            'Màu sắc đẹp, đúng như hình.',
+            'Đóng gói chắc chắn, giao hàng nhanh.',
+            'Hài lòng về chất lượng dịch vụ.',
         ];
 
-        foreach ($products as $product) {
-            // Lấy số lượng người dùng ngẫu nhiên không vượt quá số lượng người dùng hiện có
-            $numberOfUsers = rand(1, min(5, $users->count()));
-            $randomUsers = $users->random($numberOfUsers);
-        
-            foreach ($randomUsers as $user) {
-                Review::create([
-                    'user_id' => $user->id,
-                    'product_id' => $product->id,
-                    'rating' => rand(3, 5), // Xếp hạng từ 3 đến 5 sao
-                    'comment' => fake()->randomElement($sampleComments),
-                ]);
-            }
+        // Fake 10 reviews
+        for ($i = 0; $i < 10; $i++) {
+            Review::create([
+                'user_id'    => $users->random()->id,
+                'product_id' => $products->random()->id,
+                'rating'     => rand(3, 5), // Xếp hạng từ 3 đến 5 sao
+                'comment'    => fake()->randomElement($sampleComments),
+            ]);
         }
     }
 }

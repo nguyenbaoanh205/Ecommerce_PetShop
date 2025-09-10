@@ -3,11 +3,7 @@
 @section('content')
     <div class="pc-container">
         <div class="pc-content">
-            @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
+            @include('admin.partials.alert')
 
             <!-- [ breadcrumb ] start -->
             <div class="page-header">

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+{{-- @extends('admin.layouts.master')
 
 @section('content')
 <div class="pc-container">
@@ -80,4 +80,4 @@
         <!-- [ Main Content ] end -->
     </div>
 </div>
-@endsection 
+@endsection  --}}

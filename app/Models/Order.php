@@ -26,17 +26,25 @@ class Order extends Model
     {
         return $this->hasMany(OrderItem::class, 'order_id');
     }
-public function getNextStatuses()
-{
-    $statuses = ['pending','confirmed','shipped','completed','returned','cancelled'];
-    $currentIndex = array_search($this->status, $statuses);
+    public function getNextStatuses(): array
+    {
+        $flows = [
+            'pending'    => ['confirmed', 'cancelled'],
+            'confirmed'  => ['processing', 'cancelled'],
+            'processing' => ['shipped', 'cancelled'],
+            'shipped'    => ['delivered', 'failed'],
+            'delivered'  => ['completed', 'returned'],
+            'failed'     => ['refunded', 'cancelled'],
+            'returned'   => ['refunded'],
+            'refunded'   => [],
+            'completed'  => [],
+            'cancelled'  => [],
+        ];
 
-    if ($currentIndex === false || in_array($this->status, ['completed','returned','cancelled'])) {
-        return []; // không còn trạng thái tiếp theo
+        return $flows[$this->status] ?? [];
     }
-
-    // chỉ trạng thái tiếp theo thôi, không cho nhảy nhiều bước
-    return [$statuses[$currentIndex + 1]];
-}
-
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

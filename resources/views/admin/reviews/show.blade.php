@@ -30,12 +30,6 @@
                         <h5>Review Information</h5>
                     </div>
                     <div class="card-body">
-                        @if(session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-
                         <div class="row">
                             <div class="col-md-6">
                                 <h6>User Information</h6>
