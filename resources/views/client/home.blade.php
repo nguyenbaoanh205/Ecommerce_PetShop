@@ -24,6 +24,7 @@
         #banner {
             height: 1000px !important;
         }
+
         .swiper-slide {
             width: 100% !important;
         }
@@ -50,7 +51,7 @@
                                         class="text-primary">your
                                         pets</span>
                                 </h2>
-                                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                     shop now
                                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                         <use xlink:href="#arrow-right"></use>
@@ -70,7 +71,7 @@
                                         class="text-primary">your
                                         pets</span>
                                 </h2>
-                                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                     shop now
                                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                         <use xlink:href="#arrow-right"></use>
@@ -90,7 +91,7 @@
                                         class="text-primary">your
                                         pets</span>
                                 </h2>
-                                <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                     shop now
                                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                         <use xlink:href="#arrow-right"></use>
@@ -164,7 +165,8 @@
                 <div class="swiper-wrapper">
                     @foreach ($highly_rated_product as $product)
                         <div class="swiper-slide">
-                            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle" style="background-color: #f1f1f1">
+                            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle"
+                                style="background-color: #f1f1f1">
                                 New
                             </div>
                             <div class="card position-relative">
@@ -474,36 +476,38 @@
                                             {{ number_format($averageRating, 1) }}
                                         </span>
                                         <div class="d-flex align-items-center">
-                                        <h3 class="secondary-font text-primary">
-                                            ${{ number_format($bestselling->discount_price, 2) }}
-                                        </h3>
+                                            <h3 class="secondary-font text-primary">
+                                                ${{ number_format($bestselling->discount_price, 2) }}
+                                            </h3>
 
-                                        @if ($hasDiscount)
-                                            <h5 class="text-muted text-decoration-line-through mb-1 ms-2">
-                                                ${{ number_format($bestselling->price, 2) }}
-                                            </h5>
-                                        @endif
+                                            @if ($hasDiscount)
+                                                <h5 class="text-muted text-decoration-line-through mb-1 ms-2">
+                                                    ${{ number_format($bestselling->price, 2) }}
+                                                </h5>
+                                            @endif
                                         </div>
-                                        
+
                                         <div class="d-flex flex-wrap mt-3">
-                                        <form action="{{ route('cart.add') }}" method="POST" class="me-3">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{ $bestselling->id }}">
-                                            <input type="hidden" name="quantity" value="1">
-                                            <button type="submit"
-                                                class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
-                                                Add to Cart
-                                            </button>
-                                        </form>
-                                        <form action="{{ route('wishlist.add') }}" method="POST" class="rounded-1"
-                                            style="border: 1px solid #d9d9d8;">
-                                            @csrf
-                                            <input type="hidden" name="product_id" value="{{ $bestselling->id }}">
-                                            <button type="submit" class="btn-wishlist px-4 pt-3 bg-transparent border-0">
-                                                <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
-                                            </button>
-                                        </form>
-                                    </div>
+                                            <form action="{{ route('cart.add') }}" method="POST" class="me-3">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $bestselling->id }}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <button type="submit"
+                                                    class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
+                                                    Add to Cart
+                                                </button>
+                                            </form>
+                                            <form action="{{ route('wishlist.add') }}" method="POST" class="rounded-1"
+                                                style="border: 1px solid #d9d9d8;">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $bestselling->id }}">
+                                                <button type="submit"
+                                                    class="btn-wishlist px-4 pt-3 bg-transparent border-0">
+                                                    <iconify-icon icon="fluent:heart-28-filled"
+                                                        class="fs-5"></iconify-icon>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -553,7 +557,8 @@
                 <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
                     <h2 class="display-3 fw-normal">Latest Blog Post</h2>
                     <div>
-                        <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                        <a href="{{ route('blog.index') }}"
+                            class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                             Read all
                             <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                 <use xlink:href="#arrow-right"></use>
@@ -581,7 +586,10 @@
                                 </a>
 
                                 <div class="card-text">
-                                    <p class="blog-paragraph fs-6">{!! $post->description !!}</p>
+                                    <p class="blog-paragraph fs-6">
+                                        {{ Str::limit(strip_tags($post->description), 88) }}
+                                    </p>
+
                                     <a href="single-post.html" class="blog-read">read more</a>
                                 </div>
 
@@ -604,7 +612,7 @@
                         </div>
                         <h3 class="card-title py-2 m-0">Free Delivery</h3>
                         <div class="card-text">
-                            <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                            <p class="blog-paragraph fs-6">Fast shipping service, delivered to your door daily.</p>
                         </div>
                     </div>
                 </div>
@@ -615,7 +623,7 @@
                         </div>
                         <h3 class="card-title py-2 m-0">100% secure payment</h3>
                         <div class="card-text">
-                            <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                            <p class="blog-paragraph fs-6">Your transactions are always safe and protected.</p>
                         </div>
                     </div>
                 </div>
@@ -626,7 +634,7 @@
                         </div>
                         <h3 class="card-title py-2 m-0">Daily Offer</h3>
                         <div class="card-text">
-                            <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                            <p class="blog-paragraph fs-6">Enjoy new deals every day with great discounts.</p>
                         </div>
                     </div>
                 </div>
@@ -637,11 +645,10 @@
                         </div>
                         <h3 class="card-title py-2 m-0">Quality guarantee</h3>
                         <div class="card-text">
-                            <p class="blog-paragraph fs-6">Lorem ipsum dolor sit amet, consectetur adipi elit.</p>
+                            <p class="blog-paragraph fs-6">We ensure the best quality for all our products.</p>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
