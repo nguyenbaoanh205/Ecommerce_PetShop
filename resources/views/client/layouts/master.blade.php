@@ -120,7 +120,11 @@
         <div class="offcanvas-body">
             <div class="order-md-last">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-primary">Your cart</span>
+                    <a href="{{ route('cart.index') }}" class="d-flex align-items-center text-decoration-none">
+                        <span class="text-primary">Your cart</span>
+                        <i class="fas fa-arrow-right ms-2" style="font-size: 18px;color: #deae7d;margin-bottom: 9px"></i>
+                    </a>
+
                     <span class="badge bg-primary rounded-circle pt-2">{{ $cartItems->count() }}</span>
                 </h4>
                 <ul class="list-group mb-3">

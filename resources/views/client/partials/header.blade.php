@@ -134,7 +134,7 @@
                     </ul>
 
 
-                    <div class="d-none d-lg-flex align-items-end">
+                    <div class="d-none d-lg-flex align-items-center">
                         <ul class="d-flex justify-content-end list-unstyled m-0">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle mx-2 d-flex align-items-center" href="#"
@@ -164,14 +164,14 @@
                                 </ul>
                             </li>
 
-                            <li>
-                                <a href="{{ route('wishlist.index') }}" class="mx-3">
+                            <li style="margin-right: 14px; margin-left: 3px">
+                                <a class="nav-link" href="{{ route('wishlist.index') }}" class="mx-3">
                                     <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                                 </a>
                             </li>
 
-                            <li class="">
-                                <a href="{{ route('cart.index') }}" class="mx-3" data-bs-toggle="offcanvas"
+                            <li>
+                                <a class="nav-link" href="{{ route('cart.index') }}" class="mx-3" data-bs-toggle="offcanvas"
                                     data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                                     <iconify-icon icon="mdi:cart" class="fs-4 position-relative"></iconify-icon>
                                     @if (isset($cartCount) && $cartCount > 0)

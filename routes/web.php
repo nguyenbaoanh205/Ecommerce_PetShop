@@ -65,7 +65,6 @@ Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name(
 Route::get('/', [ClientHomeController::class, 'index'])->name('home');
 Route::get('/product-detail/{slug}', [ClientHomeController::class, 'productDetail'])->name('product-detail');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::get("/blogs", [BlogController::class, 'index'])->name('blog.index');
 Route::get("/blog-detail/{slug}", [BlogController::class, 'show'])->name('blog.show');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
@@ -74,6 +73,7 @@ Route::get("/about", [AboutUsController::class, 'index'])->name('about.index');
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
     Route::post('/cart/buy-now', [CartController::class, 'buyNow'])->name('cart.buyNow');
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
