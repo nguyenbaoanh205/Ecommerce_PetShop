@@ -1,64 +1,12 @@
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
-@if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-<!DOCTYPE html>
-<html lang="en">
-<!-- [Head] start -->
+@extends('auth.layouts.app')
+@section('title', 'Login')
 
-<head>
-    <title>Login | Mantis Bootstrap 5 Admin Template</title>
-    <!-- [Meta] -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description"
-        content="Mantis is made using Bootstrap 5 design framework. Download the free admin template & use it for your project.">
-    <meta name="keywords"
-        content="Mantis, Dashboard UI Kit, Bootstrap 5, Admin Template, Admin Dashboard, CRM, CMS, Bootstrap Admin Template">
-    <meta name="author" content="CodedThemes">
-
-    <!-- [Favicon] icon -->
-    <link rel="icon" href="assets/images/favicon.svg" type="image/x-icon"> <!-- [Google Font] Family -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
-        id="main-font-link">
-    <!-- [Tabler Icons] https://tablericons.com -->
-    <link rel="stylesheet" href="assets/fonts/tabler-icons.min.css">
-    <!-- [Feather Icons] https://feathericons.com -->
-    <link rel="stylesheet" href="assets/fonts/feather.css">
-    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
-    <link rel="stylesheet" href="assets/fonts/fontawesome.css">
-    <!-- [Material Icons] https://fonts.google.com/icons -->
-    <link rel="stylesheet" href="assets/fonts/material.css">
-    <!-- [Template CSS Files] -->
-    <link rel="stylesheet" href="assets/css/style.css" id="main-style-link">
-    <link rel="stylesheet" href="assets/css/style-preset.css">
-
-</head>
-<!-- [Head] end -->
-<!-- [Body] Start -->
-
-<body>
-    <!-- [ Pre-loader ] start -->
-    <div class="loader-bg">
-        <div class="loader-track">
-            <div class="loader-fill"></div>
-        </div>
-    </div>
-    <!-- [ Pre-loader ] End -->
-
+@section('content')
     <div class="auth-main">
         <div class="auth-wrapper v3">
             <div class="auth-form">
                 <div class="auth-header">
-                    <a href="#"><img src="{{asset('uploads/images/petshop.PNG')}}" width="70px" alt="img"></a>
+                    <img src="{{ asset('uploads/images/petshop.PNG') }}" width="70px" alt="img">
                 </div>
                 <div class="card my-5">
                     <div class="card-body">
@@ -91,7 +39,8 @@
                                         id="remember">
                                     <label class="form-check-label text-muted" for="remember">Remember Password</label>
                                 </div>
-                                <a href="{{ route('password.request') }}" class="text-secondary f-w-400">Forgot Password?</a>
+                                <a href="{{ route('password.request') }}" class="text-secondary f-w-400">Forgot
+                                    Password?</a>
                             </div>
                             <div class="d-grid mt-4">
                                 <button type="submit" class="btn btn-primary">Login</button>
@@ -100,7 +49,7 @@
                                 <span>Login with</span>
                             </div>
                             <div class="row">
-                                <div class="col-4"> 
+                                <div class="col-4">
                                     <div class="d-grid">
                                         <a href="{{ route('auth.google.redirect') }}"
                                             class="btn mt-2 btn-light-primary bg-light text-muted">
@@ -123,7 +72,7 @@
                                         <a href="{{ route('auth.facebook.redirect') }}"
                                             class="btn mt-2 btn-light-primary bg-light text-muted">
                                             <img src="{{ asset('assets/images/authentication/facebook.svg') }}"
-                                                alt="Facebook"> 
+                                                alt="Facebook">
                                             <span class="d-none d-sm-inline-block">Facebook</span>
                                         </a>
                                     </div>
@@ -134,63 +83,17 @@
                 </div>
                 <div class="auth-footer row">
                     <div class="col my-1">
-                        <p class="m-0">Copyright © <a href="#">Codedthemes</a></p>
+                        <p>Design & Development by <strong>Nguyen Bao Anh.</strong></p>
                     </div>
-                    <div class="col-auto my-1">
+                    {{-- <div class="col-auto my-1">
                         <ul class="list-inline footer-link mb-0">
                             <li class="list-inline-item"><a href="#">Home</a></li>
                             <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
                             <li class="list-inline-item"><a href="#">Contact us</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- [ Main Content ] end -->
-    <!-- Required Js -->
-    <script src="assets/js/plugins/popper.min.js"></script>
-    <script src="assets/js/plugins/simplebar.min.js"></script>
-    <script src="assets/js/plugins/bootstrap.min.js"></script>
-    <script src="assets/js/fonts/custom-font.js"></script>
-    <script src="assets/js/pcoded.js"></script>
-    <script src="assets/js/plugins/feather.min.js"></script>
-
-
-
-
-
-    <script>
-        layout_change('light');
-    </script>
-
-
-
-
-    <script>
-        change_box_container('false');
-    </script>
-
-
-
-    <script>
-        layout_rtl_change('false');
-    </script>
-
-
-    <script>
-        preset_change("preset-1");
-    </script>
-
-
-    <script>
-        font_change("Public-Sans");
-    </script>
-
-
-
-</body>
-<!-- [Body] end -->
-
-</html>
+@endsection
