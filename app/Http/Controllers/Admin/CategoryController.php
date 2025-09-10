@@ -11,7 +11,9 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('id', 'desc')->paginate(10);
+        $categories = Category::orderByDesc('type')
+            ->orderBy('id', 'desc')
+            ->paginate(10);
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -24,7 +26,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            // 'description' => 'nullable|string',
         ]);
 
         $slug = Str::slug($request->name);
@@ -32,7 +34,7 @@ class CategoryController extends Controller
         $existingCategory = Category::where('slug', $slug)->first();
 
         if ($existingCategory) {
-            return redirect()->back()->with('error', 'Slug đã tồn tại. Vui lòng chọn tên khác cho danh mục.');
+            return redirect()->back()->with('error', 'Slug exists. Please choose a different name.');
         }
 
         $data = $request->all();
@@ -53,7 +55,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
+            // 'description' => 'nullable|string',
         ]);
 
         $slug = Str::slug($request->name);
@@ -63,7 +65,7 @@ class CategoryController extends Controller
             ->first();
 
         if ($existingCategory) {
-            return redirect()->back()->with('error', 'Slug đã tồn tại. Vui lòng chọn tên khác cho danh mục.');
+            return redirect()->back()->with('error', 'Slug exists. Please choose a different name.');
         }
 
         $category->slug = $slug;

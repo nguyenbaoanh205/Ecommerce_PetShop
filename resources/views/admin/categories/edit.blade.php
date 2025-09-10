@@ -52,7 +52,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    {{-- <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="description" class="form-label">Description</label>
                                             <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description"
@@ -61,7 +61,7 @@
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="type" class="form-label">Category Type</label>
