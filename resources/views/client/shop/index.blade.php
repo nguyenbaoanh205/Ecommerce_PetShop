@@ -7,12 +7,12 @@
             <div class="section-header d-md-flex justify-content-between align-items-center mb-3">
                 <h2 class="display-3 fw-normal">🐾 Pet Shop</h2>
                 <div>
-                    {{-- <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                    <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                     View All
                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                         <use xlink:href="#arrow-right"></use>
                     </svg>
-                </a> --}}
+                </a>
                 </div>
             </div>
 

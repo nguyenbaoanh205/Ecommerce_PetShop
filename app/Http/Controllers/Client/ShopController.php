@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Review;
 use Illuminate\Http\Request;
@@ -13,9 +14,10 @@ class ShopController extends Controller
     {
         $cartItems = Controller::GetMenu()['cartItems'];
         $cartCount = Controller::GetMenu()['cartCount'];
+        $categories= Category::query()->where('status', 1)->where('type', 1)->get();
         $reviews = Review::all();
         $products = Product::with('category')->inRandomOrder()->paginate(16);
 
-        return view('client.shop.index', compact( 'cartItems', 'cartCount', 'reviews', 'products'));
+        return view('client.shop.index', compact( 'cartItems', 'cartCount', 'reviews', 'products', 'categories'));
     }
 }

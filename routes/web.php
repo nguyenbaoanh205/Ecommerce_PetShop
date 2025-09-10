@@ -64,33 +64,28 @@ Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name(
 */
 Route::get('/', [ClientHomeController::class, 'index'])->name('home');
 Route::get('/product-detail/{slug}', [ClientHomeController::class, 'productDetail'])->name('product-detail');
-
 Route::get('/shop', [ShopController::class, 'index'])->name('shop.index');
-
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
-Route::post('/cart/buy-now', [CartController::class, 'buyNow'])->name('cart.buyNow');
-Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
-Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-
-Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
-Route::post('/checkout', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
-
-Route::get('/orders/history', [ClientOrderController::class, 'history'])->name('orders.history');
-Route::get('/orders/{order}', [ClientOrderController::class, 'show'])->name('orders.show');
-
-Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
-Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
-Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
-
 Route::get("/blogs", [BlogController::class, 'index'])->name('blog.index');
 Route::get("/blog-detail/{slug}", [BlogController::class, 'show'])->name('blog.show');
-
 Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get("/about", [AboutUsController::class, 'index'])->name('about.index');
 
-Route::get("/about",[AboutUsController::class, 'index'])->name('about.index');
 
+Route::middleware('auth')->group(function () {
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::post('/cart/buy-now', [CartController::class, 'buyNow'])->name('cart.buyNow');
+    Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::get('/checkout', [CheckoutController::class, 'showForm'])->name('checkout.form');
+    Route::post('/checkout', [CheckoutController::class, 'placeOrder'])->name('checkout.place');
+    Route::get('/orders/history', [ClientOrderController::class, 'history'])->name('orders.history');
+    Route::get('/orders/{order}', [ClientOrderController::class, 'show'])->name('orders.show');
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlist/add', [WishlistController::class, 'add'])->name('wishlist.add');
+    Route::delete('/wishlist/{id}', [WishlistController::class, 'remove'])->name('wishlist.remove');
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -195,4 +190,3 @@ Route::middleware('admin')->group(function () {
         // 'destroy' => 'admin.contacts.destroy'
     ]);
 });
-
