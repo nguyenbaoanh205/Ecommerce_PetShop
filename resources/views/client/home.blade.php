@@ -9,7 +9,7 @@
     }
 
     .card-title {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         /* nhỏ hơn display mặc định */
         display: -webkit-box;
         -webkit-line-clamp: 1;
@@ -51,7 +51,8 @@
                                         class="text-primary">your
                                         pets</span>
                                 </h2>
-                                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                <a href="{{ route('shop.index') }}"
+                                    class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                     shop now
                                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                         <use xlink:href="#arrow-right"></use>
@@ -71,7 +72,8 @@
                                         class="text-primary">your
                                         pets</span>
                                 </h2>
-                                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                <a href="{{ route('shop.index') }}"
+                                    class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                     shop now
                                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                         <use xlink:href="#arrow-right"></use>
@@ -91,7 +93,8 @@
                                         class="text-primary">your
                                         pets</span>
                                 </h2>
-                                <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                                <a href="{{ route('shop.index') }}"
+                                    class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                                     shop now
                                     <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                         <use xlink:href="#arrow-right"></use>
@@ -144,102 +147,102 @@
             </div>
         </div>
     </section>
-@if($highly_rated_product->isNotEmpty())
-    <section id="clothing" class="my-5 overflow-hidden">
-        <div class="container pb-5" style="height: 550px">
+    @if ($highly_rated_product->isNotEmpty())
+        <section id="clothing" class="my-5 overflow-hidden">
+            <div class="container pb-5" style="height: 550px">
 
-            <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine"
-                class="section-header d-md-flex justify-content-between align-items-center mb-3">
-                <h2 class="display-3 fw-normal">Pet Clothing</h2>
-                <div>
-                    <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
-                        shop now
-                        <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
-                            <use xlink:href="#arrow-right"></use>
-                        </svg></a>
+                <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine"
+                    class="section-header d-md-flex justify-content-between align-items-center mb-3">
+                    <h2 class="display-3 fw-normal">Pet Clothing</h2>
+                    <div>
+                        <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                            shop now
+                            <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
+                                <use xlink:href="#arrow-right"></use>
+                            </svg></a>
+                    </div>
                 </div>
-            </div>
 
-            <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine"
-                class="products-carousel swiper">
-                <div class="swiper-wrapper">
-                    @foreach ($highly_rated_product as $product)
-                        <div class="swiper-slide">
-                            <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle"
-                                style="background-color: #f1f1f1">
-                                New
-                            </div>
-                            <div class="card position-relative">
-                                <a href="{{ route('product-detail', $product->slug) }}">
-                                    <img src="{{ asset($product->image) }}" class="img-fluid rounded-4" alt="image">
-                                </a>
-                                <div class="card-body p-0">
+                <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine"
+                    class="products-carousel swiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($highly_rated_product as $product)
+                            <div class="swiper-slide">
+                                <div class="z-1 position-absolute rounded-3 m-3 px-3 border border-dark-subtle"
+                                    style="background-color: #f1f1f1">
+                                    New
+                                </div>
+                                <div class="card position-relative">
                                     <a href="{{ route('product-detail', $product->slug) }}">
-                                        <h3 class="card-title pt-4 m-0">{{ $product->name }}</h3>
+                                        <img src="{{ asset($product->image) }}" class="img-fluid rounded-4"
+                                            alt="image">
                                     </a>
+                                    <div class="card-body p-0">
+                                        <a href="{{ route('product-detail', $product->slug) }}">
+                                            <h3 class="card-title pt-4 m-0">{{ $product->name }}</h3>
+                                        </a>
 
-                                    <div class="card-text">
-                                        <span class="rating secondary-font">
-                                            @php
-                                                $productReviews = $reviews->where('product_id', $product->id); // Giả sử bạn có trường product_id trong bảng Review
-                                                $averageRating = $productReviews->avg('rating'); // Tính điểm trung bình
-                                            @endphp
+                                        <div class="card-text">
+                                            <span class="rating secondary-font">
+                                                @php
+                                                    $productReviews = $reviews->where('product_id', $product->id); // Giả sử bạn có trường product_id trong bảng Review
+                                                    $averageRating = $productReviews->avg('rating'); // Tính điểm trung bình
+                                                @endphp
 
-                                            @for ($i = 1; $i <= 5; $i++)
-                                                @if ($averageRating >= $i)
-                                                    <iconify-icon icon="material-symbols:star"
-                                                        style="color: #dead6f; font-size: 22px;"
-                                                        class="me-1"></iconify-icon>
-                                                @elseif ($averageRating >= $i - 0.5)
-                                                    <iconify-icon icon="material-symbols:star-half"
-                                                        style="color: #dead6f; font-size: 22px;"
-                                                        class="me-1"></iconify-icon>
-                                                @else
-                                                    <iconify-icon icon="material-symbols:star-outline"
-                                                        style="color: #ccc; font-size: 22px;"
-                                                        class="me-1"></iconify-icon>
-                                                @endif
-                                            @endfor
-                                            {{ number_format($averageRating, 1) }} <!-- Hiển thị điểm trung bình -->
-                                        </span>
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($averageRating >= $i)
+                                                        <iconify-icon icon="material-symbols:star"
+                                                            style="color: #dead6f; font-size: 22px;"
+                                                            class="me-1"></iconify-icon>
+                                                    @elseif ($averageRating >= $i - 0.5)
+                                                        <iconify-icon icon="material-symbols:star-half"
+                                                            style="color: #dead6f; font-size: 22px;"
+                                                            class="me-1"></iconify-icon>
+                                                    @else
+                                                        <iconify-icon icon="material-symbols:star-outline"
+                                                            style="color: #ccc; font-size: 22px;"
+                                                            class="me-1"></iconify-icon>
+                                                    @endif
+                                                @endfor
+                                                {{ number_format($averageRating, 1) }} <!-- Hiển thị điểm trung bình -->
+                                            </span>
 
-                                        <h3 class="secondary-font text-primary">${{ number_format($product->price, 2) }}
-                                        </h3>
+                                            <h3 class="secondary-font text-primary">
+                                                ${{ number_format($product->price, 2) }}
+                                            </h3>
 
-                                        <div class="d-flex flex-wrap mt-3">
-                                            <form action="{{ route('cart.add') }}" method="POST" class="me-3">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <input type="hidden" name="quantity" id="cart-quantity" value="1">
-                                                <button type="submit"
-                                                    class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
-                                                    Add to Cart
-                                                </button>
-                                            </form>
-                                            <form action="{{ route('wishlist.add') }}" class="rounded-1"
-                                                style="border: 1px solid #d9d9d8;" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                                <button type="submit"
-                                                    class="btn-wishlist px-4 pt-3 bg-transparent border-0">
-                                                    <iconify-icon icon="fluent:heart-28-filled"
-                                                        class="fs-5"></iconify-icon>
-                                                </button>
-                                            </form>
+                                            <div class="d-flex flex-wrap mt-3">
+                                                <form action="{{ route('cart.add') }}" method="POST" class="me-3">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <input type="hidden" name="quantity" id="cart-quantity"
+                                                        value="1">
+                                                    <button type="submit"
+                                                        class="btn-cart px-4 py-3 btn btn-dark text-uppercase rounded-1">
+                                                        Add to Cart
+                                                    </button>
+                                                </form>
+                                                <form action="{{ route('wishlist.add') }}" class="rounded-1"
+                                                    style="border: 1px solid #d9d9d8;" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                    <button type="submit"
+                                                        class="btn-wishlist px-4 pt-3 bg-transparent border-0">
+                                                        ❤️
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
 
+                    </div>
                 </div>
+                <!-- / products-carousel -->
             </div>
-            <!-- / products-carousel -->
-
-
-        </div>
-    </section>
+        </section>
     @endif
 
     <section id="foodies" class="my-5">
@@ -287,11 +290,11 @@
                             </a>
                             <div class="card-body p-0">
                                 <a href="{{ route('product-detail', $product->slug) }}">
-                                    <h3 class="card-title pt-4 m-0">{{ $product->name }}</h3>
+                                    <h2 class="card-title pt-4 m-0">{{ $product->name }}</h2>
                                 </a>
 
                                 <div class="card-text">
-                                    <h3 class="secondary-font text-primary">${{ number_format($product->price, 2) }}</h3>
+                                    <h3 class="secondary-font text-primary pt-1">${{ number_format($product->price, 2) }}</h3>
 
                                     <div class="d-flex flex-wrap mt-3">
                                         <form action="{{ route('cart.add') }}" method="POST" class="me-3">
@@ -308,7 +311,7 @@
                                             @csrf
                                             <input type="hidden" name="product_id" value="{{ $product->id }}">
                                             <button type="submit" class="btn-wishlist px-4 pt-3 bg-transparent border-0">
-                                                <iconify-icon icon="fluent:heart-28-filled" class="fs-5"></iconify-icon>
+                                                ❤️
                                             </button>
                                         </form>
                                     </div>
@@ -503,10 +506,7 @@
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{ $bestselling->id }}">
                                                 <button type="submit"
-                                                    class="btn-wishlist px-4 pt-3 bg-transparent border-0">
-                                                    <iconify-icon icon="fluent:heart-28-filled"
-                                                        class="fs-5"></iconify-icon>
-                                                </button>
+                                                    class="btn-wishlist px-4 pt-3 bg-transparent border-0">❤️ </button>
                                             </form>
                                         </div>
                                     </div>
@@ -579,8 +579,8 @@
                             </p>
                         </div>
                         <div class="card position-relative">
-                            <a href="{{ route('blog.show', $post->slug) }}"><img src="{{ asset($post->image) }}" class="img-fluid rounded-4"
-                                    style="height: 300px" alt="image"></a>
+                            <a href="{{ route('blog.show', $post->slug) }}"><img src="{{ asset($post->image) }}"
+                                    class="img-fluid rounded-4" style="height: 300px" alt="image"></a>
                             <div class="card-body p-0">
                                 <a href="{{ route('blog.show', $post->slug) }}">
                                     <h3 class="card-title pt-4 pb-3 m-0">{{ $post->title }}</h3>

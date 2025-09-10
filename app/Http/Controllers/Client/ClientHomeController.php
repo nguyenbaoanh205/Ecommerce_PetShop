@@ -35,6 +35,7 @@ class ClientHomeController extends Controller
     {
         // Tìm sản phẩm dựa trên slug
         $product = Product::with('category')->where('slug', $slug)->firstOrFail();
+        $product->increment('view');
         $categories = Category::query()->where('status', 1)->where('type', 1)->get();
         $reviews = Review::with('user')
             ->where('product_id', $product->id)

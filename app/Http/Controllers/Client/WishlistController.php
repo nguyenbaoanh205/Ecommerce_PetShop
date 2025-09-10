@@ -15,34 +15,37 @@ class WishlistController extends Controller
 
     public function index()
     {
-        $categories = Category::query()-> where('status', 1) -> where('type', 1)->get();
+        $categories = Category::query()->where('status', 1)->where('type', 1)->get();
         $wishlists = Wishlist::with('product')
             ->where('user_id', Auth::id())
             ->latest()
             ->get();
         $userId = Auth::id();
         $cartItems = CartItem::with('product')->where('user_id', $userId)->get();
-        return view('client.wishlist.index', compact('wishlists', 'categories','cartItems'));
+        return view('client.wishlist.index', compact('wishlists', 'categories', 'cartItems'));
     }
     public function add(Request $request)
     {
-        $productId = $request->input('product_id');
+        $userId = Auth::id();
+        $productId = $request->product_id;
 
-        // Kiểm tra xem đã có chưa
-        $exists = Wishlist::where('user_id', Auth::id())
+        // Kiểm tra sản phẩm đã có trong wishlist chưa
+        $exists = Wishlist::where('user_id', $userId)
             ->where('product_id', $productId)
-            ->exists();
+            ->first();
 
-        if (!$exists) {
-            Wishlist::create([
-                'user_id' => Auth::id(),
-                'product_id' => $productId,
-                'added_at' => now(),
-            ]);
+        if ($exists) {
+            return redirect()->back()->with('info', 'Product already exists in wishlist.');
         }
 
-        return back()->with('success', 'Đã thêm vào danh sách yêu thích!');
+        Wishlist::create([
+            'user_id' => $userId,
+            'product_id' => $productId,
+        ]);
+
+        return redirect()->back()->with('success', 'Product added to wishlist successfully.');
     }
+
 
     public function remove($id)
     {
@@ -52,6 +55,6 @@ class WishlistController extends Controller
 
         $wishlist->delete();
 
-        return back()->with('success', 'Đã xoá khỏi danh sách yêu thích');
+        return back()->with('success', 'Removed from wishlist successfully!');
     }
 }

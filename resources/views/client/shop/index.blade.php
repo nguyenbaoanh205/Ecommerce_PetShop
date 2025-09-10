@@ -39,13 +39,13 @@
                             @endif
 
                             <!-- Image -->
-                            <a href="{{ route('product-detail', $product->id) }}">
+                            <a href="{{ route('product-detail', $product->slug) }}">
                                 <img src="{{ asset($product->image) }}" class="img-fluid rounded-4"
                                     alt="{{ $product->name }}" style="height:250px; width: 100%;object-fit:cover;">
                             </a>
 
                             <div class="card-body p-3">
-                                <a href="{{ route('product-detail', $product->id) }}">
+                                <a href="{{ route('product-detail', $product->slug) }}">
                                     <h5 style="height: 50px; line-height: 25px" class="card-title fw-semibold">{{ $product->name }}</h5>
                                 </a>
 
@@ -86,14 +86,14 @@
                                         <input type="hidden" name="quantity" value="1">
                                         <button type="submit"
                                             class="btn-cart px-3 py-2 btn btn-dark text-uppercase rounded-1">
-                                            🛒 Add
+                                            🛒 Add To Cart
                                         </button>
                                     </form>
                                     <form action="{{ route('wishlist.add') }}" method="POST" class="rounded-1"
                                         style="border: 1px solid #d9d9d8;">
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                        <button type="submit" class="btn-wishlist px-3 py-2 bg-transparent border-0">
+                                        <button style="padding: 7px 18px !important;" type="submit" class="btn-wishlist bg-transparent border-0">
                                             ❤️
                                         </button>
                                     </form>
