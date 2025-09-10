@@ -144,7 +144,7 @@
             </div>
         </div>
     </section>
-
+@if($highly_rated_product->isNotEmpty())
     <section id="clothing" class="my-5 overflow-hidden">
         <div class="container pb-5" style="height: 550px">
 
@@ -240,6 +240,7 @@
 
         </div>
     </section>
+    @endif
 
     <section id="foodies" class="my-5">
         <div class="container my-5 py-5">
@@ -578,10 +579,10 @@
                             </p>
                         </div>
                         <div class="card position-relative">
-                            <a href="single-post.html"><img src="{{ asset($post->image) }}" class="img-fluid rounded-4"
+                            <a href="{{ route('blog.show', $post->slug) }}"><img src="{{ asset($post->image) }}" class="img-fluid rounded-4"
                                     style="height: 300px" alt="image"></a>
                             <div class="card-body p-0">
-                                <a href="single-post.html">
+                                <a href="{{ route('blog.show', $post->slug) }}">
                                     <h3 class="card-title pt-4 pb-3 m-0">{{ $post->title }}</h3>
                                 </a>
 
@@ -590,7 +591,7 @@
                                         {{ Str::limit(strip_tags($post->description), 88) }}
                                     </p>
 
-                                    <a href="single-post.html" class="blog-read">read more</a>
+                                    <a href="{{ route('blog.show', $post->slug) }}" class="blog-read">read more</a>
                                 </div>
 
                             </div>

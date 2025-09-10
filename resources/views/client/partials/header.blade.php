@@ -164,7 +164,7 @@
                                 </ul>
                             </li>
 
-                            <li style="margin-right: 14px; margin-left: 3px">
+                            <li style="margin-right: 16px; margin-left: 5px">
                                 <a class="nav-link" href="{{ route('wishlist.index') }}" class="mx-3">
                                     <iconify-icon icon="mdi:heart" class="fs-4"></iconify-icon>
                                 </a>
