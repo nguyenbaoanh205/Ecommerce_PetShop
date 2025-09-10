@@ -1,4 +1,5 @@
 @extends('admin.layouts.master')
+@section('title', 'Posts Management')
 
 @section('content')
 <div class="pc-container">

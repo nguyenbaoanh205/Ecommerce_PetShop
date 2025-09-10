@@ -1,4 +1,5 @@
 @extends('admin.layouts.master')
+@section('title', 'Products Management')
 
 @section('content')
 <div class="pc-container">
