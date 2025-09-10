@@ -119,17 +119,17 @@
                 <li class="dropdown pc-h-item header-user-profile">
                     <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
                         role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
-                        <img src="/assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
+                        <img src="{{ Auth::user()->avatar ? asset(Auth::user()->avatar) : asset('/uploads/images/avatar_default.png') }}" alt="user-image" class="user-avtar">
                         <span>{{ Auth::user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown">
                         <div class="dropdown-header">
                             <div class="d-flex mb-1">
                                 <div class="flex-shrink-0">
-                                    <img src="/assets/images/user/avatar-2.jpg" alt="user-image"
+                                    <img src="{{ Auth::user()->avatar ? asset(Auth::user()->avatar) : asset('/uploads/images/avatar_default.png') }}" alt="user-image"
                                         class="user-avtar wid-35">
                                 </div>
-                                <div class="flex-grow-1 ms-3">
+                                <div class="flex-grow-1 ms-3">  
                                     <h6 class="mb-1">{{ Auth::user()->name }}</h6>
                                     <span>{{ Auth::user()->email }}</span>
                                 </div>
@@ -176,7 +176,7 @@
                                     </button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="drp-tab-2" role="tabpanel" aria-labelledby="drp-t2"
+                            {{-- <div class="tab-pane fade" id="drp-tab-2" role="tabpanel" aria-labelledby="drp-t2"
                                 tabindex="0">
                                 <a href="#!" class="dropdown-item">
                                     <i class="ti ti-help"></i>
@@ -198,7 +198,7 @@
                                     <i class="ti ti-list"></i>
                                     <span>History</span>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </li>
