@@ -14,8 +14,8 @@
                     </a>
                 </li>
                 <li class="dropdown pc-h-item d-inline-flex d-md-none">
-                    <a class="pc-head-link dropdown-toggle arrow-none m-0" data-bs-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="pc-head-link dropdown-toggle arrow-none m-0" data-bs-toggle="dropdown" href="#"
+                        role="button" aria-haspopup="false" aria-expanded="false">
                         <i class="ti ti-search"></i>
                     </a>
                     <div class="dropdown-menu pc-h-dropdown drp-search">
@@ -40,8 +40,8 @@
         <div class="ms-auto">
             <ul class="list-unstyled">
                 <li class="dropdown pc-h-item">
-                    <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                        role="button" aria-haspopup="false" aria-expanded="false">
                         <i class="ti ti-mail"></i>
                     </a>
                     <div class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown">
@@ -117,9 +117,8 @@
                     </div>
                 </li>
                 <li class="dropdown pc-h-item header-user-profile">
-                    <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown"
-                        href="#" role="button" aria-haspopup="false" data-bs-auto-close="outside"
-                        aria-expanded="false">
+                    <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#"
+                        role="button" aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
                         <img src="/assets/images/user/avatar-2.jpg" alt="user-image" class="user-avtar">
                         <span>{{ Auth::user()->name }}</span>
                     </a>
@@ -134,11 +133,12 @@
                                     <h6 class="mb-1">{{ Auth::user()->name }}</h6>
                                     <span>{{ Auth::user()->email }}</span>
                                 </div>
-                                <a href="#!" class="pc-head-link bg-transparent"><i
-                                        class="ti ti-power text-danger"></i></a>
+                                {{-- <a href="#!" class="pc-head-link bg-transparent"><i
+                                        class="ti ti-power text-danger"></i></a> --}}
                             </div>
                         </div>
-                        <ul class="nav drp-tabs nav-fill nav-tabs" id="mydrpTab" role="tablist">
+                        <hr style="border: 1px solid #a8a8a8; margin: 0 0 7px 0;">
+                        {{-- <ul class="nav drp-tabs nav-fill nav-tabs" id="mydrpTab" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link active" id="drp-t1" data-bs-toggle="tab"
                                     data-bs-target="#drp-tab-1" type="button" role="tab"
@@ -151,33 +151,30 @@
                                     aria-controls="drp-tab-2" aria-selected="false"><i
                                         class="ti ti-settings"></i> Setting</button>
                             </li>
-                        </ul>
+                        </ul> --}}
                         <div class="tab-content" id="mysrpTabContent">
                             <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel"
                                 aria-labelledby="drp-t1" tabindex="0">
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ti ti-edit-circle"></i>
-                                    <span>Edit Profile</span>
-                                </a>
-                                <a href="#!" class="dropdown-item">
+                                <a href="{{ route('admin.profile.index') }}" class="dropdown-item">
                                     <i class="ti ti-user"></i>
-                                    <span>View Profile</span>
+                                    <span>Profile</span>
                                 </a>
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ti ti-clipboard-list"></i>
-                                    <span>Social Profile</span>
+                                <a href="{{ route('admin.profile.password') }}" class="dropdown-item">
+                                    <i class="ti ti-lock"></i>
+                                    <span>Change Password</span>
                                 </a>
-                                <a href="#!" class="dropdown-item">
-                                    <i class="ti ti-wallet"></i>
-                                    <span>Billing</span>
+                                 <a href="{{ route('home') }}" class="dropdown-item">
+                                    <i class="ti ti-home"></i>
+                                    <span>Back to Home</span>
                                 </a>
                                 <form action="{{ route('logout') }}" method="POST" class="m-0 p-0">
                                     @csrf
-                                    <button type="submit" class="dropdown-item w-100 text-start bg-transparent border-0">
+                                    <button type="submit"
+                                        class="dropdown-item w-100 text-start bg-transparent border-0">
                                         <i class="ti ti-power"></i>
                                         <span>Logout</span>
                                     </button>
-                                </form>   
+                                </form>
                             </div>
                             <div class="tab-pane fade" id="drp-tab-2" role="tabpanel" aria-labelledby="drp-t2"
                                 tabindex="0">

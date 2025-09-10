@@ -12,8 +12,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductImportController;
-
-
+use App\Http\Controllers\admin\ProfileController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -189,4 +188,12 @@ Route::middleware('admin')->group(function () {
         // 'show' => 'admin.contacts.show',
         // 'destroy' => 'admin.contacts.destroy'
     ]);
+
+
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('profile', [ProfileController::class, 'edit'])->name('profile.index');   // Show profile
+        Route::put('profile/update', [ProfileController::class, 'update'])->name('profile.update'); // Update profile info
+        Route::get('profile/password', [ProfileController::class, 'password'])->name('profile.password'); // Show change password form
+        Route::put('profile/password/update', [ProfileController::class, 'updatePassword'])->name('profile.password.update'); // Update password
+    });
 });
