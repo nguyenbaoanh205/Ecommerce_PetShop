@@ -26,49 +26,96 @@
                 <div class="col-md-6 col-xl-3">
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="mb-2 f-w-400 text-muted">Total Page Views</h6>
-                            <h4 class="mb-3">4,42,236 <span class="badge bg-light-primary border border-primary"><i
-                                        class="ti ti-trending-up"></i> 59.3%</span></h4>
-                            <p class="mb-0 text-muted text-sm">You made an extra <span class="text-primary">35,000</span>
+                            <h6 class="mb-2 f-w-400 text-muted">Total Product Views</h6>
+                            <h4 class="mb-3">
+                                {{ number_format($totalProductViews) }}
+                                <span
+                                    class="badge {{ $productViewsChange >= 0 ? 'bg-light-success border border-success' : 'bg-light-danger border border-danger' }}">
+                                    <i
+                                        class="ti {{ $productViewsChange >= 0 ? 'ti-trending-up' : 'ti-trending-down' }}"></i>
+                                    {{ abs(round($productViewsChange, 1)) }}%
+                                </span>
+                            </h4>
+                            <p class="mb-0 text-muted text-sm">
+                                You made an extra
+                                <span class="{{ $productViewsChange >= 0 ? 'text-success' : 'text-danger' }}">
+                                    {{ number_format($totalProductViews - $lastYearProductViews) }}
+                                </span>
                                 this year
                             </p>
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6 col-xl-3">
                     <div class="card">
                         <div class="card-body">
                             <h6 class="mb-2 f-w-400 text-muted">Total Users</h6>
-                            <h4 class="mb-3">78,250 <span class="badge bg-light-success border border-success"><i
-                                        class="ti ti-trending-up"></i> 70.5%</span></h4>
-                            <p class="mb-0 text-muted text-sm">You made an extra <span class="text-success">8,900</span>
-                                this year</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h6 class="mb-2 f-w-400 text-muted">Total Order</h6>
-                            <h4 class="mb-3">18,800 <span class="badge bg-light-warning border border-warning"><i
-                                        class="ti ti-trending-down"></i> 27.4%</span></h4>
-                            <p class="mb-0 text-muted text-sm">You made an extra <span class="text-warning">1,943</span>
-                                this year</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-xl-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h6 class="mb-2 f-w-400 text-muted">Total Sales</h6>
-                            <h4 class="mb-3">$35,078 <span class="badge bg-light-danger border border-danger"><i
-                                        class="ti ti-trending-down"></i> 27.4%</span></h4>
-                            <p class="mb-0 text-muted text-sm">You made an extra <span class="text-danger">$20,395</span>
+                            <h4 class="mb-3">
+                                {{ number_format($totalUsers) }}
+                                <span
+                                    class="badge {{ $usersChange >= 0 ? 'bg-light-success border border-success' : 'bg-light-danger border border-danger' }}">
+                                    <i class="ti {{ $usersChange >= 0 ? 'ti-trending-up' : 'ti-trending-down' }}"></i>
+                                    {{ abs(round($usersChange, 1)) }}%
+                                </span>
+                            </h4>
+                            <p class="mb-0 text-muted text-sm">
+                                You made an extra
+                                <span class="{{ $usersChange >= 0 ? 'text-success' : 'text-danger' }}">
+                                    {{ number_format($totalUsers - $lastYearUsers) }}
+                                </span>
                                 this year
                             </p>
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="mb-2 f-w-400 text-muted">Total Orders</h6>
+                            <h4 class="mb-3">
+                                {{ number_format($totalOrders) }}
+                                <span
+                                    class="badge {{ $ordersChange >= 0 ? 'bg-light-success border border-success' : 'bg-light-danger border border-danger' }}">
+                                    <i class="ti {{ $ordersChange >= 0 ? 'ti-trending-up' : 'ti-trending-down' }}"></i>
+                                    {{ abs(round($ordersChange, 1)) }}%
+                                </span>
+                            </h4>
+                            <p class="mb-0 text-muted text-sm">
+                                You made an extra
+                                <span class="{{ $ordersChange >= 0 ? 'text-success' : 'text-danger' }}">
+                                    {{ number_format($totalOrders - $lastYearOrders) }}
+                                </span>
+                                this year
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6 class="mb-2 f-w-400 text-muted">Total Sales</h6>
+                            <h4 class="mb-3">
+                                ${{ number_format($totalSales, 2) }}
+                                <span
+                                    class="badge {{ $salesChange >= 0 ? 'bg-light-success border border-success' : 'bg-light-danger border border-danger' }}">
+                                    <i class="ti {{ $salesChange >= 0 ? 'ti-trending-up' : 'ti-trending-down' }}"></i>
+                                    {{ abs(round($salesChange, 1)) }}%
+                                </span>
+                            </h4>
+                            <p class="mb-0 text-muted text-sm">
+                                You made an extra
+                                <span class="{{ $salesChange >= 0 ? 'text-success' : 'text-danger' }}">
+                                    ${{ number_format($totalSales - $lastYearSales, 2) }}
+                                </span>
+                                this year
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="col-md-12 col-xl-8">
                     <div class="d-flex align-items-center justify-content-between mb-3">
@@ -120,7 +167,7 @@
                                 <table class="table table-hover table-borderless mb-0">
                                     <thead>
                                         <tr>
-                                            <th>TRACKING NO.</th>
+                                            <th>ID.</th>
                                             <th>PRODUCT NAME</th>
                                             <th>TOTAL ORDER</th>
                                             <th>STATUS</th>
@@ -128,103 +175,74 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><a href="#" class="text-muted">84564564</a></td>
-                                            <td>Camera Lens</td>
-                                            <td>40</td>
-                                            <td><span class="d-flex align-items-center gap-2"><i
-                                                        class="fas fa-circle text-danger f-10 m-r-5"></i>Rejected</span>
-                                            </td>
-                                            <td class="text-end">$40,570</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-muted">84564564</a></td>
-                                            <td>Laptop</td>
-                                            <td>300</td>
-                                            <td><span class="d-flex align-items-center gap-2"><i
-                                                        class="fas fa-circle text-warning f-10 m-r-5"></i>Pending</span>
-                                            </td>
-                                            <td class="text-end">$180,139</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-muted">84564564</a></td>
-                                            <td>Mobile</td>
-                                            <td>355</td>
-                                            <td><span class="d-flex align-items-center gap-2"><i
-                                                        class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                            </td>
-                                            <td class="text-end">$180,139</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-muted">84564564</a></td>
-                                            <td>Camera Lens</td>
-                                            <td>40</td>
-                                            <td><span class="d-flex align-items-center gap-2"><i
-                                                        class="fas fa-circle text-danger f-10 m-r-5"></i>Rejected</span>
-                                            </td>
-                                            <td class="text-end">$40,570</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-muted">84564564</a></td>
-                                            <td>Laptop</td>
-                                            <td>300</td>
-                                            <td><span class="d-flex align-items-center gap-2"><i
-                                                        class="fas fa-circle text-warning f-10 m-r-5"></i>Pending</span>
-                                            </td>
-                                            <td class="text-end">$180,139</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-muted">84564564</a></td>
-                                            <td>Mobile</td>
-                                            <td>355</td>
-                                            <td><span class="d-flex align-items-center gap-2"><i
-                                                        class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                            </td>
-                                            <td class="text-end">$180,139</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-muted">84564564</a></td>
-                                            <td>Camera Lens</td>
-                                            <td>40</td>
-                                            <td><span class="d-flex align-items-center gap-2"><i
-                                                        class="fas fa-circle text-danger f-10 m-r-5"></i>Rejected</span>
-                                            </td>
-                                            <td class="text-end">$40,570</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-muted">84564564</a></td>
-                                            <td>Laptop</td>
-                                            <td>300</td>
-                                            <td><span class="d-flex align-items-center gap-2"><i
-                                                        class="fas fa-circle text-warning f-10 m-r-5"></i>Pending</span>
-                                            </td>
-                                            <td class="text-end">$180,139</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-muted">84564564</a></td>
-                                            <td>Mobile</td>
-                                            <td>355</td>
-                                            <td><span class="d-flex align-items-center gap-2"><i
-                                                        class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                            </td>
-                                            <td class="text-end">$180,139</td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="#" class="text-muted">84564564</a></td>
-                                            <td>Mobile</td>
-                                            <td>355</td>
-                                            <td><span class="d-flex align-items-center gap-2"><i
-                                                        class="fas fa-circle text-success f-10 m-r-5"></i>Approved</span>
-                                            </td>
-                                            <td class="text-end">$180,139</td>
-                                        </tr>
+                                        @foreach ($recentOrders as $order)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ route('admin.orders.show', $order->id) }}"
+                                                        class="text-muted">
+                                                        <strong>#{{ $order->id }}</strong>
+                                                    </a>
+                                                </td>
+
+                                                <td>
+                                                    @foreach ($order->orderItems as $item)
+                                                        {{ $item->product->name ?? 'N/A' }} (x{{ $item->quantity }})<br>
+                                                    @endforeach
+                                                </td>
+
+                                                <td>
+                                                    {{ $order->orderItems->sum('quantity') }}
+                                                </td>
+
+                                                <td>
+                                                    @php
+                                                        $statusColors = [
+                                                            'pending' => 'text-warning', // Pending
+                                                            'confirmed' => 'text-primary', // Confirmed
+                                                            'processing' => 'text-info', // Processing
+                                                            'shipped' => 'text-info', // Shipped (có thể giữ màu giống Processing)
+                                                            'delivered' => 'text-secondary', // Delivered
+                                                            'completed' => 'text-success', // Completed (màu xanh lá)
+                                                            'failed' => 'text-danger', // Failed
+                                                            'returned' => 'text-muted', // Returned
+                                                            'refunded' => 'text-success', // Refunded (màu xanh lá)
+                                                            'cancelled' => 'text-danger', // Cancelled
+                                                        ];
+
+                                                        $statusLabels = [
+                                                            'pending' => 'Pending',
+                                                            'confirmed' => 'Confirmed',
+                                                            'processing' => 'Processing',
+                                                            'shipped' => 'Shipped',
+                                                            'delivered' => 'Delivered',
+                                                            'completed' => 'Completed',
+                                                            'failed' => 'Failed',
+                                                            'returned' => 'Returned',
+                                                            'refunded' => 'Refunded',
+                                                            'cancelled' => 'Cancelled',
+                                                        ];
+
+                                                        $status = $order->status;
+                                                        $colorClass = $statusColors[$status] ?? 'text-muted';
+                                                        $label = $statusLabels[$status] ?? 'Unknown';
+                                                    @endphp
+                                                    <span class="d-flex align-items-center gap-2">
+                                                        <i class="fas fa-circle f-10 m-r-5 {{ $colorClass }}"></i>
+                                                        {{ $label }}
+                                                    </span>
+                                                </td>
+
+                                                <td class="text-end">{{ number_format($order->total_amount, 2) }} USD</td>
+
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-xl-4">
+                {{-- <div class="col-md-12 col-xl-4">
                     <h5 class="mb-3">Analytics Report</h5>
                     <div class="card">
                         <div class="list-group list-group-flush">
@@ -242,9 +260,9 @@
                             <div id="analytics-report-chart"></div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
 
-                <div class="col-md-12 col-xl-8">
+                {{-- <div class="col-md-12 col-xl-8">
                     <h5 class="mb-3">Sales Report</h5>
                     <div class="card">
                         <div class="card-body">
@@ -253,8 +271,8 @@
                             <div id="sales-report-chart"></div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12 col-xl-4">
+                </div> --}}
+                {{-- <div class="col-md-12 col-xl-4">
                     <h5 class="mb-3">Transaction History</h5>
                     <div class="card">
                         <div class="list-group list-group-flush">
@@ -311,7 +329,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
