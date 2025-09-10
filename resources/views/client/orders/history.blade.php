@@ -36,7 +36,25 @@
                                     <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm btn-outline-primary">
                                         View Details
                                     </a>
+
+                                    {{-- @if ($order->status === 'shipped')
+                                        <form action="{{ route('orders.receive', $order->id) }}" method="POST"
+                                            class="d-inline">
+                                            @csrf
+                                            @method('PUT') --}}
+                                            <button type="submit" class="btn btn-sm btn-success">
+                                                Nhận hàng
+                                            </button>
+                                        </form>
+                                    {{-- @endif
+
+                                    @if ($order->status === 'completed') --}}
+                                        <a href="orders.review', $order->id" class="btn btn-sm btn-warning">
+                                            Đánh giá
+                                        </a>
+                                    {{-- @endif --}}
                                 </td>
+
                             </tr>
                         @endforeach
                     </tbody>
