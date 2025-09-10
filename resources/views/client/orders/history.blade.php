@@ -33,7 +33,7 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm btn-outline-primary">
+                                    <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm btn-primary" style="padding: 5px 9px">
                                         View Details
                                     </a>
 
@@ -42,14 +42,14 @@
                                             class="d-inline">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-sm btn-success">
+                                            <button type="submit" class="btn btn-sm btn-success" style="padding: 5px 9px">
                                                 Nhận hàng
                                             </button>
                                         </form>
                                     @endif
 
                                     @if ($order->status === 'completed' && $order->reviews->isEmpty())
-                                        <a href="{{ route('orders.review', $order->id) }}" class="btn btn-sm btn-warning">
+                                        <a href="{{ route('orders.review', $order->id) }}" class="btn btn-sm btn-warning" style="padding: 5px 9px">
                                             Đánh giá
                                         </a>
                                     @endif
