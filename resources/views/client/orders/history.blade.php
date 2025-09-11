@@ -43,14 +43,14 @@
                                             @csrf
                                             @method('PUT')
                                             <button type="submit" class="btn btn-sm btn-success" style="padding: 5px 9px">
-                                                Nhận hàng
+                                                Received
                                             </button>
                                         </form>
                                     @endif
 
                                     @if ($order->status === 'completed' && $order->reviews->isEmpty())
                                         <a href="{{ route('orders.review', $order->id) }}" class="btn btn-sm btn-warning" style="padding: 5px 9px">
-                                            Đánh giá
+                                            Review
                                         </a>
                                     @endif
                                 </td>
