@@ -148,13 +148,49 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12 col-xl-4">
+                {{-- <div class="col-md-12 col-xl-4">
                     <h5 class="mb-3">Income Overview</h5>
                     <div class="card">
                         <div class="card-body">
                             <h6 class="mb-2 f-w-400 text-muted">This Week Statistics</h6>
                             <h3 class="mb-3">$7,650</h3>
                             <div id="income-overview-chart"></div>
+                        </div>
+                    </div>
+                </div> --}}
+
+                <div class="col-md-12 col-xl-4">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h5 class="mb-3">Tổng quan về thu nhập</h5>
+                        <ul class="nav nav-pills justify-content-end mb-0" id="income-tab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="income-month-tab" data-bs-toggle="pill"
+                                    data-bs-target="#income-month" type="button" role="tab"
+                                    aria-controls="income-month" aria-selected="false">Tháng</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="income-week-tab" data-bs-toggle="pill"
+                                    data-bs-target="#income-week" type="button" role="tab"
+                                    aria-controls="income-week" aria-selected="true">Tuần</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="tab-content" id="income-tab-content">
+                                <div class="tab-pane fade" id="income-month" role="tabpanel"
+                                    aria-labelledby="income-month-tab">
+                                    <h6 class="mb-2 f-w-400 text-muted">Thống kê tháng này</h6>
+                                    <h3 class="mb-3">$ {{ number_format($monthlyTotalIncome, 2, ',', '.') }}</h3>
+                                    <div id="income-chart-month" data-monthly-income='@json($monthlyIncome)'></div>
+                                </div>
+                                <div class="tab-pane fade show active" id="income-week" role="tabpanel"
+                                    aria-labelledby="income-week-tab">
+                                    <h6 class="mb-2 f-w-400 text-muted">Thống kê tuần này</h6>
+                                    <h3 class="mb-3">$ {{ number_format($weeklyTotalIncome, 2, ',', '.') }}</h3>
+                                    <div id="income-chart-week" data-weekly-income='@json($weeklyIncome)'></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

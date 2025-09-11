@@ -155,7 +155,7 @@
                     class="section-header d-md-flex justify-content-between align-items-center mb-3">
                     <h2 class="display-3 fw-normal">Pet Clothing</h2>
                     <div>
-                        <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                        <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                             shop now
                             <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                                 <use xlink:href="#arrow-right"></use>
@@ -337,7 +337,7 @@
                     <div class="secondary-font text-primary text-uppercase mb-3 fs-4">Upto 40% off</div>
                     <h2 class="banner-title display-1 fw-normal">Clearance sale !!!
                     </h2>
-                    <a href="#" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
+                    <a href="{{ route('shop.index') }}" class="btn btn-outline-dark btn-lg text-uppercase fs-6 rounded-1">
                         shop now
                         <svg width="24" height="24" viewBox="0 0 24 24" class="mb-1">
                             <use xlink:href="#arrow-right"></use>

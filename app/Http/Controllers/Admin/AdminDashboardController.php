@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\User;
 use App\Models\Product;
+use Carbon\Carbon;
 
 class AdminDashboardController extends Controller
 {
@@ -36,6 +37,40 @@ class AdminDashboardController extends Controller
         // Đơn hàng gần đây 
         $recentOrders = Order::with('orderItems')->orderBy('created_at', 'desc')->take(10)->get();
 
+        // Tạo mảng chứa tổng thu nhập từng ngày trong tuần
+        $weeklyIncome = [];
+
+        $startOfWeek = Carbon::now()->startOfWeek();
+        for ($i = 0; $i < 7; $i++) {
+            $date = $startOfWeek->copy()->addDays($i);
+            $dailyIncome = Order::whereDate('created_at', $date)
+                ->where('status', 'completed')
+                ->sum('total_amount');
+
+            $weeklyIncome[] = round($dailyIncome,2);
+        }
+
+        // Tổng thu nhập của cả tuần
+        $weeklyTotalIncome = array_sum($weeklyIncome);
+
+        // Tạo mảng chứa tổng thu nhập từng ngày trong tháng
+        $monthlyIncome = [];
+        $currentYear = Carbon::now()->year;
+
+        for ($month = 1; $month <= 12; $month++) {
+            $startOfMonth = Carbon::create($currentYear, $month, 1)->startOfMonth();
+            $endOfMonth = $startOfMonth->copy()->endOfMonth();
+
+            $income = Order::whereBetween('created_at', [$startOfMonth, $endOfMonth])
+                ->where('status', 'completed')
+                ->sum('total_amount');
+
+            $monthlyIncome[] = round($income,2);
+        }
+
+        // Tổng thu nhập cả tháng
+        $monthlyTotalIncome = array_sum($monthlyIncome);
+
         return view('admin.dashboard', compact(
             'totalProductViews',
             'lastYearProductViews',
@@ -49,7 +84,11 @@ class AdminDashboardController extends Controller
             'totalSales',
             'lastYearSales',
             'salesChange',
-            'recentOrders'
+            'recentOrders',
+            'weeklyIncome',
+            'weeklyTotalIncome',
+            'monthlyIncome',
+            'monthlyTotalIncome'
         ));
     }
 }

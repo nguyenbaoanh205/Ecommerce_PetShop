@@ -68,10 +68,23 @@ function floatchart() {
   })();
 
   (function () {
+    // tuần
+    const chartEl = document.querySelector('#income-chart-week');
+    if (!chartEl) return;
+
+    const weeklyIncome = JSON.parse(chartEl.dataset.weeklyIncome || '[]');
+
+    const formatCurrency = (value) => {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      }).format(value);
+    };
+
     var options = {
       chart: {
         type: 'bar',
-        height: 365,
+        height: 380,
         toolbar: {
           show: false
         }
@@ -87,14 +100,15 @@ function floatchart() {
         enabled: false
       },
       series: [{
-        data: [80, 95, 70, 42, 65, 55, 78]
+        name: "Doanh thu",
+        data: weeklyIncome
       }],
       stroke: {
         curve: 'smooth',
         width: 2
       },
       xaxis: {
-        categories: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         axisBorder: {
           show: false
         },
@@ -105,15 +119,71 @@ function floatchart() {
       yaxis: {
         show: false
       },
+      tooltip: {
+        y: {
+          formatter: formatCurrency
+        }
+      },
       grid: {
         show: false
       }
     };
-    var chart = new ApexCharts(document.querySelector('#income-overview-chart'), options);
+    var chart = new ApexCharts(chartEl, options);
     chart.render();
+
+    // tháng
+    const monthEl = document.querySelector('#income-chart-month');
+    if (!monthEl) return;
+
+    const monthlyIncome = JSON.parse(monthEl.dataset.monthlyIncome || '[]');
+    const monthLabels = [
+      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+    ];
+
+    const monthOptions = {
+      chart: {
+        type: 'bar',
+        height: 380,
+        toolbar: { show: false }
+      },
+      colors: ['#722ed1'],
+      plotOptions: {
+        bar: {
+          columnWidth: '45%',
+          borderRadius: 4
+        }
+      },
+      dataLabels: { enabled: false },
+      series: [{
+        name: "Doanh thu",
+        data: monthlyIncome
+      }],
+      stroke: {
+        curve: 'smooth',
+        width: 2
+      },
+      xaxis: {
+        categories: monthLabels,
+        axisBorder: { show: false },
+        axisTicks: { show: false },
+      },
+      yaxis: { show: false },
+      tooltip: {
+        y: {
+          formatter: (val) => new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD'
+          }).format(val)
+        }
+      },
+      grid: { show: false }
+    };
+
+    new ApexCharts(monthEl, monthOptions).render();
   })();
 
-  
+
   (function () {
     var options = {
       chart: {
