@@ -6,6 +6,15 @@
         <div class="container py-5">
             <h2 class="display-3 fw-normal mb-4">Your Cart</h2>
 
+            @if (request()->query('success'))
+                @php
+                    $latestOrder = Auth::user()->orders()->latest()->first();
+                    if ($latestOrder && $latestOrder->status === 'confirmed') {
+                        session()->flash('success', 'Payment successful!');
+                    }
+                @endphp
+            @endif
+
             @if ($cartItems->isEmpty())
                 <div class="alert alert-info">
                     <p class="mb-0">Your cart is empty.</p>

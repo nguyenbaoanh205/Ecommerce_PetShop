@@ -24,7 +24,7 @@
                             </div>
                             <div class="col-md-6">
                                 <h5>Checkout Information</h5>
-                                <p><strong>Payment Method:</strong> {{ $order->payment_method }}</p>
+                                <p><strong>Payment Method:</strong> {{ $order->payment_method ? 'COD' : 'PAY' }}</p>
                                 <p><strong>Total:</strong> ${{ number_format($order->total_amount, 2, '.', ',') }}</p>
                             </div>
                         </div>

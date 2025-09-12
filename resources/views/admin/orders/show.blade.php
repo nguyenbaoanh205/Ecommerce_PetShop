@@ -62,6 +62,7 @@
                                     <h4>Order Details</h4>
                                     <p><strong>Order ID:</strong> #{{ $order->id }}</p>
                                     <p><strong>Order Date:</strong> {{ $order->created_at->format('Y-m-d H:i') }}</p>
+                                    <p><strong>Payment Method:</strong> {{ $order->payment_method ? 'COD' : 'PAY' }}</strong></p>
                                     <p><strong>Status:</strong>
                                         <span
                                             class="badge bg-{{ $order->status == 'completed' ? 'success' : ($order->status == 'processing' ? 'warning' : ($order->status == 'cancelled' ? 'danger' : 'info')) }}">
