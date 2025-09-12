@@ -133,6 +133,26 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <h4 class="card-title mb-4">Payment Method</h4>
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="payment_method" id="cod"
+                                            value="cod" checked>
+                                        <label class="form-check-label" for="cod">
+                                            Cash on Delivery (COD)
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="payment_method" id="pay"
+                                            value="pay">
+                                        <label class="form-check-label" for="pay">
+                                            Online Payment
+                                        </label>
+                                    </div>
+                                    @error('payment_method')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <button type="submit" class="btn btn-dark btn-lg w-100 text-uppercase fs-6 rounded-1">
                                     Place Order
                                 </button>
