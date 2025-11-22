@@ -3,10 +3,12 @@
 
 <head>
     <title>@yield('title')</title>
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="/uploads/images/petshop.PNG">
     {{-- <meta name="apple-mobile-web-app-capable" content="yes"> --}}
     <meta name="author" content="">
@@ -122,7 +124,8 @@
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <a href="{{ route('cart.index') }}" class="d-flex align-items-center text-decoration-none">
                         <span class="text-primary">Your cart</span>
-                        <i class="fas fa-arrow-right ms-2" style="font-size: 18px;color: #deae7d;margin-bottom: 9px"></i>
+                        <i class="fas fa-arrow-right ms-2"
+                            style="font-size: 18px;color: #deae7d;margin-bottom: 9px"></i>
                     </a>
 
                     <span class="badge bg-primary rounded-circle pt-2">{{ $cartItems->count() }}</span>
@@ -256,20 +259,9 @@
             });
         });
     </script>
-    <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        console.log('Layout loaded, checking Echo...');
         document.addEventListener('DOMContentLoaded', () => {
-            // Debug SweetAlert2
-            console.log('Checking SweetAlert2...');
-            if (typeof Swal !== 'undefined') {
-                console.log('SweetAlert2 is loaded successfully');
-            } else {
-                console.error('SweetAlert2 is not loaded');
-                return;
-            }
-
             // Custom styling cho SweetAlert2 - sửa position để không bị header che
             const Toast = Swal.mixin({
                 toast: true,

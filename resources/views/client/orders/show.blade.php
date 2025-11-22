@@ -169,5 +169,46 @@
         }
     </style>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof window.Echo === 'undefined') {
+                console.error('Echo not loaded. Make sure Vite assets are included.');
+                return;
+            }
+
+            const orderId = {{ $order->id }};
+            const channel = window.Echo.private(`order.${orderId}`);
+            const badge = document.querySelector('.badge-{{ $order->status }}');
+
+            channel.listen('.status.updated', (e) => {
+                if (!e.status) return;
+
+                // Cập nhật badge
+                if (badge) {
+                    badge.className = `badge badge-${e.status}`;
+                    badge.textContent = e.status.charAt(0).toUpperCase() + e.status.slice(1);
+                }
+
+                // Thông báo
+                if (typeof Swal !== 'undefined') {
+                    Swal.fire({
+                        toast: true,
+                        icon: 'success',
+                        title: 'Order Status Updated',
+                        text: `Order #${orderId} has been updated to ${e.status}.`,
+                        position: 'top-end',
+                        timer: 4000,
+                        showConfirmButton: false
+                    });
+                } else {
+                    alert(`Order status updated to: ${e.status}`);
+                }
+
+                // Reload sau 2 giây
+                setTimeout(() => window.location.reload(), 2000);
+            });
+        });
+    </script>
+
 
 @endsection
