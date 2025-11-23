@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
 use App\Models\CartItem;
 use App\Models\Category;
@@ -102,6 +103,8 @@ class CheckoutController extends Controller
                 'stripe_payment_intent_id' => $paymentIntent->id, // lưu tạm session ID
             ]);
 
+            event(new OrderCreated($order));
+
             // Tạo chi tiết đơn hàng
             foreach ($cartItems as $item) {
                 OrderItem::create([
@@ -131,6 +134,8 @@ class CheckoutController extends Controller
             'payment_method' => 'cod',
             'stripe_payment_intent_id' => null,
         ]);
+
+        event(new OrderCreated($order));
 
         foreach ($cartItems as $item) {
             OrderItem::create([

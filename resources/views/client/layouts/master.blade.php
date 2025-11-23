@@ -39,7 +39,9 @@
 <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}">
 <!-- [Material Icons] https://fonts.google.com/icons -->
 <link rel="stylesheet" href="{{ asset('assets/fonts/material.css') }}">
-
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -231,35 +233,7 @@
             });
         });
     </script>
-    {{-- Khi ấn các tab danh mục sẽ hiện ra sản phẩm --}}
-    <!-- Isotope JS CDN -->
-    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize Isotope
-            var iso = new Isotope('.isotope-container', {
-                itemSelector: '.item',
-                layoutMode: 'fitRows'
-            });
-
-            // Filter buttons
-            const buttons = document.querySelectorAll('.filter-button');
-            buttons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class
-                    buttons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-
-                    const filterValue = this.getAttribute('data-filter');
-                    iso.arrange({
-                        filter: filterValue
-                    });
-                });
-            });
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Custom styling cho SweetAlert2 - sửa position để không bị header che
@@ -327,8 +301,6 @@
     </script>
 
 
-    {{-- css Aos Animation --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
     <script>
         AOS.init({
             duration: 700

@@ -32,6 +32,11 @@
     <!-- [Template CSS Files] -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" id="main-style-link">
     <link rel="stylesheet" href="{{ asset('assets/css/style-preset.css') }}">
+    <!-- Pusher CDN -->
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
+    <!-- Laravel Echo CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/laravel-echo/1.15.0/echo.iife.js"></script>
 
 </head>
 <!-- [Head] end -->
@@ -49,10 +54,41 @@
     @include('admin.partials.sidebar')
 
     @include('admin.partials.header')
-    
+
     @yield('content')
 
     @include('admin.partials.footer')
+
+    <script>
+        // Gắn Pusher vào window
+        window.Pusher = Pusher;
+
+        // Khởi tạo Echo
+        window.Echo = new Echo({
+            broadcaster: 'pusher',
+            key: "{{ env('PUSHER_APP_KEY') }}",
+            cluster: "{{ env('PUSHER_APP_CLUSTER') }}",
+            forceTLS: true,
+        });
+
+        console.log("Echo ready...");
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        window.Echo.channel('admin.orders')
+            .listen('.order.created', (e) => {
+                console.log("New order:", e);
+
+                Swal.fire({
+                    toast: true,
+                    icon: 'info',
+                    title: `New order #${e.orderId} created`,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            });
+    </script>
 
     <!-- [Page Specific JS] start -->
     <script src="{{ asset('assets/js/plugins/apexcharts.min.js') }}"></script>
