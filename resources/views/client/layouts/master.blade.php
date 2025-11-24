@@ -31,13 +31,9 @@
 <link
     href="{{ asset('https://fonts.googleapis.com/css2?family=Chilanka&family=Montserrat:wght@300;400;500&display=swap') }}"
     rel="stylesheet">
-<!-- [Tabler Icons] https://tablericons.com -->
 <link rel="stylesheet" href="{{ asset('assets/fonts/tabler-icons.min.css') }}">
-<!-- [Feather Icons] https://feathericons.com -->
 <link rel="stylesheet" href="{{ asset('assets/fonts/feather.css') }}">
-<!-- [Font Awesome Icons] https://fontawesome.com/icons -->
 <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome.css') }}">
-<!-- [Material Icons] https://fonts.google.com/icons -->
 <link rel="stylesheet" href="{{ asset('assets/fonts/material.css') }}">
 <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>

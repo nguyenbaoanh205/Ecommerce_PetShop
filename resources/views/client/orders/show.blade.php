@@ -183,13 +183,11 @@
             channel.listen('.status.updated', (e) => {
                 if (!e.status) return;
 
-                // Cập nhật badge
                 if (badge) {
                     badge.className = `badge badge-${e.status}`;
                     badge.textContent = e.status.charAt(0).toUpperCase() + e.status.slice(1);
                 }
 
-                // Thông báo
                 if (typeof Swal !== 'undefined') {
                     Swal.fire({
                         toast: true,
@@ -204,8 +202,6 @@
                     alert(`Order status updated to: ${e.status}`);
                 }
 
-                // Reload sau 2 giây
-                setTimeout(() => window.location.reload(), 2000);
             });
         });
     </script>
